@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
-		9D6D62A329ED991A00BBE44D /* Recipie Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6D62A129ED991A00BBE44D /* Recipie Finder.storyboard */; };
-=======
->>>>>>> f06d7c0d201589ecf1197a72adfa11ccb148e2b8
 		9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */; };
-		9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */; };
+		9F1CBD3E29ED98D0000259B7 /* Recipie Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3D29ED98D0000259B7 /* Recipie Finder.storyboard */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
 		9F1CBD4429ED9CD1000259B7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CBD4329ED9CD1000259B7 /* CalendarView.swift */; };
 		9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */; };
@@ -23,12 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
-		9D6D62A229ED991A00BBE44D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Recipie Finder.storyboard"; sourceTree = "<group>"; };
-=======
->>>>>>> f06d7c0d201589ecf1197a72adfa11ccb148e2b8
 		9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipieFinderTableViewController.swift; sourceTree = "<group>"; };
-		9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipe Finder.storyboard"; path = "../../Recipe Finder.storyboard"; sourceTree = "<group>"; };
+		9F1CBD3D29ED98D0000259B7 /* Recipie Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipie Finder.storyboard"; path = "../../Recipie Finder.storyboard"; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
 		9F1CBD4329ED9CD1000259B7 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,12 +47,8 @@
 			isa = PBXGroup;
 			children = (
 				9F88E5E029ED8A6A009F8B79 /* Main.storyboard */,
-<<<<<<< HEAD
-				9D6D62A129ED991A00BBE44D /* Recipie Finder.storyboard */,
-=======
-				9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */,
+				9F1CBD3D29ED98D0000259B7 /* Recipie Finder.storyboard */,
 				9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */,
->>>>>>> f06d7c0d201589ecf1197a72adfa11ccb148e2b8
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -163,13 +151,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */,
-<<<<<<< HEAD
-				9D6D62A329ED991A00BBE44D /* Recipie Finder.storyboard in Resources */,
-=======
->>>>>>> f06d7c0d201589ecf1197a72adfa11ccb148e2b8
 				9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */,
 				9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */,
-				9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */,
+				9F1CBD3E29ED98D0000259B7 /* Recipie Finder.storyboard in Resources */,
 				9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,14 +175,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9D6D62A129ED991A00BBE44D /* Recipie Finder.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9D6D62A229ED991A00BBE44D /* Base */,
-			);
-			name = "Recipie Finder.storyboard";
-			sourceTree = "<group>";
-		};
 		9F88E5E029ED8A6A009F8B79 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -339,6 +315,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U994ZW592L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -366,6 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U994ZW592L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
