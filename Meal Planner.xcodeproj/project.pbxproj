@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844F445429EED68600464FEE /* SavedRecipes.storyboard */; };
+=======
+>>>>>>> 0b95f372b37b5db4875ccf24cb61e507791cf9c3
 		9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */; };
 		9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
@@ -17,6 +20,7 @@
 		9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E029ED8A6A009F8B79 /* Main.storyboard */; };
 		9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E329ED8A6B009F8B79 /* Assets.xcassets */; };
 		9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E529ED8A6B009F8B79 /* LaunchScreen.storyboard */; };
+<<<<<<< HEAD
 		9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */; };
 		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
@@ -24,6 +28,13 @@
 
 /* Begin PBXFileReference section */
 		844F445429EED68600464FEE /* SavedRecipes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavedRecipes.storyboard; sourceTree = "<group>"; };
+=======
+		FFC9E9BB29ED986C00FB6B2A /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BA29ED986C00FB6B2A /* Recipe Finder.storyboard */; };
+		FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+>>>>>>> 0b95f372b37b5db4875ccf24cb61e507791cf9c3
 		9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipieFinderTableViewController.swift; sourceTree = "<group>"; };
 		9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipe Finder.storyboard"; path = "../../Recipe Finder.storyboard"; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
@@ -35,9 +46,14 @@
 		9F88E5E329ED8A6B009F8B79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F88E5E629ED8A6B009F8B79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F88E5E829ED8A6B009F8B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+=======
+		FFC9E9BA29ED986C00FB6B2A /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Recipe Finder.storyboard"; sourceTree = "<group>"; };
+		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
+>>>>>>> 0b95f372b37b5db4875ccf24cb61e507791cf9c3
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +71,14 @@
 			isa = PBXGroup;
 			children = (
 				9F88E5E029ED8A6A009F8B79 /* Main.storyboard */,
+<<<<<<< HEAD
 				9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */,
 				9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */,
 				844F445429EED68600464FEE /* SavedRecipes.storyboard */,
+=======
+				FFC9E9BA29ED986C00FB6B2A /* Recipe Finder.storyboard */,
+				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
+>>>>>>> 0b95f372b37b5db4875ccf24cb61e507791cf9c3
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -173,9 +194,14 @@
 				9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */,
 				9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */,
 				9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */,
+<<<<<<< HEAD
 				9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */,
 				844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */,
 				9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
+=======
+				FFC9E9BB29ED986C00FB6B2A /* Recipe Finder.storyboard in Resources */,
+				FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */,
+>>>>>>> 0b95f372b37b5db4875ccf24cb61e507791cf9c3
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
