@@ -20,6 +20,7 @@
 		9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */; };
 		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
+		9F9BEC1529EEE53600C4AB9C /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9F9BEC1429EEE53600C4AB9C /* FSCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9BEC1529EEE53600C4AB9C /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,8 +58,8 @@
 			children = (
 				9F88E5E029ED8A6A009F8B79 /* Main.storyboard */,
 				9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */,
-				9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */,
 				844F445429EED68600464FEE /* SavedRecipes.storyboard */,
+				9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */,
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -128,6 +130,9 @@
 			dependencies = (
 			);
 			name = "Meal Planner";
+			packageProductDependencies = (
+				9F9BEC1429EEE53600C4AB9C /* FSCalendar */,
+			);
 			productName = "Meal Planner";
 			productReference = 9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +161,9 @@
 				Base,
 			);
 			mainGroup = 9F88E5CE29ED8A6A009F8B79;
+			packageReferences = (
+				9F9BEC1329EEE53600C4AB9C /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 9F88E5D829ED8A6A009F8B79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -410,6 +418,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F9BEC1329EEE53600C4AB9C /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F9BEC1429EEE53600C4AB9C /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F9BEC1329EEE53600C4AB9C /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F88E5CF29ED8A6A009F8B79 /* Project object */;
 }

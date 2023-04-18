@@ -7,15 +7,22 @@
 
 import UIKit
 
-class CalendarView: UICalendarView {
-
+class CalendarView: UIViewController, UICalendarViewDelegate {
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override func viewDidLoad() {
+        let myCalendarView = UICalendarView()
+        
+        myCalendarView.delegate = self
+        
+        let gregorian = Calendar(identifier: .gregorian)
+        
+        myCalendarView.calendar = gregorian
+        
+        view.addSubview(myCalendarView)
+        
+        print("if theres no calendar right now, you failed.")
+        
     }
-    */
-
+    
 }
