@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D9DF43B29ED8FD0007D1222 /* Recipie Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D9DF43A29ED8FD0007D1222 /* Recipie Finder.storyboard */; };
 		9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */; };
 		9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */; };
 		9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */; };
 		9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E029ED8A6A009F8B79 /* Main.storyboard */; };
 		9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E329ED8A6B009F8B79 /* Assets.xcassets */; };
 		9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E529ED8A6B009F8B79 /* LaunchScreen.storyboard */; };
+		FFC9E9BB29ED986C00FB6B2A /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BA29ED986C00FB6B2A /* Recipe Finder.storyboard */; };
+		FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9D9DF43A29ED8FD0007D1222 /* Recipie Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipie Finder.storyboard"; path = "../../../../../../../Documents/Recipie Finder.storyboard"; sourceTree = "<group>"; };
 		9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipieFinderTableViewController.swift; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +26,8 @@
 		9F88E5E329ED8A6B009F8B79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F88E5E629ED8A6B009F8B79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F88E5E829ED8A6B009F8B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFC9E9BA29ED986C00FB6B2A /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Recipe Finder.storyboard"; sourceTree = "<group>"; };
+		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +45,8 @@
 			isa = PBXGroup;
 			children = (
 				9F88E5E029ED8A6A009F8B79 /* Main.storyboard */,
-				9D9DF43A29ED8FD0007D1222 /* Recipie Finder.storyboard */,
+				FFC9E9BA29ED986C00FB6B2A /* Recipe Finder.storyboard */,
+				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -145,9 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */,
-				9D9DF43B29ED8FD0007D1222 /* Recipie Finder.storyboard in Resources */,
 				9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */,
 				9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */,
+				FFC9E9BB29ED986C00FB6B2A /* Recipe Finder.storyboard in Resources */,
+				FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
