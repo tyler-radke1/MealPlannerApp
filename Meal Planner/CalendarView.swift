@@ -13,7 +13,7 @@ class CalendarView: UIViewController, UICalendarViewDelegate, UICalendarSelectio
     
     
     override func viewDidLoad() {
-        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 320))
+        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 400))
         
         configure(calendar: myCalendarView)
      
@@ -35,7 +35,7 @@ class CalendarView: UIViewController, UICalendarViewDelegate, UICalendarSelectio
 
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-       
+        guard let dateComponents else { return }
     }
     
 }
