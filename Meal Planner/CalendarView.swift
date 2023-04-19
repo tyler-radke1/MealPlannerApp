@@ -7,22 +7,35 @@
 
 import UIKit
 
-class CalendarView: UIViewController, UICalendarViewDelegate {
+class CalendarView: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
+    
+    
     
     
     override func viewDidLoad() {
-        let myCalendarView = UICalendarView()
+        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 320))
         
-        myCalendarView.delegate = self
+        configure(calendar: myCalendarView)
+     
+    }
+    
+    func configure(calendar: UICalendarView) {
+        calendar.delegate = self
         
         let gregorian = Calendar(identifier: .gregorian)
         
-        myCalendarView.calendar = gregorian
+        calendar.calendar = gregorian
         
-        view.addSubview(myCalendarView)
+        self.view.addSubview(calendar)
         
-        print("if theres no calendar right now, you failed.")
+        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
         
+        calendar.selectionBehavior = dateSelection
+    }
+
+    
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+       
     }
     
 }
