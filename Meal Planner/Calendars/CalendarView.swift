@@ -7,8 +7,9 @@
 
 import UIKit
 
-class CalendarView: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource {
-   
+class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate {
+    
+    
     
     
     @IBOutlet weak var calendarTableView: UITableView!
@@ -37,6 +38,9 @@ class CalendarView: UIViewController, UICalendarViewDelegate, UICalendarSelectio
         calendar.selectionBehavior = dateSelection
     }
 
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+            return nil
+    }
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
        // guard let dateComponents else { return }

@@ -1,20 +1,18 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {
-    };
-    objectVersion = 56;
-    objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
 
 /* Begin PBXBuildFile section */
-
 		844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844F445429EED68600464FEE /* SavedRecipes.storyboard */; };
 		844F445729EEE69600464FEE /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F445629EEE69600464FEE /* SavedRecipesViewController.swift */; };
 		844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */; };
 		9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */; };
 		9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
-		9F1CBD4429ED9CD1000259B7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CBD4329ED9CD1000259B7 /* CalendarView.swift */; };
 		9F45F0D329F03F02004FDBD7 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45F0D229F03F02004FDBD7 /* CalendarTableViewController.swift */; };
 		9F45F0D629F046DD004FDBD7 /* DummyCalendarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45F0D529F046DD004FDBD7 /* DummyCalendarData.swift */; };
 		9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */; };
@@ -25,7 +23,8 @@
 		9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */; };
 		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
-		9F9BEC1529EEE53600C4AB9C /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9F9BEC1429EEE53600C4AB9C /* FSCalendar */; };
+		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
+		FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipieFinderTableViewController.swift; sourceTree = "<group>"; };
 		9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipe Finder.storyboard"; path = "../../Recipe Finder.storyboard"; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
-		9F1CBD4329ED9CD1000259B7 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		9F45F0D229F03F02004FDBD7 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
 		9F45F0D529F046DD004FDBD7 /* DummyCalendarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCalendarData.swift; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +46,10 @@
 		9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		FF012C0A29F029EC00E7033D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		FF012C0D29F02E0500E7033D /* IngredientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListViewController.swift; sourceTree = "<group>"; };
+		FF012C0F29F1846D00E7033D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F9BEC1529EEE53600C4AB9C /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +69,8 @@
 				9F88E5E029ED8A6A009F8B79 /* Main.storyboard */,
 				9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */,
 				844F445429EED68600464FEE /* SavedRecipes.storyboard */,
+				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
+				FF012C0C29F029F100E7033D /* Ingredients */,
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -83,8 +86,8 @@
 		9F45F0D429F03F07004FDBD7 /* Calendars */ = {
 			isa = PBXGroup;
 			children = (
+				FF012C0F29F1846D00E7033D /* CalendarView.swift */,
 				9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */,
-				9F1CBD4329ED9CD1000259B7 /* CalendarView.swift */,
 				9F45F0D229F03F02004FDBD7 /* CalendarTableViewController.swift */,
 			);
 			path = Calendars;
@@ -135,6 +138,15 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		FF012C0C29F029F100E7033D /* Ingredients */ = {
+			isa = PBXGroup;
+			children = (
+				FF012C0A29F029EC00E7033D /* IngredientTableViewCell.swift */,
+				FF012C0D29F02E0500E7033D /* IngredientListViewController.swift */,
+			);
+			path = Ingredients;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,7 +164,6 @@
 			);
 			name = "Meal Planner";
 			packageProductDependencies = (
-				9F9BEC1429EEE53600C4AB9C /* FSCalendar */,
 			);
 			productName = "Meal Planner";
 			productReference = 9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */;
@@ -183,7 +194,6 @@
 			);
 			mainGroup = 9F88E5CE29ED8A6A009F8B79;
 			packageReferences = (
-				9F9BEC1329EEE53600C4AB9C /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 9F88E5D829ED8A6A009F8B79 /* Products */;
 			projectDirPath = "";
@@ -195,24 +205,23 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-        9F88E5D529ED8A6A009F8B79 /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */,
-                9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */,
-                9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */,
-                9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */,
-                844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */,
-                9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
-                FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		9F88E5D529ED8A6A009F8B79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */,
+				9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */,
+				9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */,
+				9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */,
+				844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */,
+				9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
+				FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-
 		9F88E5D329ED8A6A009F8B79 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,229 +232,234 @@
 				9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */,
 				9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */,
 				9F45F0D629F046DD004FDBD7 /* DummyCalendarData.swift in Sources */,
+				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */,
 				844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */,
-				9F1CBD4429ED9CD1000259B7 /* CalendarView.swift in Sources */,
 				9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */,
 				9F45F0D329F03F02004FDBD7 /* CalendarTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-        9F88E5E029ED8A6A009F8B79 /* Main.storyboard */ = {
-            isa = PBXVariantGroup;
-            children = (
-                9F88E5E129ED8A6A009F8B79 /* Base */,
-            );
-            name = Main.storyboard;
-            sourceTree = "<group>";
-        };
-        9F88E5E529ED8A6B009F8B79 /* LaunchScreen.storyboard */ = {
-            isa = PBXVariantGroup;
-            children = (
-                9F88E5E629ED8A6B009F8B79 /* Base */,
-            );
-            name = LaunchScreen.storyboard;
-            sourceTree = "<group>";
-        };
+		9F88E5E029ED8A6A009F8B79 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F88E5E129ED8A6A009F8B79 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9F88E5E529ED8A6B009F8B79 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F88E5E629ED8A6B009F8B79 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-        9F88E5E929ED8A6B009F8B79 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = dwarf;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_TESTABILITY = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu11;
-                GCC_DYNAMIC_NO_PIC = NO;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_OPTIMIZATION_LEVEL = 0;
-                GCC_PREPROCESSOR_DEFINITIONS = (
-                    "DEBUG=1",
-                    "$(inherited)",
-                );
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-                MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-                MTL_FAST_MATH = YES;
-                ONLY_ACTIVE_ARCH = YES;
-                SDKROOT = iphoneos;
-                SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            };
-            name = Debug;
-        };
-        9F88E5EA29ED8A6B009F8B79 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-                ENABLE_NS_ASSERTIONS = NO;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu11;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-                MTL_ENABLE_DEBUG_INFO = NO;
-                MTL_FAST_MATH = YES;
-                SDKROOT = iphoneos;
-                SWIFT_COMPILATION_MODE = wholemodule;
-                SWIFT_OPTIMIZATION_LEVEL = "-O";
-                VALIDATE_PRODUCT = YES;
-            };
-            name = Release;
-        };
-        9F88E5EC29ED8A6B009F8B79 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                DEVELOPMENT_TEAM = U994ZW592L;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_FILE = "Meal Planner/Info.plist";
-                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-                INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-                INFOPLIST_KEY_UIMainStoryboardFile = Main;
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = "self.Meal-Planner";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-            };
-            name = Debug;
-        };
-        9F88E5ED29ED8A6B009F8B79 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                DEVELOPMENT_TEAM = U994ZW592L;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_FILE = "Meal Planner/Info.plist";
-                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-                INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-                INFOPLIST_KEY_UIMainStoryboardFile = Main;
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = "self.Meal-Planner";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-            };
-            name = Release;
-        };
+		9F88E5E929ED8A6B009F8B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9F88E5EA29ED8A6B009F8B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F88E5EC29ED8A6B009F8B79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LH9X4AL22K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Meal Planner/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "self.Meal-Planner";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F88E5ED29ED8A6B009F8B79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LH9X4AL22K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Meal Planner/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "self.Meal-Planner";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-        9F88E5D229ED8A6A009F8B79 /* Build configuration list for PBXProject "Meal Planner" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                9F88E5E929ED8A6B009F8B79 /* Debug */,
-                9F88E5EA29ED8A6B009F8B79 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        9F88E5EB29ED8A6B009F8B79 /* Build configuration list for PBXNativeTarget "Meal Planner" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                9F88E5EC29ED8A6B009F8B79 /* Debug */,
-                9F88E5ED29ED8A6B009F8B79 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
+		9F88E5D229ED8A6A009F8B79 /* Build configuration list for PBXProject "Meal Planner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F88E5E929ED8A6B009F8B79 /* Debug */,
+				9F88E5EA29ED8A6B009F8B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F88E5EB29ED8A6B009F8B79 /* Build configuration list for PBXNativeTarget "Meal Planner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F88E5EC29ED8A6B009F8B79 /* Debug */,
+				9F88E5ED29ED8A6B009F8B79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-    };
-    rootObject = 9F88E5CF29ED8A6A009F8B79 /* Project object */;
+	};
+	rootObject = 9F88E5CF29ED8A6A009F8B79 /* Project object */;
 }
