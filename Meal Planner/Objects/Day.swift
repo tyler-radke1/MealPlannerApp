@@ -12,3 +12,4 @@ struct Day {
     var lunch: Recipe?
     var dinner: Recipe?
 }
+
