@@ -9,4 +9,5 @@ import Foundation
 
 struct Ingredient {
     var name: String
+    var quantity: String
 }
