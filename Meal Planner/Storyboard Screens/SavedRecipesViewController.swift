@@ -13,7 +13,8 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var savedRecipesTableView: UITableView!
     
-    override func viewDidLoad() {        super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self

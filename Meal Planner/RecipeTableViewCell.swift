@@ -24,7 +24,6 @@ class RecipeTableViewCell: UITableViewCell {
     }
     
     func configure(with recipe: Recipe) {
-//        guard let recipeNameLabel else { return }
         recipeNameLabel.text = recipe.name
     }
     
