@@ -25,8 +25,20 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
                     Ingredient(name: "Salt", quantity: "to taste"),
                     Ingredient(name: "Pepper", quantity: "to taste")
                 ]
+        
+        let scrambledEggsInstructions = """
+"Instructions:
+        
+        1. Crack the eggs into a bowl and beat them with a fork.
+        2. Melt the butter in a non-stick pan over medium heat.
+        3. Pour the beaten eggs into the pan.
+        4. Use a spatula to gently stir the eggs as they cook.
+        5. When the eggs are set but still moist, remove them from the heat.
+        6. Season with salt and pepper to taste.
+"""
+        
         recipes = [
-        Recipe(name: "Scrambled Eggs", ingredients: scrambledEggsIngredients)]
+        Recipe(name: "Scrambled Eggs", ingredients: scrambledEggsIngredients, instructions: scrambledEggsInstructions)]
         
     }
     // MARK: - Navigation
@@ -40,14 +52,12 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         var cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableViewCell", for: indexPath) as! RecipeTableViewCell
         
         let recipe = recipes[indexPath.row]
-//        otherConfigureCell(cell: cell)
+
         cell.configure(with: recipe)
         return cell
     }
    
-//    func otherConfigureCell(cell: RecipeTableViewCell) {
-//
-//    }
+
 
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
     }
