@@ -14,9 +14,9 @@
 		9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
 		9F45F0D329F03F02004FDBD7 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45F0D229F03F02004FDBD7 /* CalendarTableViewController.swift */; };
-		9F45F0D629F046DD004FDBD7 /* DummyCalendarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45F0D529F046DD004FDBD7 /* DummyCalendarData.swift */; };
 		9F45F0D829F1921B004FDBD7 /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45F0D729F1921B004FDBD7 /* IngredientViewController.swift */; };
 		9F45F0DA29F193A6004FDBD7 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45F0D929F193A6004FDBD7 /* IngredientTableViewCell.swift */; };
+		9F60640F29F2DDF60024584D /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F60640E29F2DDF60024584D /* MealCell.swift */; };
 		9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */; };
 		9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */; };
 		9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E029ED8A6A009F8B79 /* Main.storyboard */; };
@@ -37,9 +37,9 @@
 		9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipe Finder.storyboard"; path = "../../Recipe Finder.storyboard"; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
 		9F45F0D229F03F02004FDBD7 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
-		9F45F0D529F046DD004FDBD7 /* DummyCalendarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCalendarData.swift; sourceTree = "<group>"; };
 		9F45F0D729F1921B004FDBD7 /* IngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
 		9F45F0D929F193A6004FDBD7 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		9F60640E29F2DDF60024584D /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 			children = (
 				FF012C0F29F1846D00E7033D /* CalendarView.swift */,
 				9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */,
+				9F60640E29F2DDF60024584D /* MealCell.swift */,
 				9F45F0D229F03F02004FDBD7 /* CalendarTableViewController.swift */,
 			);
 			path = Calendars;
@@ -135,7 +136,6 @@
 				9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */,
 				9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */,
 				9F9BEC0F29EED71500C4AB9C /* Day.swift */,
-				9F45F0D529F046DD004FDBD7 /* DummyCalendarData.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -232,8 +232,8 @@
 				9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */,
 				9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */,
 				9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */,
+				9F60640F29F2DDF60024584D /* MealCell.swift in Sources */,
 				9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */,
-				9F45F0D629F046DD004FDBD7 /* DummyCalendarData.swift in Sources */,
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */,
 				844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */,
@@ -388,7 +388,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LH9X4AL22K;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -419,7 +419,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LH9X4AL22K;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
