@@ -10,6 +10,8 @@
 		844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844F445429EED68600464FEE /* SavedRecipes.storyboard */; };
 		844F445729EEE69600464FEE /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F445629EEE69600464FEE /* SavedRecipesViewController.swift */; };
 		844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */; };
+		9D39F38A29F18EB6000955C1 /* Newtork Call Funcs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39F38929F18EB6000955C1 /* Newtork Call Funcs.swift */; };
+		9D39F38C29F19247000955C1 /* NewIngredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D39F38B29F19247000955C1 /* NewIngredients.storyboard */; };
 		9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */; };
 		9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
@@ -24,13 +26,14 @@
 		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
 		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
-		FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		844F445429EED68600464FEE /* SavedRecipes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavedRecipes.storyboard; sourceTree = "<group>"; };
 		844F445629EEE69600464FEE /* SavedRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedRecipesViewController.swift; path = "Storyboard Screens/SavedRecipesViewController.swift"; sourceTree = "<group>"; };
 		844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		9D39F38929F18EB6000955C1 /* Newtork Call Funcs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Newtork Call Funcs.swift"; sourceTree = "<group>"; };
+		9D39F38B29F19247000955C1 /* NewIngredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewIngredients.storyboard; sourceTree = "<group>"; };
 		9D9DF43E29ED9088007D1222 /* RecipieFinderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipieFinderTableViewController.swift; sourceTree = "<group>"; };
 		9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipe Finder.storyboard"; path = "../../Recipe Finder.storyboard"; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
@@ -46,10 +49,7 @@
 		9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		FF012C0A29F029EC00E7033D /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
-		FF012C0D29F02E0500E7033D /* IngredientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListViewController.swift; sourceTree = "<group>"; };
 		FF012C0F29F1846D00E7033D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,14 +63,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D39F38829F18E95000955C1 /* API Master Hub */ = {
+			isa = PBXGroup;
+			children = (
+				9D39F38929F18EB6000955C1 /* Newtork Call Funcs.swift */,
+			);
+			path = "API Master Hub";
+			sourceTree = "<group>";
+		};
 		9D9DF43829ED8F9D007D1222 /* Storyboard Screens */ = {
 			isa = PBXGroup;
 			children = (
 				9F88E5E029ED8A6A009F8B79 /* Main.storyboard */,
 				9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */,
 				844F445429EED68600464FEE /* SavedRecipes.storyboard */,
-				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
-				FF012C0C29F029F100E7033D /* Ingredients */,
+				9D39F38B29F19247000955C1 /* NewIngredients.storyboard */,
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -112,6 +119,7 @@
 		9F88E5D929ED8A6A009F8B79 /* Meal Planner */ = {
 			isa = PBXGroup;
 			children = (
+				9D39F38829F18E95000955C1 /* API Master Hub */,
 				844F445629EEE69600464FEE /* SavedRecipesViewController.swift */,
 				844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */,
 				9F9BEC0E29EED6F600C4AB9C /* Objects */,
@@ -136,15 +144,6 @@
 				9F45F0D529F046DD004FDBD7 /* DummyCalendarData.swift */,
 			);
 			path = Objects;
-			sourceTree = "<group>";
-		};
-		FF012C0C29F029F100E7033D /* Ingredients */ = {
-			isa = PBXGroup;
-			children = (
-				FF012C0A29F029EC00E7033D /* IngredientTableViewCell.swift */,
-				FF012C0D29F02E0500E7033D /* IngredientListViewController.swift */,
-			);
-			path = Ingredients;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +214,7 @@
 				9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */,
 				844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */,
 				9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
-				FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */,
+				9D39F38C29F19247000955C1 /* NewIngredients.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +233,7 @@
 				9F45F0D629F046DD004FDBD7 /* DummyCalendarData.swift in Sources */,
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */,
+				9D39F38A29F18EB6000955C1 /* Newtork Call Funcs.swift in Sources */,
 				844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */,
 				9D9DF43F29ED9088007D1222 /* RecipieFinderTableViewController.swift in Sources */,
 				9F45F0D329F03F02004FDBD7 /* CalendarTableViewController.swift in Sources */,
