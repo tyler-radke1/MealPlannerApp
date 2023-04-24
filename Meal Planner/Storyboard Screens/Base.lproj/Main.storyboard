@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="MzS-nl-daI" kind="relationship" relationship="viewControllers" id="f1V-Ym-PUf"/>
+                        <segue destination="MzS-nl-daI" kind="relationship" relationship="viewControllers" id="1Eb-Az-pPk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tle-DF-a50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -26,7 +26,7 @@
         <!--Recipe Finder-->
         <scene sceneID="Qur-5l-6Yn">
             <objects>
-                <viewControllerPlaceholder storyboardName="Recipie Finder" referencedIdentifier="Recipe Finder" id="MzS-nl-daI" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Recipe Finder" referencedIdentifier="Recipe Finder" id="MzS-nl-daI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="NVT-69-xrY"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3l-xl-RXn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

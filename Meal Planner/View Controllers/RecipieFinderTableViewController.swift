@@ -7,8 +7,12 @@
 
 import UIKit
 
-class RecipieFinderTableViewController: UITableViewController {
+class RecipeFinderTableViewController: UITableViewController {
 
+    var recipes: [RecipieResult] = []
+    
+    @IBOutlet weak var recipieNameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,24 +27,56 @@ class RecipieFinderTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return recipes.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
 
-        // Configure the cell...
+            // Configure the cell...
 
-        return cell
+            return cell
+        default:
+            var cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableViewCell", for: indexPath) as! RecipeTableViewCell
+            
+            let recipe = recipes[indexPath.row]
+            
+            cell.recipeNameLabel.text = recipe.title
+            
+            return cell
+        }
     }
-    */
 
+    //MARK: - Search Functions
+    
+    @IBAction func searchByNameButtonTapped() {
+    }
+    
+    @IBAction func searchByIngredientsList() {
+    }
+    
+    func searchForRecipiesByName() {
+        Task {
+            do {
+                guard let text = recipieNameTextField.text else { return }
+                
+                let results = try await recipieSearchByName(using: text)
+                
+                self.recipes = results.recipes ?? []
+                
+                tableView.reloadData()
+            }
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
