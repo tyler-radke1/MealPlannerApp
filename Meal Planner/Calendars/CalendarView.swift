@@ -7,8 +7,13 @@
 
 import UIKit
 
-class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate {
-    
+enum MealType: String {
+    case breakfast = "breakfast"
+    case lunch = "lunch"
+    case dinner = "dinner"
+}
+
+class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate, MealScheduleDelegate {
     
     var days: [Date: Day] = [:]
     
@@ -20,7 +25,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     @IBOutlet weak var calendarTableView: UITableView!
     
     override func viewDidLoad() {
-        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 400))
+        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 420))
         
         configure(calendar: myCalendarView)
         
@@ -28,8 +33,11 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.delegate = self
     }
     
-    func generateFood(for day: Date) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addMeal" {
+            let destination = segue.destination as! AddMealViewController
+            destination.dateToAddMeal = self.loadedDate
+        }
     }
     
     func configure(calendar: UICalendarView) {
@@ -50,10 +58,21 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
             return nil
     }
     
+    func passDayPair(date: Date, recipe: Recipe, meal: MealType) {
+        switch meal {
+        case .breakfast:
+            days[date]?.breakfast = recipe
+        case .lunch:
+            days[date]?.lunch = recipe
+        case .dinner:
+            days[date]?.dinner = recipe
+        }
+    }
+    
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents, let date = dateComponents.date else { return }
         loadedDate = date
-        let day = days[date]
+        var day = days[date]
         
         if let breakfast = day?.breakfast {
             loadedBreakfast = breakfast
@@ -61,6 +80,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         if let lunch = day?.lunch {
             loadedLunch = lunch
+        } else {
+            days[date] = generateDummyDay(with: "Test String - \(date.formatted())")
         }
         
         if let dinner = day?.dinner {
@@ -88,10 +109,13 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         switch indexPath.section {
         case 0:
             cell.mealNameLabel.text = "Breakfast"
+            cell.recipeNameLabel.text = "\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")"
         case 1:
             cell.mealNameLabel.text = "Lunch"
+            cell.recipeNameLabel.text = "\(days[loadedDate]?.lunch?.name ?? "No lunch planned")"
         case 2:
             cell.mealNameLabel.text = "Dinner"
+            cell.recipeNameLabel.text = "\(days[loadedDate]?.dinner?.name ?? "No dinner planned")"
         default:
             cell.mealNameLabel.text = "Coming"
         }
@@ -100,11 +124,21 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         formatter.dateStyle = .short
         
-        cell.recipeNameLabel.text = "\(formatter.string(from: loadedDate))"
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
+    }
+}
+
+extension CalendarView {
+    func generateDummyDay(with recipeName: String) -> Day {
+        let ingredient = Ingredient(name: "Ingredient", quantity: "14")
+        
+        let recipe = Recipe(name: recipeName, ingredients: [ingredient, ingredient])
+        
+        return Day(lunch: recipe)
     }
 }
