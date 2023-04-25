@@ -73,5 +73,7 @@ func recipieSearchByName(using string: String) async throws -> Results {
     let decoder = JSONDecoder()
     let decodedRecipies = try decoder.decode(Results.self, from: data)
     
+    print(decodedRecipies)
+    
     return decodedRecipies
 }
