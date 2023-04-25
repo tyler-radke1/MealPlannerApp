@@ -15,15 +15,19 @@ class AddMealViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
  
    @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBOutlet weak var mealTypePicker: UIPickerView!
+    @IBOutlet weak var breakfastLunchDinnerPicker: UIPickerView!
     
-    @IBOutlet weak var mealOptionsPicker: UIPickerView!
+    @IBOutlet weak var mealsToAddPicker: UIPickerView!
     
     var delegate: MealScheduleDelegate? = nil
     
     let meals = ["Breakfast", "Lunch", "Dinner"]
     
-    let mealOptions = ["Soup", "Pizza", "Ice Cream", "Grilled Cheese Sandwich"]
+    var breakfastLunchDinnerSelected: MealType = .breakfast
+    
+    var selectedFood: Recipe? = nil
+    
+   // let mealOptions = ["Soup", "Pizza", "Ice Cream", "Grilled Cheese Sandwich"]
     
     var dateToAddMeal: Date? = nil
     
@@ -33,11 +37,11 @@ class AddMealViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             datePicker.date = dateToAddMeal
         }
         
-        mealTypePicker.delegate = self
-        mealTypePicker.dataSource = self
+        breakfastLunchDinnerPicker.delegate = self
+        breakfastLunchDinnerPicker.dataSource = self
         
-        mealOptionsPicker.delegate = self
-        mealOptionsPicker.dataSource = self
+        mealsToAddPicker.delegate = self
+        mealsToAddPicker.dataSource = self
         // Do any additional setup after loading the view.
     }
     
@@ -47,11 +51,11 @@ class AddMealViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        pickerView == mealTypePicker ? 3 : mealOptions.count
+        pickerView == breakfastLunchDinnerPicker ? 3 : DummyData.recipes.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == mealTypePicker {
+        if pickerView == breakfastLunchDinnerPicker {
             switch row {
             case 0:
                 return meals[0]
@@ -62,17 +66,44 @@ class AddMealViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             default:
                 return "Your Mom"
             }
-        } else if pickerView == mealOptionsPicker {
-            return mealOptions[row]
+        } else if pickerView == mealsToAddPicker {
+            return DummyData.recipes[row].name
         }
         return "failure"
     }
     
     @IBAction func addMealButtonTapped(_ sender: UIButton) {
+        guard let selectedFood else { return }
+        delegate?.passDayPair(date: datePicker.date, recipe: selectedFood, meal: breakfastLunchDinnerSelected)
         self.navigationController?.popViewController(animated: true)
-        let ingredient = Ingredient(name: "test", quantity: "Test")
-        //let recipe
-        //delegate?.passDayPair(date: datePicker.date, recipe: Recipe(name: m, ingredients: <#T##[Ingredient]#>), meal: <#T##MealType#>)
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard pickerView == breakfastLunchDinnerPicker else {
+            selectedFood = DummyData.recipes[row]
+            return
+        }
+        switch pickerView.delegate?.pickerView?(pickerView, titleForRow: row, forComponent: component) {
+        case "Breakfast":
+            self.breakfastLunchDinnerSelected = .breakfast
+        case "Lunch":
+            self.breakfastLunchDinnerSelected = .lunch
+        case "Dinner":
+            self.breakfastLunchDinnerSelected = .dinner
+        default:
+            print("hello world")
+        }
+    }
 }
+
+
+class DummyData {
+    private static var ingredient = Ingredient(name: "test", quantity: "test")
+    private static let soup = Recipe(name: "Soup", ingredients: [ingredient])
+    private static let iceCream = Recipe(name: "Ice Cream", ingredients: [ingredient])
+    private static let pizza = Recipe(name: "Pizza", ingredients: [ingredient])
+    private static let grilledCheese = Recipe(name: "Grilled Cheese Sandwich", ingredients: [ingredient])
+    
+    static var recipes = [soup, iceCream, pizza, grilledCheese]
+}
+

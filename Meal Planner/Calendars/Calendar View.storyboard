@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CZz-y1-7pe">
-                                <rect key="frame" x="16" y="505" width="361" height="309"/>
+                                <rect key="frame" x="16" y="551" width="361" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="labelColor"/>
@@ -38,7 +38,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFQ-v4-v8u">
-                                                    <rect key="frame" x="172" y="11" width="175" height="20"/>
+                                                    <rect key="frame" x="147" y="11" width="200" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -115,9 +115,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="0jl-Tk-AAx"/>
                     <connections>
+                        <outlet property="breakfastLunchDinnerPicker" destination="9pT-MX-kCg" id="fq2-G5-Ny6"/>
                         <outlet property="datePicker" destination="UQl-NW-PkX" id="SUc-20-RcE"/>
-                        <outlet property="mealOptionsPicker" destination="UM2-Xc-kYh" id="wuk-wW-TyP"/>
-                        <outlet property="mealTypePicker" destination="9pT-MX-kCg" id="fq2-G5-Ny6"/>
+                        <outlet property="mealsToAddPicker" destination="UM2-Xc-kYh" id="wuk-wW-TyP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIC-3z-r4y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

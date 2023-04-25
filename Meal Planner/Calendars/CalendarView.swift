@@ -25,7 +25,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     @IBOutlet weak var calendarTableView: UITableView!
     
     override func viewDidLoad() {
-        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 420))
+        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
         
         configure(calendar: myCalendarView)
         
@@ -36,6 +36,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addMeal" {
             let destination = segue.destination as! AddMealViewController
+            destination.delegate = self
             destination.dateToAddMeal = self.loadedDate
         }
     }
@@ -46,6 +47,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         let gregorian = Calendar(identifier: .gregorian)
         
         calendar.calendar = gregorian
+        
+        //calendar.availableDateRange = DateInterval(start: <#T##Date#>, end: <#T##Date#>)
         
         self.view.addSubview(calendar)
         
@@ -59,6 +62,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     }
     
     func passDayPair(date: Date, recipe: Recipe, meal: MealType) {
+        if days[date] == nil {
+            days[date] = Day()
+        }
         switch meal {
         case .breakfast:
             days[date]?.breakfast = recipe
@@ -67,12 +73,13 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         case .dinner:
             days[date]?.dinner = recipe
         }
+        calendarTableView.reloadData()
     }
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents, let date = dateComponents.date else { return }
         loadedDate = date
-        var day = days[date]
+        let day = days[date]
         
         if let breakfast = day?.breakfast {
             loadedBreakfast = breakfast
@@ -80,8 +87,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         if let lunch = day?.lunch {
             loadedLunch = lunch
-        } else {
-            days[date] = generateDummyDay(with: "Test String - \(date.formatted())")
         }
         
         if let dinner = day?.dinner {
