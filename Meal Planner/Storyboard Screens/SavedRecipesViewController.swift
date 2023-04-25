@@ -66,6 +66,37 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         5. Cut the sandwich in half (optional).
     """
     
+    let macaronIngredients = [
+    Ingredient(name: "extra large egg whites", quantity: "4"),
+    Ingredient(name: "confectioners' sugar", quantity: "1 2/3 c."),
+    Ingredient(name: "almond flour", quantity: "1 1/3 c."),
+    Ingredient(name: "salt", quantity: "1/8 tsp"),
+    Ingredient(name: "superfine (castor) sugar", quantity: "1/4 c."),
+    Ingredient(name: "seedless raspberry jam", quantity: "1/4 c.")
+    ]
+    
+    let macaronInstructions = """
+Instructions:
+
+1. Place egg whites into a metal mixing bowl and refrigerate, 8 hours to overnight.
+
+2. Remove egg whites from the refrigerator and bring to room temperature, 20 to 30 minutes.
+
+3. Whisk confectioners' sugar and almond flour together in a bowl.
+
+4. Add salt to egg whites and beat with an electric mixer on medium speed until foamy, about 1 minute. Increase the speed to high and gradually beat in superfine sugar, about 1 tablespoon at a time, until egg whites are glossy and hold stiff peaks, 3 to 5 more minutes.
+
+5. Gently fold almond flour mixture into whipped egg whites until thoroughly incorporated. Spoon meringue into a pastry bag fitted with a 3/8-inch tip. Line two baking sheets with parchment paper.
+
+6. Pipe 1-inch disks of meringue 2 inches apart onto the prepared baking sheets; batter will spread. Lift the baking sheets up a few inches and drop them gently onto the work surface several times to remove any air bubbles. Let stand at room temperature until the shiny surfaces dulls and a thin skin forms, about 15 minutes.
+
+7. Meanwhile, preheat the oven to 280 degrees F (138 degrees C).
+
+8. Place the baking sheets in the preheated oven and bake with the oven door cracked until cookies are completely dry on the surface, about 15 minutes. Remove from the oven and let cool completely on the baking sheets, about 30 minutes.
+
+9. Gently peel parchment paper from cookies to remove. Spread 1/2 of the cookies with jam, then top with remaining cookies and press gently to push jam to the edges. Refrigerate until cookies soften, 2 hours to overnight.
+"""
+    
     @IBOutlet weak var savedRecipesTableView: UITableView!
     
     override func viewDidLoad() {
@@ -78,7 +109,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
         recipes = [
         Recipe(name: "Scrambled Eggs", ingredients: scrambledEggsIngredients, instructions: scrambledEggsInstructions),
-        Recipe(name: "PB & J Sandwich", ingredients: pbjIngredients, instructions: pbjInstructions)]
+        Recipe(name: "PB & J Sandwich", ingredients: pbjIngredients, instructions: pbjInstructions),
+        Recipe(name: "Macarons", ingredients: macaronIngredients, instructions: macaronInstructions)
+        
+        ]
         
     }
     // MARK: - Navigation
