@@ -1,93 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TWP-pp-3iV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ktf-Jm-EfX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recipe Finder Table View Controller-->
-        <scene sceneID="zHM-Ng-lZv">
+        <!--Recipe Finder View Controller-->
+        <scene sceneID="x0b-8j-Qsm">
             <objects>
-                <tableViewController storyboardIdentifier="Recipe Finder" id="TWP-pp-3iV" customClass="RecipeFinderTableViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Uaf-OT-QR0">
+                <viewController storyboardIdentifier="Recipe Finder" id="Ktf-Jm-EfX" customClass="RecipeFinderViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LDu-Db-cSo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-gp-2Ee">
+                                <rect key="frame" x="0.0" y="183.66666666666669" width="393" height="634.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" id="9ld-ev-IEH" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ld-ev-IEH" id="Hep-AK-NZ9">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kas-4o-K6X">
+                                <rect key="frame" x="8" y="91" width="377" height="84.666666666666686"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuk-BF-VAy">
+                                        <rect key="frame" x="8" y="0.0" width="361" height="34.333333333333336"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search recipe by name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5f9-GV-bVq">
+                                                <rect key="frame" x="0.0" y="0.0" width="283.66666666666669" height="34.333333333333336"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKC-hR-Rlk">
+                                                <rect key="frame" x="283.66666666666669" y="0.0" width="77.333333333333314" height="34.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Search"/>
+                                                <connections>
+                                                    <action selector="searchByNameButtonTapped" destination="Ktf-Jm-EfX" eventType="touchUpInside" id="THS-YI-LHU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHc-Xx-LLA">
+                                        <rect key="frame" x="78" y="50.333333333333343" width="221" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Search by Ingredients List"/>
+                                        <connections>
+                                            <action selector="searchByIngredientsList" destination="Ktf-Jm-EfX" eventType="touchUpInside" id="Dsd-fD-ScI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nuk-BF-VAy" secondAttribute="trailing" constant="8" id="Y5X-Pq-OnD"/>
+                                    <constraint firstItem="nuk-BF-VAy" firstAttribute="leading" secondItem="kas-4o-K6X" secondAttribute="leading" constant="8" id="n4n-Da-rXy"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BWi-ap-CIE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="1wR-mE-FPM">
-                                <rect key="frame" x="0.0" y="50" width="393" height="101"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1wR-mE-FPM" id="S3C-GM-ogu">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="101"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="47h-Af-Uzb">
-                                            <rect key="frame" x="8" y="8" width="377" height="85"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSr-15-brm">
-                                                    <rect key="frame" x="8" y="0.0" width="361" height="34.333333333333336"/>
-                                                    <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search recipe by name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1LG-11-Y1g">
-                                                            <rect key="frame" x="0.0" y="0.0" width="283.66666666666669" height="34.333333333333336"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diQ-sg-LsA">
-                                                            <rect key="frame" x="283.66666666666669" y="0.0" width="77.333333333333314" height="34.333333333333336"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="Search"/>
-                                                            <connections>
-                                                                <action selector="searchByNameButtonTapped" destination="TWP-pp-3iV" eventType="touchUpInside" id="cWh-8F-hgh"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQG-jD-Nwc">
-                                                    <rect key="frame" x="78" y="50.333333333333343" width="221" height="34.666666666666657"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Search by Ingredients List"/>
-                                                    <connections>
-                                                        <action selector="searchByIngredientsList" destination="TWP-pp-3iV" eventType="touchUpInside" id="sNP-pL-cEq"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="cSr-15-brm" firstAttribute="leading" secondItem="47h-Af-Uzb" secondAttribute="leading" constant="8" id="Wfh-bS-f8d"/>
-                                                <constraint firstAttribute="trailing" secondItem="cSr-15-brm" secondAttribute="trailing" constant="8" id="ySg-zO-YNj"/>
-                                            </constraints>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="47h-Af-Uzb" secondAttribute="trailing" constant="8" id="01c-sW-10z"/>
-                                        <constraint firstItem="47h-Af-Uzb" firstAttribute="leading" secondItem="S3C-GM-ogu" secondAttribute="leading" constant="8" id="OMg-eP-JYq"/>
-                                        <constraint firstAttribute="bottom" secondItem="47h-Af-Uzb" secondAttribute="bottom" constant="8" id="uKK-0i-Tul"/>
-                                        <constraint firstItem="47h-Af-Uzb" firstAttribute="top" secondItem="S3C-GM-ogu" secondAttribute="top" constant="8" id="zQG-8e-svO"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" id="9ld-ev-IEH" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="151" width="393" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ld-ev-IEH" id="Hep-AK-NZ9">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="TWP-pp-3iV" id="MtK-AN-zFE"/>
-                            <outlet property="delegate" destination="TWP-pp-3iV" id="Gv0-Dm-cRU"/>
-                        </connections>
-                    </tableView>
+                        <constraints>
+                            <constraint firstItem="SSh-gp-2Ee" firstAttribute="top" secondItem="kas-4o-K6X" secondAttribute="bottom" constant="8" id="1nA-F7-00H"/>
+                            <constraint firstItem="BWi-ap-CIE" firstAttribute="trailing" secondItem="kas-4o-K6X" secondAttribute="trailing" constant="8" id="8Dz-hn-f3b"/>
+                            <constraint firstItem="SSh-gp-2Ee" firstAttribute="leading" secondItem="BWi-ap-CIE" secondAttribute="leading" id="9GQ-os-hf1"/>
+                            <constraint firstItem="kas-4o-K6X" firstAttribute="leading" secondItem="BWi-ap-CIE" secondAttribute="leading" constant="8" id="Y50-L9-Fmr"/>
+                            <constraint firstItem="kas-4o-K6X" firstAttribute="top" secondItem="BWi-ap-CIE" secondAttribute="top" constant="32" id="ZmU-BD-MpH"/>
+                            <constraint firstItem="BWi-ap-CIE" firstAttribute="bottom" secondItem="SSh-gp-2Ee" secondAttribute="bottom" id="tpT-Hi-7a0"/>
+                            <constraint firstItem="BWi-ap-CIE" firstAttribute="trailing" secondItem="SSh-gp-2Ee" secondAttribute="trailing" id="zXA-sV-zpe"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="recipieNameTextField" destination="1LG-11-Y1g" id="6fZ-8J-LLI"/>
+                        <outlet property="recipieNameTextField" destination="5f9-GV-bVq" id="2q6-h7-ACz"/>
+                        <outlet property="recipiesTableView" destination="SSh-gp-2Ee" id="ZRl-0i-NCd"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sLY-lo-LRQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WAQ-x6-4g8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="217" y="-138"/>
+            <point key="canvasLocation" x="934" y="-138"/>
         </scene>
     </scenes>
     <resources>

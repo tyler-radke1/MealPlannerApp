@@ -7,11 +7,13 @@
 
 import UIKit
 
-class RecipeFinderTableViewController: UITableViewController {
+class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var recipes: [RecipieResult] = []
     
     @IBOutlet weak var recipieNameTextField: UITextField!
+    
+    @IBOutlet weak var recipiesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,45 +27,30 @@ class RecipeFinderTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return recipes.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
-
-            // Configure the cell...
-
-            return cell
-        default:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableViewCell", for: indexPath) as! RecipeTableViewCell
-            
-            let recipe = recipes[indexPath.row]
-            
-            cell.recipeNameLabel.text = recipe.title
-            
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableViewCell", for: indexPath) as! RecipeTableViewCell
+        
+        let recipe = recipes[indexPath.row]
+        
+        cell.recipeNameLabel.text = recipe.title
+        
+        return cell
     }
 
     //MARK: - Search Functions
     
     @IBAction func searchByNameButtonTapped() {
-    }
-    
-    @IBAction func searchByIngredientsList() {
-    }
-    
-    func searchForRecipiesByName() {
         Task {
             do {
                 guard let text = recipieNameTextField.text else { return }
@@ -72,9 +59,12 @@ class RecipeFinderTableViewController: UITableViewController {
                 
                 self.recipes = results.recipes ?? []
                 
-                tableView.reloadData()
+                recipiesTableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func searchByIngredientsList() {
     }
     
     /*
