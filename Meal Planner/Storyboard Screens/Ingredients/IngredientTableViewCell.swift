@@ -1,10 +1,9 @@
 //
-//  NewIngredientCell.swift
+//  IngredientTableViewCell.swift
 //  Meal Planner
 //
-//  Created by Tyler Radke on 4/20/23.
+//  Created by Vasiliy on 4/19/23.
 //
-
 
 import UIKit
 //import
@@ -35,4 +34,3 @@ class IngredientTableViewCell: UITableViewCell {
 
     
 }
-

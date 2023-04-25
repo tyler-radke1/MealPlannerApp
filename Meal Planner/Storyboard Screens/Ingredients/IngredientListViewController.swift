@@ -1,23 +1,28 @@
 //
-//  NewIngredientViewControllerClass.swift
+//  IngredientViewController.swift
 //  Meal Planner
 //
-//  Created by Tyler Radke on 4/20/23.
+//  Created by Vasiliy on 4/19/23.
 //
 
-import Foundation
 import UIKit
+//import
 
-class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class IngredientListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     var ingredients: [Ingredient] = []
       var isEditingEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+      
         // Do any additional setup after loading the view.
         tableview.dataSource = self
         tableview.delegate = self
+        
+        
+         
     }
 //    IngredientTableViewCell
     @IBOutlet var editButton: UIButton!
@@ -36,7 +41,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         guard let ingredientName = textField.text, !ingredientName.isEmpty else {
             return
         }
-        let ingredient = Ingredient(name: ingredientName, quantity: "23")
+        let ingredient = Ingredient(name: ingredientName)
         
         ingredients.append(ingredient)
         tableview.reloadData()
@@ -56,10 +61,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return ingredients.count
     }
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsCell", for: indexPath)  as! IngredientTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsCell", for: indexPath) as! IngredientTableViewCell
         let ingredient = ingredients [indexPath.row]
         
         cell.configure(with: ingredient)
