@@ -6,11 +6,15 @@
 //
 
 import UIKit
+protocol RecipeTableViewCellDelegate {
+    func favoriteButtonTapped(cell: RecipeTableViewCell)
+}
 
 class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeNameLabel: UILabel!
     
+    var delegate: RecipeTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +29,10 @@ class RecipeTableViewCell: UITableViewCell {
     
     func configure(with recipe: Recipe) {
         recipeNameLabel.text = recipe.name
+    }
+    @IBAction func favoriteButtonTapped(_ sender: UIButton) {
+        print("Favorite button tapped")
+        delegate?.favoriteButtonTapped(cell: self)
     }
     
 
