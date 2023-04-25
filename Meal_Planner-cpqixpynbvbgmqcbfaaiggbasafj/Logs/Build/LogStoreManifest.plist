@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>9DB2FCAC-91A0-40BF-A008-B547B6016CA6</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>9DB2FCAC-91A0-40BF-A008-B547B6016CA6.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Meal Planner project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Meal Planner</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build Meal Planner</string>
+			<key>timeStartedRecording</key>
+			<real>704130249.81481194</real>
+			<key>timeStoppedRecording</key>
+			<real>704130249.94733703</real>
+			<key>title</key>
+			<string>Build Meal Planner</string>
+			<key>uniqueIdentifier</key>
+			<string>9DB2FCAC-91A0-40BF-A008-B547B6016CA6</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
