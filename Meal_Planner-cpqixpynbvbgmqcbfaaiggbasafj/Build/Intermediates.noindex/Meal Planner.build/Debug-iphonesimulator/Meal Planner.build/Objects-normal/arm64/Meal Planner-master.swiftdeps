@@ -1,0 +1,25 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "9f38bd19eb3a66aed53a7a919618733ffbcbf4965dd0c438efca690a3bfa1bad"
+build_start_time: [1682437114, 547380924]
+build_end_time: [1682437115, 797402858]
+inputs:
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/API Master Hub/Newtork Call Funcs.swift"
+  : [1682435697, 62073230]
+  "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/AppDelegate.swift": [1681923072, 526764869]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/Calendars/AddMealViewController.swift"
+  : [1682436449, 408240318]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/Calendars/CalendarView.swift"
+  : [1682436449, 408504009]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/Calendars/MealCell.swift"
+  : [1682436449, 408570766]
+  "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/Objects/Day.swift": [1682003508, 404759645]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/Objects/Ingredient.swift"
+  : [1682003508, 405025482]
+  "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/Objects/Recipe.swift": [1682003508, 405148029]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/RecipeTableViewCell.swift"
+  : [1682003508, 405225276]
+  "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/SceneDelegate.swift": [1681923072, 528757095]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/View Controllers/RecipieFinderViewController.swift"
+  : [1682435887, 418668746]
+  ? "/Users/sterlingjenkins/Library/Mobile Documents/com~apple~CloudDocs/MobDev/Meal Planner App/Meal Planner/View Controllers/SavedRecipesViewController.swift"
+  : [1682435384, 544219732]
