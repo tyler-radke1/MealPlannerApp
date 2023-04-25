@@ -106,30 +106,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-BT-kx9">
-                                <rect key="frame" x="0.0" y="38" width="393" height="784"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-BT-kx9">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-aR-1WU">
-                                        <rect key="frame" x="0.0" y="-9" width="393" height="793"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-aR-1WU">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="71" translatesAutoresizingMaskIntoConstraints="NO" id="kiI-gL-sgM">
-                                                <rect key="frame" x="96.333333333333314" y="228.66666666666663" width="166.33333333333331" height="308.66666666666663"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="kiI-gL-sgM">
+                                                <rect key="frame" x="6" y="53" width="379" height="970"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwb-Fr-kR4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="166.33333333333334" height="34.666666666666664"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="379" height="34.666666666666664"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="KDy-0n-8yZ"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recipe description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwm-77-x2G">
-                                                        <rect key="frame" x="0.0" y="105.66666666666667" width="166.33333333333334" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGO-0u-Cjq">
-                                                        <rect key="frame" x="0.0" y="197" width="166.33333333333334" height="20.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="40.666666666666671" width="379" height="20.333333333333329"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Kia-Qi-HD6"/>
                                                         </constraints>
@@ -138,7 +134,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyv-Ix-E60">
-                                                        <rect key="frame" x="0.0" y="288.33333333333331" width="166.33333333333334" height="20.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="67" width="379" height="903"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -147,8 +143,22 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1000" id="O2w-wf-jx0"/>
+                                            <constraint firstItem="kiI-gL-sgM" firstAttribute="top" secondItem="IlD-aR-1WU" secondAttribute="top" constant="30" id="OrE-vK-Ile"/>
+                                            <constraint firstAttribute="width" constant="393" id="bL2-3w-gXo"/>
+                                            <constraint firstAttribute="trailing" secondItem="kiI-gL-sgM" secondAttribute="trailing" constant="7" id="bYX-xz-xsQ"/>
+                                            <constraint firstItem="kiI-gL-sgM" firstAttribute="leading" secondItem="IlD-aR-1WU" secondAttribute="leading" constant="7" id="q83-wY-L5V"/>
+                                            <constraint firstAttribute="bottom" secondItem="kiI-gL-sgM" secondAttribute="bottom" id="vhV-yq-L5P"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="IlD-aR-1WU" firstAttribute="top" secondItem="bvz-BT-kx9" secondAttribute="top" id="QgT-ov-mFW"/>
+                                    <constraint firstAttribute="trailing" secondItem="IlD-aR-1WU" secondAttribute="trailing" id="S53-AG-SFW"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlD-aR-1WU" secondAttribute="bottom" id="czM-I3-aSD"/>
+                                    <constraint firstItem="IlD-aR-1WU" firstAttribute="leading" secondItem="bvz-BT-kx9" secondAttribute="leading" id="ie4-ke-Yrk"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CZe-EY-Etu"/>
