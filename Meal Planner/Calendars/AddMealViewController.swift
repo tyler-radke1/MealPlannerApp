@@ -21,9 +21,9 @@ class AddMealViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     var selectedFood: Recipe? = nil
     
-   // let mealOptions = ["Soup", "Pizza", "Ice Cream", "Grilled Cheese Sandwich"]
-    
     var dateToAddMeal: Date? = nil
+    
+    var addingBreakfastLunchDinner: MealType = .breakfast
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,48 +39,21 @@ class AddMealViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        pickerView == breakfastLunchDinnerPicker ? 3 : DummyData.recipes.count
+        1
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == breakfastLunchDinnerPicker {
-            switch row {
-            case 0:
-                return meals[0]
-            case 1:
-                return meals[1]
-            case 2:
-                return meals[2]
-            default:
-                return "Your Mom"
-            }
-        } else if pickerView == mealsToAddPicker {
             return DummyData.recipes[row].name
-        }
-        return "failure"
     }
     
     @IBAction func addMealButtonTapped(_ sender: UIButton) {
-        guard let selectedFood else { return }
-        delegate?.passDayPair(date: datePicker.date, recipe: selectedFood, meal: breakfastLunchDinnerSelected)
+        guard let selectedFood, let dateToAddMeal else { return }
+        delegate?.passDayPair(date: dateToAddMeal, recipe: selectedFood, meal: addingBreakfastLunchDinner)
         self.navigationController?.popViewController(animated: true)
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard pickerView == breakfastLunchDinnerPicker else {
             selectedFood = DummyData.recipes[row]
-            return
-        }
-        switch pickerView.delegate?.pickerView?(pickerView, titleForRow: row, forComponent: component) {
-        case "Breakfast":
-            self.breakfastLunchDinnerSelected = .breakfast
-        case "Lunch":
-            self.breakfastLunchDinnerSelected = .lunch
-        case "Dinner":
-            self.breakfastLunchDinnerSelected = .dinner
-        default:
-            print("hello world")
-        }
     }
 }
 
