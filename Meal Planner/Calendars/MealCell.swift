@@ -8,8 +8,6 @@
 import UIKit
 
 class MealCell: UITableViewCell {
-    @IBOutlet weak var mealNameLabel: UILabel!
-    
     @IBOutlet weak var recipeNameLabel: UILabel!
     
     override func awakeFromNib() {

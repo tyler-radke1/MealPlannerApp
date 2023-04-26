@@ -17,6 +17,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     var days: [Date: Day] = [:]
     
+    @IBOutlet weak var testButton: UIButton!
+    
     private var loadedDate = Date.now
     private var loadedBreakfast: Recipe?
     private var loadedLunch: Recipe?
@@ -47,8 +49,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         let gregorian = Calendar(identifier: .gregorian)
         
         calendar.calendar = gregorian
-        
-        //calendar.availableDateRange = DateInterval(start: <#T##Date#>, end: <#T##Date#>)
         
         self.view.addSubview(calendar)
         
@@ -104,6 +104,11 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let array = ["Breakfast", "Lunch", "Dinner"]
+        return array[section]
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = calendarTableView.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath) as! MealCell
        
@@ -113,37 +118,26 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     func configure(cell: MealCell, at indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            cell.mealNameLabel.text = "Breakfast"
             cell.recipeNameLabel.text = "\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")"
         case 1:
-            cell.mealNameLabel.text = "Lunch"
             cell.recipeNameLabel.text = "\(days[loadedDate]?.lunch?.name ?? "No lunch planned")"
         case 2:
-            cell.mealNameLabel.text = "Dinner"
             cell.recipeNameLabel.text = "\(days[loadedDate]?.dinner?.name ?? "No dinner planned")"
         default:
-            cell.mealNameLabel.text = "Coming"
+            cell.recipeNameLabel.text = "Coming"
         }
         
         let formatter = DateFormatter()
         
         formatter.dateStyle = .short
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
+        performSegue(withIdentifier: "addMeal", sender: nil)
+        
     }
 }
 
-extension CalendarView {
-    func generateDummyDay(with recipeName: String) -> Day {
-        let ingredient = Ingredient(name: "Ingredient", quantity: "14")
-        
-        let recipe = Recipe(name: recipeName, ingredients: [ingredient, ingredient])
-        
-        return Day(lunch: recipe)
-    }
-}
+

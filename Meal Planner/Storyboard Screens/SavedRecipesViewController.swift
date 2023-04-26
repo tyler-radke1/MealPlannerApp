@@ -10,26 +10,7 @@ import UIKit
 class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate {
     
     
-    func favoriteButtonTapped(cell: RecipeTableViewCell) {
-        
-        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
-            return
-        }
-        let selectedRecipe = recipes[indexPath.row]
-
-        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your recipes?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-            self.recipes.remove(at: indexPath.row)
-            self.savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
+    @IBOutlet weak var savedRecipesTableView: UITableView!
     
     var recipes: [Recipe] = []
     
@@ -97,15 +78,12 @@ Instructions:
 9. Gently peel parchment paper from cookies to remove. Spread 1/2 of the cookies with jam, then top with remaining cookies and press gently to push jam to the edges. Refrigerate until cookies soften, 2 hours to overnight.
 """
     
-    @IBOutlet weak var savedRecipesTableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self
         
-       
         
         recipes = [
         Recipe(name: "Scrambled Eggs", ingredients: scrambledEggsIngredients, instructions: scrambledEggsInstructions),
@@ -115,8 +93,28 @@ Instructions:
         ]
         
     }
-    // MARK: - Navigation
     
+    func favoriteButtonTapped(cell: RecipeTableViewCell) {
+        
+        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+            return
+        }
+        let selectedRecipe = recipes[indexPath.row]
+
+        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your recipes?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            self.recipes.remove(at: indexPath.row)
+            self.savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Navigation
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
