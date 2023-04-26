@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <deployment identifier="iOS"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +13,6 @@
             <objects>
                 <viewController storyboardIdentifier="Recipe Finder" id="Ktf-Jm-EfX" customClass="RecipeFinderViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LDu-Db-cSo">
-
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -22,13 +20,59 @@
                                 <rect key="frame" x="0.0" y="183.66666666666669" width="393" height="634.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" id="9ld-ev-IEH" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9ld-ev-IEH" id="Hep-AK-NZ9">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fcI-BR-mL6" id="Ck1-ps-I6i">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMT-3G-ZJh">
+                                                    <rect key="frame" x="295" y="23" width="100" height="35"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wws-rJ-wsG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="nbz-lP-QYI"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title=""/>
+                                                            <connections>
+                                                                <action selector="favoriteButtonTapped:" destination="fcI-BR-mL6" eventType="touchUpInside" id="p6X-qy-mRD"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-ED-t4l">
+                                                            <rect key="frame" x="50" y="0.0" width="50" height="35"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="Le7-mh-uow"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iP-OA-yar">
+                                                    <rect key="frame" x="10" y="10" width="275" height="61"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="275" id="Seh-vp-XBo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="leading" secondItem="7iP-OA-yar" secondAttribute="trailing" constant="10" id="16h-kR-NJE"/>
+                                                <constraint firstItem="7iP-OA-yar" firstAttribute="top" secondItem="Ck1-ps-I6i" secondAttribute="top" constant="10" id="BH7-Y2-nJq"/>
+                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="top" secondItem="Ck1-ps-I6i" secondAttribute="topMargin" constant="12" id="J95-qB-08l"/>
+                                                <constraint firstItem="7iP-OA-yar" firstAttribute="leading" secondItem="Ck1-ps-I6i" secondAttribute="leading" constant="10" id="Zar-rQ-O3G"/>
+                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="centerY" secondItem="7iP-OA-yar" secondAttribute="centerY" id="d3F-fe-6t7"/>
+                                                <constraint firstAttribute="bottom" secondItem="7iP-OA-yar" secondAttribute="bottom" constant="10" id="ssf-EV-RIU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipeNameLabel" destination="7iP-OA-yar" id="IEE-BX-sv8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -91,6 +135,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
