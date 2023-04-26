@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8420E16029F19757001A7780 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420E15F29F19757001A7780 /* RecipeDetailsViewController.swift */; };
 		844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844F445429EED68600464FEE /* SavedRecipes.storyboard */; };
 		844F445729EEE69600464FEE /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F445629EEE69600464FEE /* SavedRecipesViewController.swift */; };
 		844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8420E15F29F19757001A7780 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		844F445429EED68600464FEE /* SavedRecipes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SavedRecipes.storyboard; sourceTree = "<group>"; };
 		844F445629EEE69600464FEE /* SavedRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipesViewController.swift; sourceTree = "<group>"; };
 		844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				9D39F38829F18E95000955C1 /* API Master Hub */,
 				844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */,
+				8420E15F29F19757001A7780 /* RecipeDetailsViewController.swift */,
 				9F9BEC0E29EED6F600C4AB9C /* Objects */,
 				9D9DF43929ED8FAF007D1222 /* View Controllers */,
 				9D9DF43829ED8F9D007D1222 /* Storyboard Screens */,
@@ -242,6 +245,7 @@
 				9F60640F29F2DDF60024584D /* MealCell.swift in Sources */,
 				9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */,
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
+				8420E16029F19757001A7780 /* RecipeDetailsViewController.swift in Sources */,
 				9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */,
 				9D39F38A29F18EB6000955C1 /* Newtork Call Funcs.swift in Sources */,
 				844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */,
