@@ -8,7 +8,8 @@
 import UIKit
 
 class MealCell: UITableViewCell {
-    @IBOutlet weak var recipeNameLabel: UILabel!
+    
+    @IBOutlet weak var recipeNameButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +21,7 @@ class MealCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func recipeNameButtonTapped(_ sender: UIButton) {
+    }
+    
 }

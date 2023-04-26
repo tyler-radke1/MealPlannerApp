@@ -17,7 +17,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     var days: [Date: Day] = [:]
     
-    @IBOutlet weak var testButton: UIButton!
+    @IBOutlet weak var mealButton: UIButton!
     
     private var loadedDate = Date.now
     private var loadedBreakfast: Recipe?
@@ -53,10 +53,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendar.selectionBehavior = dateSelection
     }
 
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-            return nil
-    }
-    
     func passDayPair(date: Date, recipe: Recipe, meal: MealType) {
         if days[date] == nil {
             days[date] = Day()
@@ -72,6 +68,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.reloadData()
     }
     
+    @IBAction func mealButtonTapped(_ sender: UIButton) {
+       
+    }
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents, let date = dateComponents.date else { return }
         loadedDate = date
@@ -112,26 +111,39 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         return cell
     }
     func configure(cell: MealCell, at indexPath: IndexPath) {
-//        switch indexPath.section {
-//        case 0:
-//            cell.recipeNameLabel.text = "\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")"
-//        case 1:
-//            cell.recipeNameLabel.text = "\(days[loadedDate]?.lunch?.name ?? "No lunch planned")"
-//        case 2:
-//            cell.recipeNameLabel.text = "\(days[loadedDate]?.dinner?.name ?? "No dinner planned")"
-//        default:
-//            cell.recipeNameLabel.text = "Coming"
-//        }
-//
-//        let formatter = DateFormatter()
-//
-//        formatter.dateStyle = .short
+        switch indexPath.section {
+        case 0:
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
+        case 1:
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
+        case 2:
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
+        default:
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
+        }
+    
+        cell.recipeNameButton.showsMenuAsPrimaryAction = true
+        
+//        cell.recipeNameButton.menu = addMenuItems()
+        
+        let formatter = DateFormatter()
+        
+        formatter.dateStyle = .short
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        performSegue(withIdentifier: "addMeal", sender: nil)
-        
-    }
+//    func addMenuItems() -> UIMenu {
+//        var actions: [UIAction] = []
+//
+//        for recipe in DummyData.recipes {
+//            let action = UIAction(title: recipe.name) { [self] action in
+//                print("Tapped food")
+//            }
+//
+//            actions.append(action)
+//        }
+//
+//        let menuItems = UIMenu(title: "Your Recipes", children: actions)
+//
+//        return menuItems
+//    }
 }
