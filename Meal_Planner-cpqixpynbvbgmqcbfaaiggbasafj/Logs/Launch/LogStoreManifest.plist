@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>5DFB42F4-1521-46AB-A930-2FBB28096E1D</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>B848473C-055F-4579-9CD7-630BA7332A6C</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.IDE.LaunchSchemeAction</string>
+			<key>fileName</key>
+			<string>Run-Meal Planner-2023.04.27_08-39-53--0600.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasConsoleLog</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Meal Planner project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Meal Planner</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Meal Planner</string>
+			<key>timeStartedRecording</key>
+			<real>704299193.58341599</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Run Meal Planner</string>
+			<key>uniqueIdentifier</key>
+			<string>5DFB42F4-1521-46AB-A930-2FBB28096E1D</string>
+		</dict>
+		<key>F0F2F2D0-FB98-43BE-A377-853559E441FC</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>7EDF8058-7A47-49CC-A1DA-DBFF05BF714D</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.IDE.LaunchSchemeAction</string>
+			<key>fileName</key>
+			<string>Run-Meal Planner-2023.04.27_08-20-27--0600.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasConsoleLog</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Meal Planner project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Meal Planner</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Meal Planner</string>
+			<key>timeStartedRecording</key>
+			<real>704298027.32328701</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Run Meal Planner</string>
+			<key>uniqueIdentifier</key>
+			<string>F0F2F2D0-FB98-43BE-A377-853559E441FC</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
