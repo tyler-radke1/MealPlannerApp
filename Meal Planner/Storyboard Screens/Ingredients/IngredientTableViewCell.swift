@@ -7,10 +7,18 @@
 
 
 import UIKit
+import CoreData
 //import
+
+protocol IngredientTableViewCellDelegate {
+    func addButtonTapped(cell: IngredientTableViewCell)
+}
 
 class IngredientTableViewCell: UITableViewCell {
 
+    var delegate: IngredientTableViewCellDelegate?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        

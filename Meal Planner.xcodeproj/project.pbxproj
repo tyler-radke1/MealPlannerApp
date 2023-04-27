@@ -27,6 +27,7 @@
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
 		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
 		FF012C1329F6BEBB00E7033D /* IngredientsCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF012C1129F6BEBB00E7033D /* IngredientsCoreData.xcdatamodeld */; };
+		FF76F18D29FAB9E500B13250 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF76F18C29FAB9E500B13250 /* Persistence.swift */; };
 		FFC9E9BD29ED996800FB6B2A /* Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		FF012C0F29F1846D00E7033D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		FF012C1229F6BEBB00E7033D /* SavingingredientsCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SavingingredientsCoreData.xcdatamodel; sourceTree = "<group>"; };
+		FF76F18C29FAB9E500B13250 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				9F45F0D929F193A6004FDBD7 /* IngredientTableViewCell.swift */,
 				9F45F0D729F1921B004FDBD7 /* IngredientViewController.swift */,
 				FF012C1129F6BEBB00E7033D /* IngredientsCoreData.xcdatamodeld */,
+				FF76F18C29FAB9E500B13250 /* Persistence.swift */,
 			);
 			path = Ingredients;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */,
 				844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */,
+				FF76F18D29FAB9E500B13250 /* Persistence.swift in Sources */,
 				FF012C1329F6BEBB00E7033D /* IngredientsCoreData.xcdatamodeld in Sources */,
 				9F45F0DA29F193A6004FDBD7 /* IngredientTableViewCell.swift in Sources */,
 				9F45F0D829F1921B004FDBD7 /* IngredientViewController.swift in Sources */,

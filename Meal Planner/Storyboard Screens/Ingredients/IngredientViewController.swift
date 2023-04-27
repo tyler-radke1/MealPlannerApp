@@ -11,32 +11,20 @@ import CoreData
 
 class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    private let context = PersistenceController.shared.viewContext
+    
     var ingredients: [Ingredient] = []
       var isEditingEnabled = false
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "IngredientsCoreData")
-               container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                   if let error = error as NSError? {
-                       fatalError("Unresolved error \(error), \(error.userInfo)")
-    }
-               })
-                      return container
-                  }()
-                  
-                  lazy var managedObjectContext: NSManagedObjectContext = {
-                      let context = persistentContainer.viewContext
-                      return context
-                  }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableview.dataSource = self
         tableview.delegate = self
+        
+        createFetchRequest()
     }
-//    IngredientTableViewCell
+
     @IBOutlet var editButton: UIButton!
     
     @IBOutlet var addButton: UIButton!
@@ -48,18 +36,53 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     
     
     
+    func createFetchRequest() {
+        let request = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+             
+             do {
+                 let results = try context.fetch(request)
+                 
+                 for result in results {
+                     self.ingredients.append(result)
+                 }
+             } catch {
+                 print("Failed to access ingredients")
+             }
+             
+    }
     @IBAction func addButtonTapped(_ sender: Any) {
 //        textField
         guard let ingredientName = textField.text, !ingredientName.isEmpty else {
             return
         }
         
-        let ingredient = Ingredient(name: ingredientName, quantity: "23")
+//        let ingredient = Ingredient(name: ingredientName, quantity: "23") Ingredient
         
+        var ingredient: Ingredient {
+            let ingredient = Ingredient(context: /* AppDelegate().managedObjectContext */  context)
+            ingredient.quantity = "23"
+            ingredient.name = ingredientName
+            return ingredient
+        }
+        
+        
+        addIngredientCd(ingredient: ingredient)
         ingredients.append(ingredient)
         tableview.reloadData()
         
         textField.text = ""
+    }
+    
+    //Tyler's Code
+    
+    func addIngredientCd(ingredient: Ingredient) {
+       // context.insert(ingredient)
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save ingredient")
+        }
     }
     
     @IBAction func editButtonTapped(_ sender: Any) {
@@ -87,10 +110,15 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            context.delete(ingredients[indexPath.row])
             ingredients.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            do {
+               try context.save()
+            } catch {
+                print("Failed to save")
+            }
         }
     }
-    
-
 }
