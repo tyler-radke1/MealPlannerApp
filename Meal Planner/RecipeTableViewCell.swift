@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+
 protocol RecipeTableViewCellDelegate {
     func favoriteButtonTapped(cell: RecipeTableViewCell)
 }
