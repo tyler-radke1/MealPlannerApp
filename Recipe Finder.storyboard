@@ -16,66 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-gp-2Ee">
-                                <rect key="frame" x="0.0" y="183.66666666666669" width="393" height="634.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="81"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fcI-BR-mL6" id="Ck1-ps-I6i">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMT-3G-ZJh">
-                                                    <rect key="frame" x="295" y="23" width="100" height="35"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wws-rJ-wsG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="nbz-lP-QYI"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title=""/>
-                                                            <connections>
-                                                                <action selector="favoriteButtonTapped:" destination="fcI-BR-mL6" eventType="touchUpInside" id="p6X-qy-mRD"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-ED-t4l">
-                                                            <rect key="frame" x="50" y="0.0" width="50" height="35"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="Le7-mh-uow"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iP-OA-yar">
-                                                    <rect key="frame" x="10" y="10" width="275" height="61"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="275" id="Seh-vp-XBo"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="leading" secondItem="7iP-OA-yar" secondAttribute="trailing" constant="10" id="16h-kR-NJE"/>
-                                                <constraint firstItem="7iP-OA-yar" firstAttribute="top" secondItem="Ck1-ps-I6i" secondAttribute="top" constant="10" id="BH7-Y2-nJq"/>
-                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="top" secondItem="Ck1-ps-I6i" secondAttribute="topMargin" constant="12" id="J95-qB-08l"/>
-                                                <constraint firstItem="7iP-OA-yar" firstAttribute="leading" secondItem="Ck1-ps-I6i" secondAttribute="leading" constant="10" id="Zar-rQ-O3G"/>
-                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="centerY" secondItem="7iP-OA-yar" secondAttribute="centerY" id="d3F-fe-6t7"/>
-                                                <constraint firstAttribute="bottom" secondItem="7iP-OA-yar" secondAttribute="bottom" constant="10" id="ssf-EV-RIU"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="recipeNameLabel" destination="7iP-OA-yar" id="IEE-BX-sv8"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kas-4o-K6X">
                                 <rect key="frame" x="8" y="91" width="377" height="84.666666666666686"/>
                                 <subviews>
@@ -111,6 +51,74 @@
                                     <constraint firstItem="nuk-BF-VAy" firstAttribute="leading" secondItem="kas-4o-K6X" secondAttribute="leading" constant="8" id="n4n-Da-rXy"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-gp-2Ee">
+                                <rect key="frame" x="0.0" y="183.66666666666669" width="393" height="634.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="apiTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="APIResultTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fcI-BR-mL6" id="Ck1-ps-I6i">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="81"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-sI-aiN">
+                                                    <rect key="frame" x="20" y="16.666666666666664" width="50" height="48.333333333333336"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="Tex-SC-YpC"/>
+                                                        <constraint firstAttribute="width" secondItem="bEb-sI-aiN" secondAttribute="height" multiplier="1:1" id="d85-iG-uKW"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iP-OA-yar">
+                                                    <rect key="frame" x="86" y="30.333333333333336" width="89" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMT-3G-ZJh">
+                                                    <rect key="frame" x="272.33333333333331" y="23.333333333333332" width="100.66666666666669" height="34.333333333333343"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wws-rJ-wsG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="34.333333333333336"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
+                                                            <connections>
+                                                                <action selector="favoriteButtoneTapped" destination="fcI-BR-mL6" eventType="touchUpInside" id="Sb4-nC-Xud"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-ED-t4l">
+                                                            <rect key="frame" x="50.666666666666686" y="0.0" width="50" height="34.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="Le7-mh-uow"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="calendarButtonTapped" destination="fcI-BR-mL6" eventType="touchUpInside" id="Hdw-65-CeS"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7iP-OA-yar" secondAttribute="trailing" id="BBl-IL-by7"/>
+                                                <constraint firstItem="7iP-OA-yar" firstAttribute="centerY" secondItem="Ck1-ps-I6i" secondAttribute="centerY" id="GNT-mg-BbL"/>
+                                                <constraint firstItem="EMT-3G-ZJh" firstAttribute="centerY" secondItem="Ck1-ps-I6i" secondAttribute="centerY" id="Gqg-35-N7e"/>
+                                                <constraint firstItem="bEb-sI-aiN" firstAttribute="centerY" secondItem="Ck1-ps-I6i" secondAttribute="centerY" id="Vw9-nI-6UW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EMT-3G-ZJh" secondAttribute="trailing" id="gcS-xJ-oj1"/>
+                                                <constraint firstItem="7iP-OA-yar" firstAttribute="leading" secondItem="bEb-sI-aiN" secondAttribute="trailing" constant="16" id="j1W-xB-5UI"/>
+                                                <constraint firstItem="bEb-sI-aiN" firstAttribute="leading" secondItem="Ck1-ps-I6i" secondAttribute="leadingMargin" id="yh4-ze-3RT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recipeTitleLabel" destination="7iP-OA-yar" id="pwh-ma-kuf"/>
+                                            <outlet property="recipeimage" destination="bEb-sI-aiN" id="KSh-xW-usA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BWi-ap-CIE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -136,7 +144,8 @@
     </scenes>
     <resources>
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
-        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

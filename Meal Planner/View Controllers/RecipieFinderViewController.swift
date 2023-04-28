@@ -10,6 +10,7 @@ import UIKit
 class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var recipes: [RecipieResult] = []
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     
     @IBOutlet weak var recipieNameTextField: UITextField!
     
@@ -41,22 +42,48 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableViewCell", for: indexPath) as! RecipeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
         
-        let recipe = recipes[indexPath.row]
-        
-        cell.recipeNameLabel.text = recipe.title
+        configureCell(for: cell, withIndexPath: indexPath)
         
         return cell
+    }
+    
+    func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
+                
+        let recipe = recipes[indexPath.row]
+        
+        cell.recipeTitleLabel.text = recipe.title
+        
+        imageLoadTasks[indexPath] =  Task {
+            do {
+                guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
+                let image = try await retrieveRecipeImage(using: imageURL)
+                cell.recipeimage.image = image
+            } catch {
+                print(error)
+            }
+        }
+        
     }
 
     //MARK: - Search Functions
     
     @IBAction func searchByNameButtonTapped() {
+        
+        if let text = recipieNameTextField.text {
+            recipeNameSearch(using: text)
+        }
+        
+        
+    }
+    
+    @IBAction func searchByIngredientsList() {
+    }
+    
+    func recipeNameSearch(using text: String) {
         Task {
             do {
-                guard let text = recipieNameTextField.text else { return }
-                
                 let results = try await recipieSearchByName(using: text)
                 
                 self.recipes = results.recipes ?? []
@@ -64,9 +91,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 recipiesTableView.reloadData()
             }
         }
-    }
-    
-    @IBAction func searchByIngredientsList() {
     }
     
     /*
