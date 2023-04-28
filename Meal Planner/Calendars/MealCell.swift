@@ -32,15 +32,15 @@ class MealCell: UITableViewCell {
         func addMenuItems()  -> UIMenu  {
             var actions: [UIAction] = []
             
-            for recipe in DummyData.recipes {
-                let action = UIAction(title: recipe.name) { [self] action in
-                    guard let delegate, let cellMeal else { return }
-                    
-                    delegate.updateMeal(for: cellMeal, with: recipe)
-                }
-                
-                actions.append(action)
-            }
+//            for recipe in DummyData.recipes {
+//                let action = UIAction(title: recipe.name) { [self] action in
+//                    guard let delegate, let cellMeal else { return }
+//                    
+//                    delegate.updateMeal(for: cellMeal, with: recipe)
+//                }
+//                
+//                actions.append(action)
+//            }
             
             let menuItems = UIMenu(title: "Your Recipes", children: actions)
             
