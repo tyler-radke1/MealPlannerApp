@@ -92,9 +92,7 @@ func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
         throw APIErrors.imageNotFound
     }
     
-    let imageData = try JSONDecoder().decode(Data.self, from: data)
-    
-    guard let image = UIImage(data: imageData) else {
+    guard let image = UIImage(data: data) else {
         throw APIErrors.imageNotFound
     }
     

@@ -70,8 +70,11 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     //MARK: - Search Functions
     
     @IBAction func searchByNameButtonTapped() {
+        guard let text = recipieNameTextField.text else { return }
         
-        if let text = recipieNameTextField.text {
+        if text.isEmpty {
+            return // Replace later with random recipe search?
+        } else {
             recipeNameSearch(using: text)
         }
         

@@ -72,16 +72,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iP-OA-yar">
-                                                    <rect key="frame" x="86" y="30.333333333333336" width="89" height="20.333333333333336"/>
+                                                    <rect key="frame" x="86" y="19" width="89" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMT-3G-ZJh">
-                                                    <rect key="frame" x="272.33333333333331" y="23.333333333333332" width="100.66666666666669" height="34.333333333333343"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EMT-3G-ZJh">
+                                                    <rect key="frame" x="273" y="23.333333333333332" width="100" height="34.333333333333343"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wws-rJ-wsG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="34.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="34.333333333333336"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
                                                             <connections>
@@ -89,7 +89,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-ED-t4l">
-                                                            <rect key="frame" x="50.666666666666686" y="0.0" width="50" height="34.333333333333336"/>
+                                                            <rect key="frame" x="50" y="0.0" width="50" height="34.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Le7-mh-uow"/>
                                                             </constraints>
@@ -100,15 +100,20 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="FVb-da-zme"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7iP-OA-yar" secondAttribute="bottom" constant="8" id="4bE-8G-dDT"/>
                                                 <constraint firstItem="EMT-3G-ZJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7iP-OA-yar" secondAttribute="trailing" id="BBl-IL-by7"/>
                                                 <constraint firstItem="7iP-OA-yar" firstAttribute="centerY" secondItem="Ck1-ps-I6i" secondAttribute="centerY" id="GNT-mg-BbL"/>
                                                 <constraint firstItem="EMT-3G-ZJh" firstAttribute="centerY" secondItem="Ck1-ps-I6i" secondAttribute="centerY" id="Gqg-35-N7e"/>
                                                 <constraint firstItem="bEb-sI-aiN" firstAttribute="centerY" secondItem="Ck1-ps-I6i" secondAttribute="centerY" id="Vw9-nI-6UW"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="EMT-3G-ZJh" secondAttribute="trailing" id="gcS-xJ-oj1"/>
                                                 <constraint firstItem="7iP-OA-yar" firstAttribute="leading" secondItem="bEb-sI-aiN" secondAttribute="trailing" constant="16" id="j1W-xB-5UI"/>
+                                                <constraint firstItem="7iP-OA-yar" firstAttribute="top" secondItem="Ck1-ps-I6i" secondAttribute="topMargin" constant="8" id="q1H-3g-vzj"/>
                                                 <constraint firstItem="bEb-sI-aiN" firstAttribute="leading" secondItem="Ck1-ps-I6i" secondAttribute="leadingMargin" id="yh4-ze-3RT"/>
                                             </constraints>
                                         </tableViewCellContentView>
