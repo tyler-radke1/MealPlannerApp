@@ -6,10 +6,10 @@
 //
 
 import Foundation
-
-struct Day {
-    var breakfast: Recipe?
-    var lunch: Recipe?
-    var dinner: Recipe?
-}
+//
+//struct Day {
+//    var breakfast: Recipe?
+//    var lunch: Recipe?
+//    var dinner: Recipe?
+//}
 

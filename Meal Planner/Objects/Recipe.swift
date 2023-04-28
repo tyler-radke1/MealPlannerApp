@@ -7,9 +7,9 @@
 
 import Foundation
 
-
-struct Recipe {
-    var name: String
-    var ingredients: [Ingredient]
-    var instructions: String?
-}
+//
+//struct Recipe {
+//    var name: String
+//    var ingredients: [Ingredient]
+//    var instructions: String?
+//}
