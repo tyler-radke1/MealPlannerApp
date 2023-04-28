@@ -37,9 +37,6 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Button" cornerStyle="capsule" titleAlignment="leading">
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="recipeNameButtonTapped:" destination="oHm-nr-HDq" eventType="touchUpInside" id="4LT-Y9-hBh"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>

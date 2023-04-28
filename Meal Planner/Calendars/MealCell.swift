@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 protocol MealCellDelegate {
     func updateMeal(for type: MealType, with recipe: Recipe)
 }
 
 class MealCell: UITableViewCell {
+    
+    let context = PersistenceController.shared.viewContext
     
     @IBOutlet weak var recipeNameButton: UIButton!
     
@@ -29,22 +32,39 @@ class MealCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-        func addMenuItems()  -> UIMenu  {
-            var actions: [UIAction] = []
+    func addMenuItems()  -> UIMenu  {
+        var actions: [UIAction] = []
+        
+        for recipe in createFetchRequest() {
+            guard let delegate, let cellMeal, let name = recipe.name else { continue }
             
-//            for recipe in DummyData.recipes {
-//                let action = UIAction(title: recipe.name) { [self] action in
-//                    guard let delegate, let cellMeal else { return }
-//                    
-//                    delegate.updateMeal(for: cellMeal, with: recipe)
-//                }
-//                
-//                actions.append(action)
-//            }
-            
-            let menuItems = UIMenu(title: "Your Recipes", children: actions)
-            
-            return menuItems
+            let action = UIAction(title: name) { action in
+                
+                delegate.updateMeal(for: cellMeal, with: recipe)
+            }
+
+            actions.append(action)
         }
+        
+        let menuItems = UIMenu(title: "Your Recipes", children: actions)
+        
+        return menuItems
     }
+    
+    func createFetchRequest() -> [Recipe] {
+        var recipes: [Recipe] = []
+        
+        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            results.forEach { recipes.append($0) }
+            
+        } catch {
+            print("you oofed")
+        }
+        
+        return recipes
+    }
+}
 
