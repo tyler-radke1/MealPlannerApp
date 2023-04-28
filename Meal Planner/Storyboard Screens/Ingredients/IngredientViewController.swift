@@ -7,8 +7,11 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    private let context = PersistenceController.shared.viewContext
     
     var ingredients: [Ingredient] = []
       var isEditingEnabled = false
@@ -36,7 +39,13 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         guard let ingredientName = textField.text, !ingredientName.isEmpty else {
             return
         }
-        let ingredient = Ingredient(name: ingredientName, quantity: "23")
+       // let ingredient = Ingredient(name: ingredientName, quantity: "23")
+        var ingredient: Ingredient {
+            let ingredient = Ingredient(context: context)
+            ingredient.quantity = "23"
+            ingredient.name = ingredientName
+            return ingredient
+        }
         
         ingredients.append(ingredient)
         tableview.reloadData()

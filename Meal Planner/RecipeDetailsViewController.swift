@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 class RecipeDetailsViewController: UIViewController {
     
@@ -28,21 +30,26 @@ class RecipeDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let recipe = recipe {
-               recipeNameLabel.text = recipe.name
+            recipeNameLabel.text = recipe.name
             
             var ingredientStrings: [String] = []
             
-            for ingredient in recipe.ingredients {
-                let ingredientString = "\(ingredient.quantity) - \(ingredient.name)"
+            if let ingredientsSet = recipe.ingredients as? Set<Ingredient> {
+                let ingredientsArray = Array(ingredientsSet)
                 
-                ingredientStrings.append(ingredientString)
+                for ingredient in ingredientsArray {
+                    let ingredientString = "\(ingredient.quantity ?? "") - \(ingredient.name ?? "")"
+                    
+                    ingredientStrings.append(ingredientString)
+                }
+                
+                
+                let allIngredientsString = ingredientStrings.joined(separator: "\n")
+                ingredientsLabel.text = allIngredientsString
+                instructionsLabel.text = recipe.instructions
+                
             }
-            
-            let allIngredientsString = ingredientStrings.joined(separator: "\n")
-           ingredientsLabel.text = allIngredientsString
-            instructionsLabel.text = recipe.instructions
-           
-       }
+        }
     }
 
     /*

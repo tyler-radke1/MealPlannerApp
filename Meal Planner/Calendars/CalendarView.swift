@@ -13,7 +13,7 @@ enum MealType: String {
     case dinner = "dinner"
 }
 
-class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate, MealScheduleDelegate {
+class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate {
     
     var days: [Date: Day] = [:]
     
@@ -34,11 +34,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addMeal" {
-            let destination = segue.destination as! AddMealViewController
-            destination.delegate = self
-            destination.dateToAddMeal = self.loadedDate
-        }
+        
     }
     
     func configure(calendar: UICalendarView) {
@@ -138,12 +134,3 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     }
 }
 
-extension CalendarView {
-    func generateDummyDay(with recipeName: String) -> Day {
-        let ingredient = Ingredient(name: "Ingredient", quantity: "14")
-        
-        let recipe = Recipe(name: recipeName, ingredients: [ingredient, ingredient])
-        
-        return Day(lunch: recipe)
-    }
-}

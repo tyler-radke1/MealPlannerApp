@@ -59,11 +59,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meal Schedule" id="Q1e-4p-JgZ">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="mcq-6Z-xJA">
-                            <connections>
-                                <segue destination="2nQ-yQ-POY" kind="show" identifier="addMeal" id="6fm-K9-5QY"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="mcq-6Z-xJA"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -73,56 +69,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="973.28244274809151" y="-2.1126760563380285"/>
-        </scene>
-        <!--Add Meal View Controller-->
-        <scene sceneID="uhG-Le-9Ci">
-            <objects>
-                <viewController id="2nQ-yQ-POY" customClass="AddMealViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="skT-1a-VSQ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="GHV-UU-djq">
-                                <rect key="frame" x="36.666666666666657" y="148" width="320" height="556"/>
-                                <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-NW-PkX">
-                                        <rect key="frame" x="98" y="0.0" width="124" height="50"/>
-                                    </datePicker>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pT-MX-kCg">
-                                        <rect key="frame" x="0.0" y="87" width="320" height="216"/>
-                                    </pickerView>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UM2-Xc-kYh">
-                                        <rect key="frame" x="0.0" y="340" width="320" height="216"/>
-                                    </pickerView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WO0-RE-JIK">
-                                <rect key="frame" x="149" y="777" width="96" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Add Meal"/>
-                                <connections>
-                                    <action selector="addMealButtonTapped:" destination="2nQ-yQ-POY" eventType="touchUpInside" id="Uqa-SX-vhz"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="a62-T6-5lq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="GHV-UU-djq" firstAttribute="centerY" secondItem="skT-1a-VSQ" secondAttribute="centerY" id="IXB-wv-SQF"/>
-                            <constraint firstItem="GHV-UU-djq" firstAttribute="centerX" secondItem="skT-1a-VSQ" secondAttribute="centerX" id="h8d-ST-thF"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="0jl-Tk-AAx"/>
-                    <connections>
-                        <outlet property="breakfastLunchDinnerPicker" destination="9pT-MX-kCg" id="fq2-G5-Ny6"/>
-                        <outlet property="datePicker" destination="UQl-NW-PkX" id="SUc-20-RcE"/>
-                        <outlet property="mealsToAddPicker" destination="UM2-Xc-kYh" id="wuk-wW-TyP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vIC-3z-r4y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1927" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JDV-Ay-z1p">
