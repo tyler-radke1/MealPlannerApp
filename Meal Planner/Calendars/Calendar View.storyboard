@@ -38,7 +38,7 @@
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="mealButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JJQ-5l-EgL"/>
+                                                        <action selector="recipeNameButtonTapped:" destination="oHm-nr-HDq" eventType="touchUpInside" id="4LT-Y9-hBh"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -67,7 +67,7 @@
         <!--Navigation Controller-->
         <scene sceneID="JDV-Ay-z1p">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rZA-Rm-6ag" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="calendarNavContoller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rZA-Rm-6ag" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="swB-aM-On1">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
