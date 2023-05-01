@@ -9,9 +9,85 @@ import Foundation
 import UIKit
 
 enum APIErrors: Error {
-    case fetchRecipiesByNameFailed
+    case fetchRecipesByNameFailed
     case imageNotFound
+    case fetchRecipeDetailsFailed
 }
+
+
+func recipieSearchByName(using text: String) async throws -> Results {
+
+    var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch")
+    
+    let queryItems = [URLQueryItem(name: "query", value: "\(text)")]
+    
+    urlComponents?.queryItems = queryItems
+    
+    let headers = [
+        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    ]
+
+    let request = NSMutableURLRequest(url: urlComponents!.url!,
+                                            cachePolicy: .useProtocolCachePolicy,
+                                        timeoutInterval: 10.0)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+    
+    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.fetchRecipesByNameFailed
+    }
+    
+    let decoder = JSONDecoder()
+    let decodedRecipes = try decoder.decode(Results.self, from: data)
+    
+    return decodedRecipes
+}
+
+func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
+    
+    let (data, response) = try await URLSession.shared.data(from: url)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.imageNotFound
+    }
+    
+    guard let image = UIImage(data: data) else {
+        throw APIErrors.imageNotFound
+    }
+    
+    return image
+}
+
+func retrieveRecipieInfo(usingRecipieID id: Int) async throws -> ViewedRecipe? {
+    
+    let headers = [
+        "content-type": "application/octet-stream",
+        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    ]
+
+    let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/\(id)/information")! as URL,
+                                            cachePolicy: .useProtocolCachePolicy,
+                                        timeoutInterval: 10.0)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+
+    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.fetchRecipeDetailsFailed
+    }
+    
+    let decoder = JSONDecoder()
+    let decodedRecipeDetails = try decoder.decode(ViewedRecipe.self, from: data)
+    
+    return decodedRecipeDetails
+}
+
+// MARK: - Structs for decoding information
 
 struct Results: Codable {
     var recipes: [RecipieResult]?
@@ -52,49 +128,51 @@ struct RecipieResult: CustomStringConvertible, Codable {
     }
 }
 
-
-func recipieSearchByName(using text: String) async throws -> Results {
-
-    var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch")
+struct ViewedRecipe: Codable {
+    var name: String
+    var ingredients: [ViewedIngredient]
+    var instructions: String?
     
-    let queryItems = [URLQueryItem(name: "query", value: "\(text)")]
-    
-    urlComponents?.queryItems = queryItems
-    
-    let headers = [
-        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
-        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-    ]
-
-    let request = NSMutableURLRequest(url: urlComponents!.url!,
-                                            cachePolicy: .useProtocolCachePolicy,
-                                        timeoutInterval: 10.0)
-    request.httpMethod = "GET"
-    request.allHTTPHeaderFields = headers
-    
-    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
-    
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        throw APIErrors.fetchRecipiesByNameFailed
+    enum CodingKeys: String, CodingKey {
+        case name = "title"
+        case ingredients = "extendedIngredients"
+        case instructions
     }
     
-    let decoder = JSONDecoder()
-    let decodedRecipies = try decoder.decode(Results.self, from: data)
-    
-    return decodedRecipies
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.ingredients = try container.decode([ViewedIngredient].self, forKey: .ingredients)
+        self.instructions = try container.decodeIfPresent(String.self, forKey: .instructions)
+    }
 }
 
-func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
+struct ViewedIngredient: Codable {
+    var name: String
+    var quantity: String
     
-    let (data, response) = try await URLSession.shared.data(from: url)
-    
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        throw APIErrors.imageNotFound
+    enum CodingKeys: String, CodingKey {
+        case name
+        case amount
+        case unit
     }
     
-    guard let image = UIImage(data: data) else {
-        throw APIErrors.imageNotFound
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        let amount = try container.decode(String.self, forKey: .amount)
+        let unit = try container.decode(String.self, forKey: .unit)
+        self.quantity = "\(amount) \(unit)"
     }
     
-    return image
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        
+        let strings = quantity.components(separatedBy: " ")
+        
+        try container.encode(strings.first ?? "", forKey: .amount)
+        try container.encode(strings.last ?? "", forKey: .unit)
+    }
 }
+

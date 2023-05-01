@@ -11,6 +11,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
 
     var recipes: [RecipieResult] = []
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    var viewedRecipes = [IndexPath:ViewedRecipe]()
     
     @IBOutlet weak var recipieNameTextField: UITextField!
     
@@ -44,7 +45,19 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
         
-        configureCell(for: cell, withIndexPath: indexPath)
+        let recipe = recipes[indexPath.row]
+        
+        cell.recipeTitleLabel.text = recipe.title
+        
+        imageLoadTasks[indexPath] =  Task {
+            do {
+                guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
+                let image = try await retrieveRecipeImage(using: imageURL)
+                cell.recipeimage.image = image
+            } catch {
+                print(error)
+            }
+        }
         
         return cell
     }
@@ -67,6 +80,17 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Task {
+            let id = recipes[indexPath.row].id!
+            do {
+                let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
+                viewedRecipes[indexPath] = recipeDetails
+            } catch {
+                print(error)
+            }
+        }
+    }
     //MARK: - Search Functions
     
     @IBAction func searchByNameButtonTapped() {
