@@ -21,6 +21,7 @@ class RecipeDetailsViewController: UIViewController {
     
     @IBOutlet weak var instructionsLabel: UILabel!
     
+    @IBOutlet weak var recipeImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +46,17 @@ class RecipeDetailsViewController: UIViewController {
                 
                 
                 let allIngredientsString = ingredientStrings.joined(separator: "\n")
+                
                 ingredientsLabel.text = allIngredientsString
-                instructionsLabel.text = recipe.instructions
                 
             }
+            
+            if let photoData = recipe.photo {
+                recipeImage.image = UIImage(data: photoData)
+                
+            }
+            
+            instructionsLabel.text = recipe.instructions
         }
     }
 

@@ -17,6 +17,7 @@
     <entity name="Recipe" representedClassName=".Recipe" syncable="YES" codeGenerationType="class">
         <attribute name="instructions" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary"/>
         <relationship name="breakfast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="breakfast" inverseEntity="Day"/>
         <relationship name="dinner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="dinner" inverseEntity="Day"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient"/>
