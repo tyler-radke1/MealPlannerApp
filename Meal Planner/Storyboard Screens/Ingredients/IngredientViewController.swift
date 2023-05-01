@@ -16,7 +16,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //
 //
     private let context = PersistenceController.shared.viewContext
-    
+
     var ingredients: [Ingredient] = []
       var isEditingEnabled = false
     
