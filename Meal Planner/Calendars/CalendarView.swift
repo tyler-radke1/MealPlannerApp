@@ -35,9 +35,44 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     override func viewDidLoad() {
         let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
         configure(calendar: myCalendarView)
-        
+        //DummyData.shared.generateData()
+        loadCoreData()
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print(paths)
+    }
+    
+    func loadCoreData() {
+        let request = NSFetchRequest<CalendarDates>(entityName: "CalendarDates")
+        
+        do {
+            let results = try context.fetch(request)
+            
+            for result in results {
+                guard let date = result.date, let day = result.day else { return }
+                days[date] = day
+            }
+        } catch {
+            print("error")
+        }
+    }
+    
+    func saveCoreData(date: Date, day: Day) {
+        let calendarDate = CalendarDates(context: context)
+        
+        calendarDate.date = date
+        calendarDate.day = day
+        
+        context.insert(calendarDate)
+        
+        do {
+            try context.save()
+        } catch {
+            print("failed to save")
+        }
+        
     }
     
     func configure(calendar: UICalendarView) {
@@ -60,8 +95,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
             days[loadedDate] = Day(context: context)
         }
         
-        print(type)
-        
         switch type {
         case .breakfast:
             days[loadedDate]?.breakfast = recipe
@@ -71,6 +104,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
             days[loadedDate]?.dinner = recipe
         }
         
+        if let day = days[loadedDate] {
+            saveCoreData(date: loadedDate, day: day)
+        }
         calendarTableView.reloadData()
     }
     
