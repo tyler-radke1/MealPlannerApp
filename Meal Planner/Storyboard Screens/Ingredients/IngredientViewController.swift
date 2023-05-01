@@ -1,28 +1,26 @@
 //
-//  IngredientViewController.swift
+//  NewIngredientViewControllerClass.swift
 //  Meal Planner
 //
-//  Created by Vasiliy on 4/19/23.
+//  Created by Tyler Radke on 4/20/23.
 //
 
+import Foundation
 import UIKit
-//import
+import CoreData
 
-class IngredientListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    private let context = PersistenceController.shared.viewContext
     
     var ingredients: [Ingredient] = []
       var isEditingEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      
         // Do any additional setup after loading the view.
         tableview.dataSource = self
         tableview.delegate = self
-        
-        
-         
     }
 //    IngredientTableViewCell
     @IBOutlet var editButton: UIButton!
@@ -41,7 +39,13 @@ class IngredientListViewController: UIViewController, UITableViewDataSource, UIT
         guard let ingredientName = textField.text, !ingredientName.isEmpty else {
             return
         }
-        let ingredient = Ingredient(name: ingredientName)
+       // let ingredient = Ingredient(name: ingredientName, quantity: "23")
+        var ingredient: Ingredient {
+            let ingredient = Ingredient(context: context)
+            ingredient.quantity = "23"
+            ingredient.name = ingredientName
+            return ingredient
+        }
         
         ingredients.append(ingredient)
         tableview.reloadData()
@@ -61,9 +65,10 @@ class IngredientListViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return ingredients.count
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsCell", for: indexPath) as! IngredientTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsCell", for: indexPath)  as! IngredientTableViewCell
         let ingredient = ingredients [indexPath.row]
         
         cell.configure(with: ingredient)

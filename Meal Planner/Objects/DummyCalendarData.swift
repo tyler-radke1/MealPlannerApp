@@ -10,7 +10,7 @@ import Foundation
 class DummyData {
     static var sharedIntance = DummyData()
     
-    let days: [Date: Day] = [:]
+   // let days: [Date: Day] = [:]
     
 //    func yummyEggs() -> Day {
 //        let eggs = Ingredient(name: "Eggs")
