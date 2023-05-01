@@ -35,7 +35,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     override func viewDidLoad() {
         let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
         configure(calendar: myCalendarView)
-        //DummyData.shared.generateData()
         loadCoreData()
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
