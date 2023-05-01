@@ -10,6 +10,7 @@ import CoreData
 
 protocol MealCellDelegate {
     func updateMeal(for type: MealType, with recipe: Recipe)
+    func saveCoreData(date: Date, day: Day)
 }
 
 class MealCell: UITableViewCell {
