@@ -20,7 +20,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
             return
         }
         
-        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your recipes?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your favorites?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
             self.recipes.remove(at: indexPath.row)
@@ -38,9 +38,15 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//
+//        savedRecipesTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipesTableViewCell")
         
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self
+        
+        
+        
+        
         
 //        var recipe: Recipe {
 //            let  recipe = Recipe(context: context)
