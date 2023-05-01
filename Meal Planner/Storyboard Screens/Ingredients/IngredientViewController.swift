@@ -10,7 +10,11 @@ import UIKit
 import CoreData
 
 class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+//    func addButtonTapped(cell: IngredientTableViewCell) {
+//        <#code#>
+//    }
+//
+//
     private let context = PersistenceController.shared.viewContext
     
     var ingredients: [Ingredient] = []
@@ -58,12 +62,12 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         
 //        let ingredient = Ingredient(name: ingredientName, quantity: "23") Ingredient
         
-        var ingredient: Ingredient {
+//        var ingredient: Ingredient {
             let ingredient = Ingredient(context: /* AppDelegate().managedObjectContext */  context)
             ingredient.quantity = "23"
             ingredient.name = ingredientName
-            return ingredient
-        }
+//            return ingredient
+//        }
         
         
         addIngredientCd(ingredient: ingredient)
@@ -106,19 +110,26 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         let ingredient = ingredients [indexPath.row]
         
         cell.configure(with: ingredient)
+        
+//        cell.delegate = self
+        
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            context.delete(ingredients[indexPath.row])
-            ingredients.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+           
             
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.context.delete(self.ingredients[indexPath.row])
             do {
-               try context.save()
+                try self.context.save()
             } catch {
                 print("Failed to save")
             }
+            self.ingredients.remove(at: indexPath.row)
+            self.tableview.deleteRows(at: [indexPath], with: .automatic)
+//            self.tableview.reloadData()
         }
     }
+    
 }
