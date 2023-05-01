@@ -23,8 +23,17 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your favorites?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            
+            self.context.delete(self.recipes[indexPath.row])
+            do {
+               try self.context.save()
+            } catch {
+                print("error")
+            }
+            
             self.recipes.remove(at: indexPath.row)
             self.savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
+            
             
             
         })
