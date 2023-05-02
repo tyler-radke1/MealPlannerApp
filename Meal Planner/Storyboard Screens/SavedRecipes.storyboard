@@ -57,6 +57,9 @@
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="calendarButtonTapped:" destination="YqP-Yp-bto" eventType="touchUpInside" id="smx-7w-glC"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -92,6 +95,7 @@
                     <connections>
                         <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="jMR-5k-XWz"/>
                         <segue destination="RN2-CY-1zB" kind="show" identifier="showRecipeDetails" id="qfR-eo-Trq"/>
+                        <segue destination="X82-6m-ZyT" kind="presentation" identifier="segueToCalendar" id="kqC-KY-UkA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xD5-41-NT7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -192,6 +196,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZN-Ul-AG2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1174.8091603053435" y="-83.098591549295776"/>
+        </scene>
+        <!--calendarNavContoller-->
+        <scene sceneID="b99-5D-ZkC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar View" referencedIdentifier="calendarNavContoller" id="X82-6m-ZyT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0zh-aB-qGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747" y="356"/>
         </scene>
     </scenes>
     <resources>

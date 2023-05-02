@@ -10,6 +10,7 @@ import CoreData
 
 protocol RecipeTableViewCellDelegate {
     func favoriteButtonTapped(cell: RecipeTableViewCell)
+    func calendarButtonTapped(cell: RecipeTableViewCell)
 }
 
 class RecipeTableViewCell: UITableViewCell {
@@ -37,5 +38,9 @@ class RecipeTableViewCell: UITableViewCell {
         delegate?.favoriteButtonTapped(cell: self)
     }
     
-
+    @IBAction func calendarButtonTapped(_ sender: UIButton) {
+        print("calendar button tapped")
+        delegate?.calendarButtonTapped(cell: self)
+    }
+    
 }

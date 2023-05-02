@@ -22,6 +22,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     var days: [Date: Day] = [:]
     
+    var addingSavedRecipe: Recipe? = nil
+    
     let context = PersistenceController.shared.viewContext
     @IBOutlet weak var mealButton: UIButton!
     
@@ -175,7 +177,11 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         cell.cellMeal = MealType.allCases[indexPath.section]
         
-        cell.recipeNameButton.menu = cell.addMenuItems()
+        if addingSavedRecipe == nil {
+            cell.recipeNameButton.menu = cell.addMenuItems()
+        } else {
+            
+        }
         
         let formatter = DateFormatter()
         

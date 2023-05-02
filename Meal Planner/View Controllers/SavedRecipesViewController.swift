@@ -8,7 +8,8 @@
 import UIKit
 import CoreData
 
-class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate {
+class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
+   
     
     private let context = PersistenceController.shared.viewContext
     
@@ -20,7 +21,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
             return
         }
         
-        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your recipes?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your favorites?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
             self.recipes.remove(at: indexPath.row)
@@ -41,6 +42,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self
+        
+      //  let calendar = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
+        
+       // configure(calendar: calendar)
         
 //        var recipe: Recipe {
 //            let  recipe = Recipe(context: context)
@@ -117,9 +122,28 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
         savedRecipesTableView.reloadData()
     }
+    
+    func configure(calendar: UICalendarView) {
+        calendar.delegate = self
+        
+        let gregorian = Calendar(identifier: .gregorian)
+        
+        calendar.calendar = gregorian
+        
+        self.view.addSubview(calendar)
+        
+        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
+        
+        calendar.selectionBehavior = dateSelection
+    }
+    
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        
+    }
+    
     // MARK: - Navigation
     
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -141,6 +165,16 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
     }
     
+    func calendarButtonTapped(cell: RecipeTableViewCell) {
+        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let recipe = recipes[indexPath.row]
+        
+        performSegue(withIdentifier: "segueToCalendar", sender: recipe)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRecipeDetails" {
             if let recipeDetailsVC = segue.destination as? RecipeDetailsViewController,
@@ -148,10 +182,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
                 recipeDetailsVC.recipe = selectedRecipe
             }
         }
+        
+        if segue.identifier == "segueToCalendar" {
+            let destination = segue.destination as? CalendarView
+            destination?.addingSavedRecipe = sender as? Recipe
+        }
     }
-    
-    
-    @IBAction func addToCalendarButtonTapped(_ sender: UIButton) {
-    }
-    
 }

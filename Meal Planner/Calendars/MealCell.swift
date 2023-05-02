@@ -43,7 +43,6 @@ class MealCell: UITableViewCell {
                 
                 delegate.updateMeal(for: cellMeal, with: recipe)
             }
-
             actions.append(action)
         }
         
