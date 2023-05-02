@@ -6,10 +6,88 @@
 //
 
 import Foundation
+import UIKit
 
 enum APIErrors: Error {
-    case fetchRecipiesByNameFailed
+    case fetchRecipesByNameFailed
+    case imageNotFound
+    case fetchRecipeDetailsFailed
 }
+
+
+func recipieSearchByName(using text: String) async throws -> Results {
+
+    var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch")
+    
+    let queryItems = [URLQueryItem(name: "query", value: "\(text)")]
+    
+    urlComponents?.queryItems = queryItems
+    
+    let headers = [
+        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    ]
+
+    let request = NSMutableURLRequest(url: urlComponents!.url!,
+                                            cachePolicy: .useProtocolCachePolicy,
+                                        timeoutInterval: 10.0)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+    
+    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.fetchRecipesByNameFailed
+    }
+    
+    let decoder = JSONDecoder()
+    let decodedRecipes = try decoder.decode(Results.self, from: data)
+    
+    return decodedRecipes
+}
+
+func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
+    
+    let (data, response) = try await URLSession.shared.data(from: url)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.imageNotFound
+    }
+    
+    guard let image = UIImage(data: data) else {
+        throw APIErrors.imageNotFound
+    }
+    
+    return image
+}
+
+func retrieveRecipieInfo(usingRecipieID id: Int) async throws -> ViewedRecipe? {
+    
+    let headers = [
+        "content-type": "application/octet-stream",
+        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    ]
+
+    let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/\(id)/information")! as URL,
+                                            cachePolicy: .useProtocolCachePolicy,
+                                        timeoutInterval: 10.0)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+
+    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.fetchRecipeDetailsFailed
+    }
+    
+    let decoder = JSONDecoder()
+    let decodedRecipeDetails = try decoder.decode(ViewedRecipe.self, from: data)
+    
+    return decodedRecipeDetails
+}
+
+// MARK: - Structs for decoding information
 
 struct Results: Codable {
     var recipes: [RecipieResult]?
@@ -50,28 +128,51 @@ struct RecipieResult: CustomStringConvertible, Codable {
     }
 }
 
-
-func recipieSearchByName(using string: String) async throws -> Results {
-
-    let headers = [
-        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
-        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-    ]
-
-    let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=pasta&cuisine=italian&excludeCuisine=greek&diet=vegetarian&intolerances=gluten&equipment=pan&includeIngredients=tomato%2Ccheese&excludeIngredients=eggs&type=main%20course&instructionsRequired=true&fillIngredients=false&addRecipeInformation=false&titleMatch=Crock%20Pot&maxReadyTime=20&ignorePantry=true&sort=calories&sortDirection=asc&minCarbs=10&maxCarbs=100&minProtein=10&maxProtein=100&minCalories=50&maxCalories=800&minFat=10&maxFat=100&minAlcohol=0&maxAlcohol=100&minCaffeine=0&maxCaffeine=100&minCopper=0&maxCopper=100&minCalcium=0&maxCalcium=100&minCholine=0&maxCholine=100&minCholesterol=0&maxCholesterol=100&minFluoride=0&maxFluoride=100&minSaturatedFat=0&maxSaturatedFat=100&minVitaminA=0&maxVitaminA=100&minVitaminC=0&maxVitaminC=100&minVitaminD=0&maxVitaminD=100&minVitaminE=0&maxVitaminE=100&minVitaminK=0&maxVitaminK=100&minVitaminB1=0&maxVitaminB1=100&minVitaminB2=0&maxVitaminB2=100&minVitaminB5=0&maxVitaminB5=100&minVitaminB3=0&maxVitaminB3=100&minVitaminB6=0&maxVitaminB6=100&minVitaminB12=0&maxVitaminB12=100&minFiber=0&maxFiber=100&minFolate=0&maxFolate=100&minFolicAcid=0&maxFolicAcid=100&minIodine=0&maxIodine=100&minIron=0&maxIron=100&minMagnesium=0&maxMagnesium=100&minManganese=0&maxManganese=100&minPhosphorus=0&maxPhosphorus=100&minPotassium=0&maxPotassium=100&minSelenium=0&maxSelenium=100&minSodium=0&maxSodium=100&minSugar=0&maxSugar=100&minZinc=0&maxZinc=100&offset=0&number=10&limitLicense=false&ranking=2")! as URL,
-                                            cachePolicy: .useProtocolCachePolicy,
-                                        timeoutInterval: 10.0)
-    request.httpMethod = "GET"
-    request.allHTTPHeaderFields = headers
+struct ViewedRecipe: Codable {
+    var name: String
+    var ingredients: [ViewedIngredient]
+    var instructions: String?
     
-    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
-    
-    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        throw APIErrors.fetchRecipiesByNameFailed
+    enum CodingKeys: String, CodingKey {
+        case name = "title"
+        case ingredients = "extendedIngredients"
+        case instructions
     }
     
-    let decoder = JSONDecoder()
-    let decodedRecipies = try decoder.decode(Results.self, from: data)
-    
-    return decodedRecipies
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.ingredients = try container.decode([ViewedIngredient].self, forKey: .ingredients)
+        self.instructions = try container.decodeIfPresent(String.self, forKey: .instructions)
+    }
 }
+
+struct ViewedIngredient: Codable {
+    var name: String
+    var quantity: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case amount
+        case unit
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        let amount = try container.decode(Double.self, forKey: .amount)
+        let unit = try container.decode(String.self, forKey: .unit)
+        self.quantity = "\(amount) \(unit)"
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        
+        let strings = quantity.components(separatedBy: " ")
+        
+        try container.encode(Double(strings.first ?? "0"), forKey: .amount)
+        try container.encode(strings.last ?? "", forKey: .unit)
+    }
+}
+

@@ -10,6 +10,8 @@ import UIKit
 class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var recipes: [RecipieResult] = []
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    var viewedRecipes = [IndexPath:ViewedRecipe]()
     
     @IBOutlet weak var recipieNameTextField: UITextField!
     
@@ -41,22 +43,82 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recipesTableViewCell", for: indexPath) as! RecipeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
         
         let recipe = recipes[indexPath.row]
         
-        cell.recipeNameLabel.text = recipe.title
+        cell.recipeTitleLabel.text = recipe.title
+        
+        imageLoadTasks[indexPath] =  Task {
+            do {
+                guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
+                let image = try await retrieveRecipeImage(using: imageURL)
+                cell.recipeimage.image = image
+            } catch {
+                print(error)
+            }
+        }
         
         return cell
     }
+    
+    func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
+                
+        let recipe = recipes[indexPath.row]
+        
+        cell.recipeTitleLabel.text = recipe.title
+        
+        imageLoadTasks[indexPath] =  Task {
+            do {
+                guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
+                let image = try await retrieveRecipeImage(using: imageURL)
+                cell.recipeimage.image = image
+            } catch {
+                print(error)
+            }
+        }
+        
+    }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = recipes[indexPath.row].id else { return }
+        if viewedRecipes[indexPath] == nil {
+            Task {
+                do {
+                    let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
+                    viewedRecipes[indexPath] = recipeDetails
+                    
+                    // Diplay detail screen using viewedRecipes[indexPath]
+                    print(viewedRecipes)
+                } catch {
+                    print(error)
+                }
+            }
+        } else {
+            // Diplay detail screen using viewedRecipes[indexPath]
+            print("Already been selected")
+        }
+    }
     //MARK: - Search Functions
     
     @IBAction func searchByNameButtonTapped() {
+        guard let text = recipieNameTextField.text else { return }
+        
+        if text.isEmpty {
+            return // Replace later with random recipe search?
+        } else {
+            recipeNameSearch(using: text)
+        }
+        
+        viewedRecipes = [:]
+    }
+    
+    @IBAction func searchByIngredientsList() {
+    }
+    
+    func recipeNameSearch(using text: String) {
         Task {
             do {
-                guard let text = recipieNameTextField.text else { return }
-                
                 let results = try await recipieSearchByName(using: text)
                 
                 self.recipes = results.recipes ?? []
@@ -64,9 +126,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 recipiesTableView.reloadData()
             }
         }
-    }
-    
-    @IBAction func searchByIngredientsList() {
     }
     
     /*
