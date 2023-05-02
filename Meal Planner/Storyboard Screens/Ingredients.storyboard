@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ingredient-->
+        <!--My Cupboard-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="IngredientViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Ingredients" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="IngredientViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                             <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="zQT-PK-zfD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ingredient" image="tray" catalog="system" selectedImage="tray.fill" id="wz5-fs-069"/>
+                    <tabBarItem key="tabBarItem" title="My Cupboard" image="fork.knife.circle" catalog="system" selectedImage="square.and.arrow.up" id="wz5-fs-069"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -116,8 +116,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tray" catalog="system" width="128" height="88"/>
-        <image name="tray.fill" catalog="system" width="128" height="88"/>
+        <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

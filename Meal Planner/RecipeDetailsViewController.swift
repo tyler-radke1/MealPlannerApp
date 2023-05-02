@@ -51,7 +51,7 @@ class RecipeDetailsViewController: UIViewController {
                 
             }
             
-            if let photoData = recipe.photo {
+             if let photoData = recipe.photo {
                 recipeImage.image = UIImage(data: photoData)
                 
             }
