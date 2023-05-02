@@ -160,7 +160,7 @@ struct ViewedIngredient: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
-        let amount = try container.decode(String.self, forKey: .amount)
+        let amount = try container.decode(Double.self, forKey: .amount)
         let unit = try container.decode(String.self, forKey: .unit)
         self.quantity = "\(amount) \(unit)"
     }
@@ -171,7 +171,7 @@ struct ViewedIngredient: Codable {
         
         let strings = quantity.components(separatedBy: " ")
         
-        try container.encode(strings.first ?? "", forKey: .amount)
+        try container.encode(Double(strings.first ?? "0"), forKey: .amount)
         try container.encode(strings.last ?? "", forKey: .unit)
     }
 }

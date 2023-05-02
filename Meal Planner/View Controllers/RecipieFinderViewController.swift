@@ -81,14 +81,22 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Task {
-            let id = recipes[indexPath.row].id!
-            do {
-                let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
-                viewedRecipes[indexPath] = recipeDetails
-            } catch {
-                print(error)
+        guard let id = recipes[indexPath.row].id else { return }
+        if viewedRecipes[indexPath] == nil {
+            Task {
+                do {
+                    let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
+                    viewedRecipes[indexPath] = recipeDetails
+                    
+                    // Diplay detail screen using viewedRecipes[indexPath]
+                    print(viewedRecipes)
+                } catch {
+                    print(error)
+                }
             }
+        } else {
+            // Diplay detail screen using viewedRecipes[indexPath]
+            print("Already been selected")
         }
     }
     //MARK: - Search Functions
@@ -102,7 +110,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             recipeNameSearch(using: text)
         }
         
-        
+        viewedRecipes = [:]
     }
     
     @IBAction func searchByIngredientsList() {
