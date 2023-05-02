@@ -8,7 +8,16 @@
 import UIKit
 import CoreData
 
-class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIResultTableViewCellDelegate {
+    
+    func favoriteButtoneTapped(on cell: APIResultTableViewCell) {
+        <#code#>
+    }
+    
+    func calendarButtonTapped(on cell: APIResultTableViewCell) {
+        <#code#>
+    }
+    
     
     private let context = PersistenceController.shared.viewContext
 
@@ -52,17 +61,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let recipe = recipes[indexPath.row]
         
-        cell.recipeTitleLabel.text = recipe.title
-        
-        imageLoadTasks[indexPath] =  Task {
-            do {
-                guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
-                let image = try await retrieveRecipeImage(using: imageURL)
-                cell.recipeimage.image = image
-            } catch {
-                print(error)
-            }
-        }
+        configureCell(for: cell, withIndexPath: indexPath)
         
         return cell
     }
@@ -72,6 +71,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         let recipe = recipes[indexPath.row]
         
         cell.recipeTitleLabel.text = recipe.title
+        
+        cell.delegate = self
         
         imageLoadTasks[indexPath] =  Task {
             do {

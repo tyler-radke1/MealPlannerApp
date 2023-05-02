@@ -7,11 +7,18 @@
 
 import UIKit
 
+protocol APIResultTableViewCellDelegate {
+    func favoriteButtoneTapped(on cell: APIResultTableViewCell)
+    func calendarButtonTapped(on cell: APIResultTableViewCell)
+}
+
 class APIResultTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeimage: UIImageView!
     
     @IBOutlet weak var recipeTitleLabel: UILabel!
+    
+    var delegate: APIResultTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,9 +32,11 @@ class APIResultTableViewCell: UITableViewCell {
     }
 
     @IBAction func favoriteButtoneTapped() {
+        delegate?.favoriteButtoneTapped(on: self)
     }
     
     @IBAction func calendarButtonTapped() {
+        delegate?.calendarButtonTapped(on: self)
     }
     
 }
