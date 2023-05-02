@@ -104,6 +104,26 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
          return ingredients.count
     }
 
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedIngredient = ingredients[sourceIndexPath.row]
+        ingredients.remove(at: sourceIndexPath.row)
+        ingredients.insert(movedIngredient, at: destinationIndexPath.row)
+        
+//        for (index, ingredient) in ingredients.enumerated() {
+//               ingredient.order = Int16(index)
+//           }
+        
+//        do {
+//               try context.save()
+//           } catch {
+//               print("Failed to save changes")
+//           }
+//        tableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsCell", for: indexPath)  as! IngredientTableViewCell

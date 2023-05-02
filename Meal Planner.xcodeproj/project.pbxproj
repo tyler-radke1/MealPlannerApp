@@ -81,13 +81,7 @@
 			path = "API Master Hub";
 			sourceTree = "<group>";
 		};
-		9D39F39529F2E1C1000955C1 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
+
 		9D9DF43829ED8F9D007D1222 /* Storyboard Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +135,6 @@
 			children = (
 				9F88E5D929ED8A6A009F8B79 /* Meal Planner */,
 				9F88E5D829ED8A6A009F8B79 /* Products */,
-				9D39F39529F2E1C1000955C1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
