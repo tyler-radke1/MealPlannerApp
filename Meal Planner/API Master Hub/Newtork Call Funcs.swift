@@ -10,6 +10,7 @@ import UIKit
 
 enum APIErrors: Error {
     case fetchRecipesByNameFailed
+    case fetchRecipesByIngredientsFailed
     case imageNotFound
     case fetchRecipeDetailsFailed
 }
@@ -19,7 +20,7 @@ func recipieSearchByName(using text: String) async throws -> Results {
 
     var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch")
     
-    let queryItems = [URLQueryItem(name: "query", value: "\(text)")]
+    let queryItems = [URLQueryItem(name: "query", value: "\(text)"), URLQueryItem(name: "number", value: "100")]
     
     urlComponents?.queryItems = queryItems
     
@@ -45,6 +46,46 @@ func recipieSearchByName(using text: String) async throws -> Results {
     
     return decodedRecipes
 }
+
+func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throws -> Results {
+
+    var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch")
+    
+    var ingredientsString = ingredients.reduce("", { (runningString: String, ingredient: Ingredient) in
+        runningString + "\(ingredient.name!.lowercased()),"
+    })
+    ingredientsString.removeLast()
+    
+    print(ingredientsString)
+    
+    let queryItems = [URLQueryItem(name: "query", value: ingredientsString), URLQueryItem(name: "number", value: "100")]
+    
+    urlComponents?.queryItems = queryItems
+    
+    let headers = [
+        "content-type": "application/octet-stream",
+        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+    ]
+
+    let request = NSMutableURLRequest(url: urlComponents!.url!,
+                                            cachePolicy: .useProtocolCachePolicy,
+                                        timeoutInterval: 10.0)
+    request.httpMethod = "GET"
+    request.allHTTPHeaderFields = headers
+    
+    let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw APIErrors.fetchRecipesByIngredientsFailed
+    }
+    
+    let decoder = JSONDecoder()
+    let decodedRecipes = try decoder.decode(Results.self, from: data)
+    
+    return decodedRecipes
+}
+
 
 func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
     

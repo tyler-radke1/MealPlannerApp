@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    private let context = PersistenceController.shared.viewContext
 
     var recipes: [RecipieResult] = []
+    var ingredientsList = [Ingredient]()
+    
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     var viewedRecipes = [IndexPath:ViewedRecipe]()
     
@@ -114,12 +119,42 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func searchByIngredientsList() {
+        let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+
+        do {
+            let results = try context.fetch(fetchRequest)
+
+            for result in results {
+                print(result)
+                ingredientsList.append(result)
+            }
+            
+            print("Ingredients - \(ingredientsList)")
+        } catch {
+            print("you oofed")
+        }
+        
+        if !ingredientsList.isEmpty {
+            recipeIngredientsListSearch(using: ingredientsList)
+        }
     }
     
     func recipeNameSearch(using text: String) {
         Task {
             do {
                 let results = try await recipieSearchByName(using: text)
+                
+                self.recipes = results.recipes ?? []
+                
+                recipiesTableView.reloadData()
+            }
+        }
+    }
+    
+    func recipeIngredientsListSearch(using ingredients: [Ingredient]) {
+        Task {
+            do {
+                let results = try await recipieSearchByIngredientsList(using: ingredients)
                 
                 self.recipes = results.recipes ?? []
                 
