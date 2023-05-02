@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ingredient {
-    var name: String
-    var quantity: String
-}
+//struct Ingredient {
+//    var name: String
+//    var quantity: String
+//}

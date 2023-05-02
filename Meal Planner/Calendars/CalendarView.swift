@@ -5,19 +5,28 @@
 //  Created by Tyler Radke on 4/17/23.
 //
 
+import CoreData
 import UIKit
 
-enum MealType: String {
+enum MealType: String, CaseIterable {
     case breakfast = "breakfast"
     case lunch = "lunch"
     case dinner = "dinner"
 }
+protocol MealScheduleDelegate {
+    func passDayPair(date: Date, recipe: Recipe, meal: MealType)
+}
 
-class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate, MealScheduleDelegate {
+class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate, MealCellDelegate {
+  
     
     var days: [Date: Day] = [:]
     
+    let context = PersistenceController.shared.viewContext
+    @IBOutlet weak var mealButton: UIButton!
+    
     private var loadedDate = Date.now
+    
     private var loadedBreakfast: Recipe?
     private var loadedLunch: Recipe?
     private var loadedDinner: Recipe?
@@ -26,19 +35,44 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     override func viewDidLoad() {
         let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
-        
         configure(calendar: myCalendarView)
-        
+        loadCoreData()
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        print(paths)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addMeal" {
-            let destination = segue.destination as! AddMealViewController
-            destination.delegate = self
-            destination.dateToAddMeal = self.loadedDate
+    func loadCoreData() {
+        let request = NSFetchRequest<CalendarDates>(entityName: "CalendarDates")
+        
+        do {
+            let results = try context.fetch(request)
+            
+            for result in results {
+                guard let date = result.date, let day = result.day else { return }
+                days[date] = day
+            }
+        } catch {
+            print("error")
         }
+    }
+    
+    func saveCoreData(date: Date, day: Day) {
+        let calendarDate = CalendarDates(context: context)
+        
+        calendarDate.date = date
+        calendarDate.day = day
+        
+        context.insert(calendarDate)
+        
+        do {
+            try context.save()
+        } catch {
+            print("failed to save")
+        }
+        
     }
     
     func configure(calendar: UICalendarView) {
@@ -48,30 +82,30 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         calendar.calendar = gregorian
         
-        //calendar.availableDateRange = DateInterval(start: <#T##Date#>, end: <#T##Date#>)
-        
         self.view.addSubview(calendar)
         
         let dateSelection = UICalendarSelectionSingleDate(delegate: self)
         
         calendar.selectionBehavior = dateSelection
     }
-
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-            return nil
-    }
     
-    func passDayPair(date: Date, recipe: Recipe, meal: MealType) {
-        if days[date] == nil {
-            days[date] = Day()
+    
+    func updateMeal(for type: MealType, with recipe: Recipe) {
+        if days[loadedDate] == nil {
+            days[loadedDate] = Day(context: context)
         }
-        switch meal {
+        
+        switch type {
         case .breakfast:
-            days[date]?.breakfast = recipe
+            days[loadedDate]?.breakfast = recipe
         case .lunch:
-            days[date]?.lunch = recipe
+            days[loadedDate]?.lunch = recipe
         case .dinner:
-            days[date]?.dinner = recipe
+            days[loadedDate]?.dinner = recipe
+        }
+        
+        if let day = days[loadedDate] {
+            saveCoreData(date: loadedDate, day: day)
         }
         calendarTableView.reloadData()
     }
@@ -104,46 +138,47 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         1
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let array = ["Breakfast", "Lunch", "Dinner"]
+        return array[section]
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = calendarTableView.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath) as! MealCell
-       
+        
         configure(cell: cell, at: indexPath)
+        
         return cell
     }
+    
+    //Does nothing, but vasillys code won't compile without it. Not actually need for conformance. Idk
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        return nil
+    }
+    
     func configure(cell: MealCell, at indexPath: IndexPath) {
+        
         switch indexPath.section {
         case 0:
-            cell.mealNameLabel.text = "Breakfast"
-            cell.recipeNameLabel.text = "\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")"
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
         case 1:
-            cell.mealNameLabel.text = "Lunch"
-            cell.recipeNameLabel.text = "\(days[loadedDate]?.lunch?.name ?? "No lunch planned")"
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.lunch?.name ?? "No lunch planned")", for: .normal)
         case 2:
-            cell.mealNameLabel.text = "Dinner"
-            cell.recipeNameLabel.text = "\(days[loadedDate]?.dinner?.name ?? "No dinner planned")"
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.dinner?.name ?? "No dinner planned")", for: .normal)
         default:
-            cell.mealNameLabel.text = "Coming"
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
         }
+        
+        cell.recipeNameButton.showsMenuAsPrimaryAction = true
+        
+        cell.delegate = self
+        
+        cell.cellMeal = MealType.allCases[indexPath.section]
+        
+        cell.recipeNameButton.menu = cell.addMenuItems()
         
         let formatter = DateFormatter()
         
         formatter.dateStyle = .short
-        
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-    }
-}
-
-extension CalendarView {
-    func generateDummyDay(with recipeName: String) -> Day {
-        let ingredient = Ingredient(name: "Ingredient", quantity: "14")
-        
-        let recipe = Recipe(name: recipeName, ingredients: [ingredient, ingredient])
-        
-        return Day(lunch: recipe)
     }
 }

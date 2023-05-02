@@ -67,7 +67,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
-<<<<<<< HEAD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let id = recipes[indexPath.row].id else { return }
         if viewedRecipes[indexPath] == nil {
@@ -87,8 +86,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             print("Already been selected")
         }
     }
-=======
->>>>>>> parent of e39be0b (Added functionality to save viewed recipes, and added view recipe details api funcion)
     //MARK: - Search Functions
     
     @IBAction func searchByNameButtonTapped() {
