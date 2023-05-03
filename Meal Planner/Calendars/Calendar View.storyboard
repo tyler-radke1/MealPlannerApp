@@ -51,7 +51,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Meal Schedule" id="Q1e-4p-JgZ"/>
+                    <navigationItem key="navigationItem" title="My Schedule" id="Q1e-4p-JgZ"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarTableView" destination="CZz-y1-7pe" id="82x-wL-dOY"/>
