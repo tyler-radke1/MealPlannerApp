@@ -14,7 +14,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //        <#code#>
 //    }
 //
-//
+// MARK: Tray image
     private let context = PersistenceController.shared.viewContext
 
     var ingredients: [Ingredient] = []
@@ -42,7 +42,8 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     
     func createFetchRequest() {
         let request = NSFetchRequest<Ingredient>(entityName: "Ingredient")
-             
+        let sortDescriptor = NSSortDescriptor(key: "index", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
              do {
                  let results = try context.fetch(request)
                  
@@ -66,6 +67,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
             let ingredient = Ingredient(context: /* AppDelegate().managedObjectContext */  context)
             ingredient.quantity = "23"
             ingredient.name = ingredientName
+        ingredient.index = Int64(ingredients.count - 1)
 //            return ingredient
 //        }
         
@@ -112,8 +114,15 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         let movedIngredient = ingredients[sourceIndexPath.row]
         ingredients.remove(at: sourceIndexPath.row)
         ingredients.insert(movedIngredient, at: destinationIndexPath.row)
-        
-
+        for (index, ingredient) in ingredients.enumerated() {
+            ingredient.index = Int64(index)
+        }
+        do {
+            try context.save()
+            
+        } catch {
+            print("🔥 ERROR: \(error)")
+        }
     }
        
        
