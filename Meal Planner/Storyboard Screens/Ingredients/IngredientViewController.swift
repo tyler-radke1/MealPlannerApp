@@ -25,7 +25,6 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         // Do any additional setup after loading the view.
         tableview.dataSource = self
         tableview.delegate = self
-        
         createFetchRequest()
     }
 
@@ -67,7 +66,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
             let ingredient = Ingredient(context: /* AppDelegate().managedObjectContext */  context)
             ingredient.quantity = "23"
             ingredient.name = ingredientName
-        ingredient.index = Int64(ingredients.count - 1)
+            ingredient.index = Int64(ingredients.count - 1)
 //            return ingredient
 //        }
         
