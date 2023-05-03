@@ -47,7 +47,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
                  let results = try context.fetch(request)
                  
                  for result in results {
-                     self.ingredients.append(result)
+                     if result.recipe == nil {
+                         self.ingredients.append(result)
+                     }
                  }
              } catch {
                  print("Failed to access ingredients")
