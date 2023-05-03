@@ -100,7 +100,7 @@
                             <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="zQT-PK-zfD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Cupboard" image="fork.knife.circle" catalog="system" selectedImage="square.and.arrow.up" id="wz5-fs-069"/>
+                    <tabBarItem key="tabBarItem" title="My Cupboard" image="list.bullet.circle" catalog="system" selectedImage="list.bullet.circle" id="wz5-fs-069"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -116,8 +116,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="list.bullet.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
