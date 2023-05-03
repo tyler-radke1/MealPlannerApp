@@ -56,7 +56,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0JH-Vi-Yjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-531" y="-282"/>
+            <point key="canvasLocation" x="-537" y="-281"/>
         </scene>
         <!--calendarNavController-->
         <scene sceneID="RaZ-6q-6OE">

@@ -25,7 +25,6 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         // Do any additional setup after loading the view.
         tableview.dataSource = self
         tableview.delegate = self
-        
         createFetchRequest()
     }
 
