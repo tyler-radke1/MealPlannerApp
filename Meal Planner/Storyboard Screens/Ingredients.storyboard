@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,30 +9,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Cupboard-->
+        <!--My Ingredients-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="Ingredients" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="IngredientViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Ingredients" id="Y6W-OH-hqX" customClass="IngredientViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type in ingredient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Lm-Xh-1VX">
-                                <rect key="frame" x="16" y="111.33333333333331" width="300" height="34"/>
+                                <rect key="frame" x="16" y="155.33333333333334" width="300" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Ke9-1v-nrA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbS-LL-654">
-                                <rect key="frame" x="137" y="39" width="135" height="26.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbL-YK-h1c">
-                                <rect key="frame" x="45" y="56" width="54" height="35"/>
+                                <rect key="frame" x="45" y="100" width="54" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Edit"/>
                                 <connections>
@@ -40,7 +34,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EvI-zS-wL8">
-                                <rect key="frame" x="326" y="111.00000000000001" width="55" height="34.666666666666671"/>
+                                <rect key="frame" x="326" y="155" width="55" height="34.666666666666657"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
                                 <connections>
@@ -48,7 +42,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="snH-vR-cHh">
-                                <rect key="frame" x="0.0" y="171.66666666666669" width="390" height="589.33333333333326"/>
+                                <rect key="frame" x="0.0" y="215.66666666666666" width="390" height="496.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientsCell" rowHeight="77" id="4V1-Og-L64" customClass="IngredientTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
@@ -83,9 +77,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cbL-YK-h1c" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="45" id="0QO-6G-2hY"/>
-                            <constraint firstItem="gbS-LL-654" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="39" id="BQl-1u-LPG"/>
                             <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="cbL-YK-h1c" secondAttribute="bottom" constant="20.329999999999998" id="QCQ-Tt-2DF"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gbS-LL-654" secondAttribute="trailing" constant="118" id="VMQ-JH-cf9"/>
                             <constraint firstAttribute="trailing" secondItem="snH-vR-cHh" secondAttribute="trailing" id="Wfo-7a-L1W"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="aW1-RC-Rho"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="bml-BN-BDz"/>
@@ -93,15 +85,13 @@
                             <constraint firstItem="cbL-YK-h1c" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="9" id="fwe-Qf-uJc"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="64" id="iIu-a5-zbY"/>
                             <constraint firstItem="6Lm-Xh-1VX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iS1-qH-oGj"/>
-                            <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="jZ4-zj-b0r"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="leading" secondItem="6Lm-Xh-1VX" secondAttribute="trailing" constant="10" id="olF-8i-GUJ"/>
-                            <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="gbS-LL-654" secondAttribute="bottom" constant="46" id="uH8-e9-ZO9"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="top" secondItem="EvI-zS-wL8" secondAttribute="bottom" constant="26" id="xQM-ms-gRF"/>
-                            <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="zQT-PK-zfD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Cupboard" image="list.bullet.circle" catalog="system" selectedImage="list.bullet.circle" id="wz5-fs-069"/>
+                    <tabBarItem key="tabBarItem" title="My Cupboard" image="list.bullet.circle" catalog="system" id="sWD-bg-c9T"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="My Ingredients" id="VCA-7Q-3ed"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="EvI-zS-wL8" id="4Xj-88-Gwo"/>
@@ -111,6 +101,30 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004.6153846153845" y="-2.1327014218009479"/>
+        </scene>
+        <!--My Cupboard-->
+        <scene sceneID="nER-G4-J3Q">
+            <objects>
+                <navigationController storyboardIdentifier="Ingredients" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="Ka2-BZ-myp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Cupboard" image="list.bullet.circle" catalog="system" selectedImage="list.bullet.circle" id="wz5-fs-069"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EQN-DI-vTd">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fi7-B5-OrT">
+                        <rect key="frame" x="0.0" y="761" width="390" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="Mfr-Y8-n08"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U8m-Xo-zjn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75.384615384615387" y="-2.1327014218009479"/>
         </scene>

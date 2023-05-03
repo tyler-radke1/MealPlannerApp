@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ktf-Jm-EfX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search-->
+        <!--Find Recipes-->
         <scene sceneID="x0b-8j-Qsm">
             <objects>
-                <viewController storyboardIdentifier="Recipe Finder" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ktf-Jm-EfX" customClass="RecipeFinderViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ktf-Jm-EfX" customClass="RecipeFinderViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LDu-Db-cSo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kas-4o-K6X">
-                                <rect key="frame" x="8" y="91" width="377" height="84.666666666666686"/>
+                                <rect key="frame" x="8" y="135" width="377" height="84.666666666666686"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuk-BF-VAy">
                                         <rect key="frame" x="8" y="0.0" width="361" height="34.333333333333336"/>
@@ -54,7 +53,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-gp-2Ee">
-                                <rect key="frame" x="0.0" y="183.66666666666669" width="393" height="585.33333333333326"/>
+                                <rect key="frame" x="0.0" y="227.66666666666669" width="393" height="541.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="apiTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="APIResultTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
@@ -139,10 +138,8 @@
                             <constraint firstItem="BWi-ap-CIE" firstAttribute="trailing" secondItem="SSh-gp-2Ee" secondAttribute="trailing" id="zXA-sV-zpe"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="rRf-Ym-X82">
-                        <imageReference key="image" image="magnifyingglass.circle" catalog="system" symbolScale="large"/>
-                        <imageReference key="selectedImage" image="magnifyingglass.circle" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle" id="UnM-9p-d8e"/>
+                    <navigationItem key="navigationItem" title="Find Recipes" id="Lvv-uu-hOy"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="recipieNameTextField" destination="5f9-GV-bVq" id="2q6-h7-ACz"/>
@@ -151,7 +148,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAQ-x6-4g8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="-138"/>
+            <point key="canvasLocation" x="4640.4580152671751" y="-138.02816901408451"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LkD-j9-uf5">
+            <objects>
+                <navigationController storyboardIdentifier="Recipe Finder" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5o5-TB-DFE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cpf-5o-hGu">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ktf-Jm-EfX" kind="relationship" relationship="rootViewController" id="NaA-KQ-C2U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbV-dA-dpZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3713.740458015267" y="-138.02816901408451"/>
         </scene>
     </scenes>
     <resources>
