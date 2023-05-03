@@ -47,8 +47,6 @@
 		9DF3D13E29FAC1D0006EA354 /* IngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
 		9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Recipe Finder.storyboard"; path = "../../Recipe Finder.storyboard"; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
-		9F45F0D729F1921B004FDBD7 /* IngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
-		9F45F0D929F193A6004FDBD7 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9F60640E29F2DDF60024584D /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,15 +79,6 @@
 				9D39F38929F18EB6000955C1 /* Newtork Call Funcs.swift */,
 			);
 			path = "API Master Hub";
-			sourceTree = "<group>";
-		};
-		9D39F39529F2E1C1000955C1 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				9F45F0D929F193A6004FDBD7 /* IngredientTableViewCell.swift */,
-				9F45F0D729F1921B004FDBD7 /* IngredientViewController.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		9D9DF43829ED8F9D007D1222 /* Storyboard Screens */ = {
@@ -145,7 +134,6 @@
 			children = (
 				9F88E5D929ED8A6A009F8B79 /* Meal Planner */,
 				9F88E5D829ED8A6A009F8B79 /* Products */,
-				9D39F39529F2E1C1000955C1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};

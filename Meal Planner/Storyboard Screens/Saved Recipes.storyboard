@@ -199,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="1174.8091603053435" y="-83.098591549295776"/>
         </scene>
-        <!--calendarNavContoller-->
+        <!--calendarNavController-->
         <scene sceneID="b99-5D-ZkC">
             <objects>
-                <viewControllerPlaceholder storyboardName="Calendar View" referencedIdentifier="calendarNavContoller" id="X82-6m-ZyT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Calendar View" referencedIdentifier="calendarNavController" id="X82-6m-ZyT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0zh-aB-qGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="747" y="356"/>
