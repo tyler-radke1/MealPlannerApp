@@ -12,7 +12,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var savedRecipesTableView: UITableView!
     
+<<<<<<< HEAD
+=======
     private let context = PersistenceController.shared.viewContext
+>>>>>>> dev
     var recipes: [Recipe] = []
     
     let scrambledEggsIngredients = [
@@ -86,6 +89,8 @@ Instructions:
         self.savedRecipesTableView.delegate = self
         
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 //        let scrambledEggsIngredients = [
 //                    Ingredient(name: "Large eggs", quantity: "2"),
 //                    Ingredient(name: "Butter", quantity: "1 tablespoon"),
@@ -139,6 +144,7 @@ Instructions:
         
         
 =======
+>>>>>>> dev
         
         recipes = [
         Recipe(name: "Scrambled Eggs", ingredients: scrambledEggsIngredients, instructions: scrambledEggsInstructions),
@@ -146,7 +152,10 @@ Instructions:
         Recipe(name: "Macarons", ingredients: macaronIngredients, instructions: macaronInstructions)
         
         ]
+<<<<<<< HEAD
+=======
 >>>>>>> newDev
+>>>>>>> dev
         
     }
     
@@ -155,6 +164,13 @@ Instructions:
         guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
+<<<<<<< HEAD
+        let selectedRecipe = recipes[indexPath.row]
+
+        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your recipes?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+=======
 <<<<<<< HEAD
         let selectedRecipe = recipes[indexPath.row]
 
@@ -173,17 +189,23 @@ Instructions:
                 print("error")
             }
             
+>>>>>>> dev
             self.recipes.remove(at: indexPath.row)
             self.savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
             
             
+<<<<<<< HEAD
+=======
             
+>>>>>>> dev
         })
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
     }
     
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
     
@@ -277,6 +299,7 @@ Instructions:
         savedRecipesTableView.reloadData()
     }
 >>>>>>> savedRecipes
+>>>>>>> dev
     // MARK: - Navigation
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

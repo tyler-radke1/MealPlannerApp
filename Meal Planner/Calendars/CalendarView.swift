@@ -18,7 +18,6 @@ protocol MealScheduleDelegate {
 }
 
 class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate, MealCellDelegate {
-  
     
     var days: [Date: Day] = [:]
     
@@ -38,6 +37,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     override func viewDidLoad() {
         let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
         configure(calendar: myCalendarView)
+
+        //DummyData.shared.generateData()
+
         loadCoreData()
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
@@ -186,5 +188,37 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         let formatter = DateFormatter()
         
         formatter.dateStyle = .short
+    }
+}
+
+
+class DummyData {
+   
+    static let shared = DummyData()
+    
+    func generateData() {
+        
+        let names = ["Pizza", "Duck Soup", "Tacos", "Whale Blubber Ice Cream", "Toenail Smoothie"]
+        let context = PersistenceController.shared.viewContext
+        
+        let ingredient = Ingredient(context: context)
+        
+        ingredient.name = "Test Name"
+        ingredient.quantity = "69"
+        
+        for i in 0...4 {
+            let recipe = Recipe(context: context)
+            recipe.name = names[i]
+            
+            recipe.ingredients = NSSet(array: [ingredient])
+            
+            context.insert(recipe)
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            print("failed to save")
+        }
     }
 }

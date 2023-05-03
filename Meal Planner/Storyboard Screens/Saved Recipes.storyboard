@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Saved Recipes View Controller-->
+        <!--My Recipes-->
         <scene sceneID="qlo-RJ-Wqk">
             <objects>
-                <viewController id="aHg-y5-K67" customClass="SavedRecipesViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Saved Recipes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aHg-y5-K67" customClass="SavedRecipesViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UuY-xe-l5y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,6 +92,8 @@
                         <viewLayoutGuide key="safeArea" id="BYa-WC-O9y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="My Recipes" image="books.vertical.circle" catalog="system" id="S7M-tL-L8f"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="jMR-5k-XWz"/>
                         <segue destination="RN2-CY-1zB" kind="show" identifier="showRecipeDetails" id="qfR-eo-Trq"/>
@@ -207,6 +209,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="books.vertical.circle" catalog="system" width="128" height="123"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>

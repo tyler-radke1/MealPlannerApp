@@ -61,11 +61,13 @@
             </objects>
             <point key="canvasLocation" x="973.28244274809151" y="-2.1126760563380285"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Schedule-->
         <scene sceneID="JDV-Ay-z1p">
             <objects>
-                <navigationController storyboardIdentifier="calendarNavContoller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rZA-Rm-6ag" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="calendarNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rZA-Rm-6ag" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" image="calendar.circle" catalog="system" id="nfA-j3-fZp"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="swB-aM-On1">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -81,6 +83,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar.circle" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
