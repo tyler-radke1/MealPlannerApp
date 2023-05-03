@@ -87,7 +87,7 @@ func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throw
 }
 
 
-func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
+func retrieveRecipeImage(using url: URL) async throws ->  UIImage {
     
     let (data, response) = try await URLSession.shared.data(from: url)
     
@@ -102,7 +102,7 @@ func retrieveRecipeImage(using url: URL) async throws ->  UIImage? {
     return image
 }
 
-func retrieveRecipieInfo(usingRecipieID id: Int) async throws -> ViewedRecipe? {
+func retrieveRecipieInfo(usingRecipieID id: Int) async throws -> ViewedRecipe {
     
     let headers = [
         "content-type": "application/octet-stream",

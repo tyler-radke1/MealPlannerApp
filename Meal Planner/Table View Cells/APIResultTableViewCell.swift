@@ -8,7 +8,7 @@
 import UIKit
 
 protocol APIResultTableViewCellDelegate {
-    func favoriteButtoneTapped(on cell: APIResultTableViewCell)
+    func favoriteButtonTapped(on cell: APIResultTableViewCell)
     func calendarButtonTapped(on cell: APIResultTableViewCell)
 }
 
@@ -17,6 +17,8 @@ class APIResultTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeimage: UIImageView!
     
     @IBOutlet weak var recipeTitleLabel: UILabel!
+    
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var delegate: APIResultTableViewCellDelegate?
     
@@ -31,8 +33,9 @@ class APIResultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func favoriteButtoneTapped() {
-        delegate?.favoriteButtoneTapped(on: self)
+    @IBAction func favoriteButtonTapped() {
+        favoriteButton.isSelected.toggle()
+        delegate?.favoriteButtonTapped(on: self)
     }
     
     @IBAction func calendarButtonTapped() {
