@@ -229,7 +229,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             do {
                 let results = try await recipieSearchByIngredientsList(using: ingredients)
                 
-                self.recipes = results.recipes ?? []
+                self.recipes = results ?? []
                 
                 recipiesTableView.reloadData()
             }

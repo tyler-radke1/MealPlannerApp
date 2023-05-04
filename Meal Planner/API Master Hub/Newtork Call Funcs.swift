@@ -47,9 +47,9 @@ func recipieSearchByName(using text: String) async throws -> Results {
     return decodedRecipes
 }
 
-func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throws -> Results {
+func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throws -> [RecipieResult] {
 
-    var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch")
+    var urlComponents = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients")
     
     var ingredientsString = ingredients.reduce("", { (runningString: String, ingredient: Ingredient) in
         runningString + "\(ingredient.name!.lowercased()),"
@@ -58,30 +58,33 @@ func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throw
     
     print(ingredientsString)
     
-    let queryItems = [URLQueryItem(name: "query", value: ingredientsString), URLQueryItem(name: "number", value: "100")]
+    let queryItems = [URLQueryItem(name: "ingredients", value: ingredientsString), URLQueryItem(name: "number", value: "20")]
     
     urlComponents?.queryItems = queryItems
     
     let headers = [
-        "content-type": "application/octet-stream",
         "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
         "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
     ]
 
-    let request = NSMutableURLRequest(url: urlComponents!.url!,
-                                            cachePolicy: .useProtocolCachePolicy,
-                                        timeoutInterval: 10.0)
+    let request = NSMutableURLRequest(
+        url: urlComponents!.url!,
+        cachePolicy: .useProtocolCachePolicy,
+        timeoutInterval: 10.0
+    )
     request.httpMethod = "GET"
     request.allHTTPHeaderFields = headers
     
     let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    print(data.prettyPrintedJSONString())
     
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
         throw APIErrors.fetchRecipesByIngredientsFailed
     }
     
     let decoder = JSONDecoder()
-    let decodedRecipes = try decoder.decode(Results.self, from: data)
+    let decodedRecipes = try decoder.decode([RecipieResult].self, from: data)
     
     return decodedRecipes
 }
@@ -217,3 +220,15 @@ struct ViewedIngredient: Codable {
     }
 }
 
+extension Data {
+    func prettyPrintedJSONString() {
+        guard
+            let jsonObject = try? JSONSerialization.jsonObject(with: self, options: []),
+            let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]),
+            let prettyJSONString = String(data: jsonData, encoding: .utf8) else {
+                print("Failed to read JSON Object.")
+                return
+        }
+        print(prettyJSONString)
+    }
+}
