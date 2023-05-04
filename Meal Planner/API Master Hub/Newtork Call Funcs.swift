@@ -58,7 +58,7 @@ func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throw
     
     print(ingredientsString)
     
-    let queryItems = [URLQueryItem(name: "ingredients", value: ingredientsString), URLQueryItem(name: "number", value: "20")]
+    let queryItems = [URLQueryItem(name: "ingredients", value: ingredientsString), URLQueryItem(name: "number", value: "20"), URLQueryItem(name: "ranking", value: "2")]
     
     urlComponents?.queryItems = queryItems
     
