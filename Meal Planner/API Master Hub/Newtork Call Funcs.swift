@@ -75,6 +75,7 @@ func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throw
     request.allHTTPHeaderFields = headers
     
     let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    print(data.prettyPrintedJSONString)
     
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
         throw APIErrors.fetchRecipesByIngredientsFailed
@@ -217,3 +218,12 @@ struct ViewedIngredient: Codable {
     }
 }
 
+extension Data {
+    var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
+
+        return prettyPrintedString
+    }
+}

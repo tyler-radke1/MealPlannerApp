@@ -8,8 +8,7 @@
 import UIKit
 import CoreData
 
-class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate {
-    
+class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, FavoritedRecipeDelegate {
     private let context = PersistenceController.shared.viewContext
     
     var recipes: [Recipe] = []
@@ -41,57 +40,6 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self
-        
-//        var recipe: Recipe {
-//            let  recipe = Recipe(context: context)
-//            recipe.name = "Scrambled Eggs"
-//
-//            let recipeIngredient = Ingredient(context: context)
-//
-//            recipeIngredient.name = "Large eggs"
-//            recipeIngredient.quantity = "2"
-//
-//            recipeIngredient.recipe = recipe
-//
-//            let recipeIngredient2 = Ingredient(context: context)
-//
-//            recipeIngredient2.name = "Butter"
-//            recipeIngredient2.quantity = "1 tablespoon"
-//
-//            recipeIngredient2.recipe = recipe
-//
-//            let recipeIngredient3 = Ingredient(context: context)
-//
-//            recipeIngredient3.name = "Salt"
-//            recipeIngredient3.quantity = "to taste"
-//
-//            recipeIngredient3.recipe = recipe
-//
-//            let recipeIngredient4 = Ingredient(context: context)
-//
-//
-//            recipeIngredient4.name = "Pepper"
-//            recipeIngredient4.quantity = "to taste"
-//
-//            recipeIngredient4.recipe = recipe
-//
-//            recipe.instructions = """
-//   Instructions:
-//
-//    1. Crack the eggs into a bowl and beat them with a fork.
-//    2. Melt the butter in a non-stick pan over medium heat.
-//    3. Pour the beaten eggs into the pan.
-//    4. Use a spatula to gently stir the eggs as they cook.
-//    5. When the eggs are set but still moist, remove them from the heat.
-//    6. Season with salt and pepper to taste.
-//"""
-//
-//            return recipe
-//        }
-        
-        //recipes.append(recipe)
-    
-        //context.insert(recipe)
         
         do {
             try context.save()
