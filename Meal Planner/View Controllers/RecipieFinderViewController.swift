@@ -53,13 +53,14 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 
                 print("Successfully created recipe!")
             } else {
-                for favoriteRecipe in favoritedRecipes {
-                    if Int(favoriteRecipe.id) == recipes[indexPath.row].id {
-//                        for ingedient in favoriteRecipe
-                        self.context.delete(favoriteRecipe)
-                        print("\(favoriteRecipe.name ?? "") was successfully deleted")
-                    }
+                guard let recipeId = recipes[indexPath.row].id else { return }
+                
+                if let recipeToDelete = favoritedRecipes.first(where: { $0.id == recipeId }) {
+                    self.context.delete(recipeToDelete)
+                    print("Succesfully deleted")
+                    //context.save()
                 }
+                
             }
             
             do {
@@ -99,6 +100,12 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        recipes = []
+        favoritedRecipes = []
+        ingredientsList = []
+        
+        recipiesTableView.reloadData()
+        
         fetchCoreDataIngredients()
         fetchCoreDataRecipes()
     }
@@ -164,11 +171,15 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         cell.delegate = self
         
         setButtonStateTasks[indexPath] = Task {
-            for favoriteRecipe in favoritedRecipes {
-                if Int(favoriteRecipe.id) == recipe.id {
-                    cell.favoriteButton.isSelected = true
-                }
-            }
+//            for favoriteRecipe in favoritedRecipes {
+//                if Int(favoriteRecipe.id) == recipe.id {
+//                    cell.favoriteButton.isSelected = true
+//                }
+//            }
+            guard let recipeId = recipe.id else { return }
+            let check = favoritedRecipes.first(where: { $0.id == recipeId })
+            
+            cell.favoriteButton.isSelected = (check == nil ? false : true)
         }
         
         imageLoadTasks[indexPath] = Task {
