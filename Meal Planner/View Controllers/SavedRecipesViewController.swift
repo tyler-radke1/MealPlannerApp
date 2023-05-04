@@ -90,9 +90,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { [self] (action) in
             context.delete(recipes[indexPath.row])
+            saveRecipesToCoreData()
             recipes.remove(at: indexPath.row)
             savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
-            saveRecipesToCoreData()
+            
         })
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
