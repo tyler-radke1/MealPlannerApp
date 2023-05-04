@@ -17,6 +17,9 @@ class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeNameLabel: UILabel!
     
+    @IBOutlet weak var recipeImage: UIImageView!
+    
+    
     var delegate: RecipeTableViewCellDelegate?
 
     override func awakeFromNib() {
@@ -32,6 +35,13 @@ class RecipeTableViewCell: UITableViewCell {
     
     func configure(with recipe: Recipe) {
         recipeNameLabel.text = recipe.name
+        
+        guard let recipeImageData = recipe.photo
+        else {
+            return
+        }
+        
+        recipeImage.image = UIImage(data: recipeImageData)
     }
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
         print("Favorite button tapped")

@@ -35,12 +35,10 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     @IBOutlet weak var calendarTableView: UITableView!
     
     override func viewDidLoad() {
+       
         let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
         configure(calendar: myCalendarView)
 
-        //DummyData.shared.generateData()
-
-        loadCoreData()
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
         
@@ -48,15 +46,31 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         print(paths)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        let today = Date.now
+//        self.dateSelection(self, didSelectDate: DateComponents(day: today.)
+        loadCoreData()
+    }
+    
     func loadCoreData() {
         let request = NSFetchRequest<CalendarDates>(entityName: "CalendarDates")
-        
         do {
             let results = try context.fetch(request)
             
             for result in results {
-                guard let date = result.date, let day = result.day else { return }
+                guard let date = result.date, let day = result.day else { continue }
                 days[date] = day
+                
+                if let breakfast = day.breakfast {
+                    loadedBreakfast = breakfast
+                }
+                if let lunch = day.lunch {
+                    loadedLunch = lunch
+                }
+                if let dinner = day.dinner {
+                    loadedDinner = dinner
+                    
+                }
             }
         } catch {
             print("error")
@@ -101,9 +115,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         switch type {
         case .breakfast:
-            days[loadedDate]?.breakfast = recipe ?? nil
+            days[loadedDate]?.breakfast = recipe
         case .lunch:
-            days[loadedDate]?.lunch = recipe ?? nil
+            days[loadedDate]?.lunch = recipe
         case .dinner:
             days[loadedDate]?.dinner = recipe
         }
