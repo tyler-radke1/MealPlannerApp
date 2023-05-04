@@ -110,8 +110,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         fetchCoreDataRecipes()
     }
     func fetchCoreDataIngredients() {
-        ingredientsList = []
-        
         let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
 
         do {
