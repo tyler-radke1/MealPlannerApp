@@ -8,30 +8,14 @@
 import UIKit
 import CoreData
 
-class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, FavoritedRecipeDelegate {
+class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
+
+
     private let context = PersistenceController.shared.viewContext
     
-    var recipes: [Recipe] = []
+    private var recipes: [Recipe] = []
     
-    func favoriteButtonTapped(cell: RecipeTableViewCell) {
-        
-        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
-            return
-        }
-        
-        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your recipes?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-            self.recipes.remove(at: indexPath.row)
-            self.savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
+    public static let shared = SavedRecipesViewController()
     
     @IBOutlet weak var savedRecipesTableView: UITableView!
     
@@ -41,33 +25,83 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self
         
-        do {
-            try context.save()
-        } catch {
-            print("ERROR")
-        }
         
+        getRecipesFromCoreData()
+        savedRecipesTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getRecipesFromCoreData()
+    }
+    
+    func configure(calendar: UICalendarView) {
+        calendar.delegate = self
         
+        let gregorian = Calendar(identifier: .gregorian)
+        
+        calendar.calendar = gregorian
+        
+        self.view.addSubview(calendar)
+        
+        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
+        
+        calendar.selectionBehavior = dateSelection
+    }
+    
+    @objc func getRecipesFromCoreData() {
+        self.recipes = []
+        print("getRecipes called")
         let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
 
         do {
             let results = try context.fetch(fetchRequest)
 
             for result in results {
-                print(result)
+               // print(result)
                 recipes.append(result)
             }
-        } catch let error as NSError {
+        } catch {
             print("you oofed")
         }
         
-        print("Recipes - \(recipes)")
-        
-        savedRecipesTableView.reloadData()
+        self.savedRecipesTableView.reloadData()
     }
+    
+    func saveRecipesToCoreData() {
+        do {
+            try context.save()
+        } catch {
+            print("ERROR")
+        }
+    }
+    
+    
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        
+    }
+    
+    func favoriteButtonTapped(cell: RecipeTableViewCell) {
+        
+        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your favorites?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { [self] (action) in
+            context.delete(recipes[indexPath.row])
+            recipes.remove(at: indexPath.row)
+            savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
+            saveRecipesToCoreData()
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -89,6 +123,16 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
     }
     
+    func calendarButtonTapped(cell: RecipeTableViewCell) {
+        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let recipe = recipes[indexPath.row]
+        
+        performSegue(withIdentifier: "segueToCalendar", sender: recipe)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRecipeDetails" {
             if let recipeDetailsVC = segue.destination as? RecipeDetailsViewController,
@@ -96,10 +140,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
                 recipeDetailsVC.recipe = selectedRecipe
             }
         }
+        
+        if segue.identifier == "segueToCalendar" {
+            let destination = segue.destination as? CalendarView
+            destination?.addingSavedRecipe = sender as? Recipe
+        }
     }
-    
-    
-    @IBAction func addToCalendarButtonTapped(_ sender: UIButton) {
-    }
-    
 }

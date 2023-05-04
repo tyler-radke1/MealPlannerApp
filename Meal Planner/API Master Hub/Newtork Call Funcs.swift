@@ -75,7 +75,6 @@ func recipieSearchByIngredientsList(using ingredients: [Ingredient]) async throw
     request.allHTTPHeaderFields = headers
     
     let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
-    print(data.prettyPrintedJSONString)
     
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
         throw APIErrors.fetchRecipesByIngredientsFailed

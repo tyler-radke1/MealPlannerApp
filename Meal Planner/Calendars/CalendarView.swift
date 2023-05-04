@@ -21,6 +21,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     var days: [Date: Day] = [:]
     
+    var addingSavedRecipe: Recipe? = nil
+    
     let context = PersistenceController.shared.viewContext
     @IBOutlet weak var mealButton: UIButton!
     
@@ -92,16 +94,16 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     }
     
     
-    func updateMeal(for type: MealType, with recipe: Recipe) {
+    func updateMeal(for type: MealType, with recipe: Recipe?) {
         if days[loadedDate] == nil {
             days[loadedDate] = Day(context: context)
         }
         
         switch type {
         case .breakfast:
-            days[loadedDate]?.breakfast = recipe
+            days[loadedDate]?.breakfast = recipe ?? nil
         case .lunch:
-            days[loadedDate]?.lunch = recipe
+            days[loadedDate]?.lunch = recipe ?? nil
         case .dinner:
             days[loadedDate]?.dinner = recipe
         }
@@ -162,13 +164,13 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         switch indexPath.section {
         case 0:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
         case 1:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.lunch?.name ?? "No lunch planned")", for: .normal)
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.lunch?.name ?? "None")", for: .normal)
         case 2:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.dinner?.name ?? "No dinner planned")", for: .normal)
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.dinner?.name ?? "None")", for: .normal)
         default:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "No breakfast planned")", for: .normal)
+            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
         }
         
         cell.recipeNameButton.showsMenuAsPrimaryAction = true
@@ -177,7 +179,11 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         cell.cellMeal = MealType.allCases[indexPath.section]
         
-        cell.recipeNameButton.menu = cell.addMenuItems()
+        if addingSavedRecipe == nil {
+            cell.recipeNameButton.menu = cell.addMenuItems()
+        } else {
+            
+        }
         
         let formatter = DateFormatter()
         

@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-nt-lgc">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-nt-lgc">
                                 <rect key="frame" x="0.0" y="50" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -57,6 +57,9 @@
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="calendarButtonTapped:" destination="YqP-Yp-bto" eventType="touchUpInside" id="smx-7w-glC"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -92,8 +95,9 @@
                     <tabBarItem key="tabBarItem" title="My Recipes" image="books.vertical.circle" catalog="system" id="S7M-tL-L8f"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="jMR-5k-XWz"/>
+                        <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="CPc-gX-kpp"/>
                         <segue destination="RN2-CY-1zB" kind="show" identifier="showRecipeDetails" id="qfR-eo-Trq"/>
+                        <segue destination="X82-6m-ZyT" kind="presentation" identifier="segueToCalendar" id="kqC-KY-UkA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xD5-41-NT7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -112,7 +116,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-aR-1WU">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="279.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="17" width="393" height="310"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kiI-gL-sgM">
                                                 <rect key="frame" x="7" y="30.000000000000014" width="379" height="249.33333333333337"/>
@@ -162,14 +166,14 @@
                                             <constraint firstAttribute="width" constant="393" id="bL2-3w-gXo"/>
                                             <constraint firstAttribute="trailing" secondItem="kiI-gL-sgM" secondAttribute="trailing" constant="7" id="bYX-xz-xsQ"/>
                                             <constraint firstItem="kiI-gL-sgM" firstAttribute="leading" secondItem="IlD-aR-1WU" secondAttribute="leading" constant="7" id="q83-wY-L5V"/>
-                                            <constraint firstAttribute="bottom" secondItem="kiI-gL-sgM" secondAttribute="bottom" id="vhV-yq-L5P"/>
+                                            <constraint firstAttribute="bottom" secondItem="kiI-gL-sgM" secondAttribute="bottom" constant="30.666666666666629" id="vhV-yq-L5P"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="IlD-aR-1WU" firstAttribute="top" secondItem="bvz-BT-kx9" secondAttribute="top" id="QgT-ov-mFW"/>
+                                    <constraint firstItem="IlD-aR-1WU" firstAttribute="top" secondItem="bvz-BT-kx9" secondAttribute="top" constant="17" id="QgT-ov-mFW"/>
                                     <constraint firstAttribute="trailing" secondItem="IlD-aR-1WU" secondAttribute="trailing" id="S53-AG-SFW"/>
-                                    <constraint firstAttribute="bottom" secondItem="IlD-aR-1WU" secondAttribute="bottom" id="czM-I3-aSD"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlD-aR-1WU" secondAttribute="bottom" constant="515" id="czM-I3-aSD"/>
                                     <constraint firstItem="IlD-aR-1WU" firstAttribute="leading" secondItem="bvz-BT-kx9" secondAttribute="leading" id="ie4-ke-Yrk"/>
                                 </constraints>
                             </scrollView>
@@ -194,6 +198,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZN-Ul-AG2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1174.8091603053435" y="-83.098591549295776"/>
+        </scene>
+        <!--calendarNavController-->
+        <scene sceneID="b99-5D-ZkC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar View" referencedIdentifier="calendarNavController" id="X82-6m-ZyT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0zh-aB-qGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747" y="356"/>
         </scene>
     </scenes>
     <resources>

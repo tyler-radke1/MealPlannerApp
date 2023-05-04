@@ -9,10 +9,13 @@ import UIKit
 import CoreData
 
 protocol FavoritedRecipeDelegate {
-    func addedFavorite()
+    func getRecipesFromCoreData()
+    func saveRecipesToCoreData()
 }
 
 class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIResultTableViewCellDelegate {
+    
+    var delegate: FavoritedRecipeDelegate? = SavedRecipesViewController.shared
     
     func favoriteButtonTapped(on cell: APIResultTableViewCell) {
         Task {
@@ -90,15 +93,15 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fetchCoreDataIngredients()
-        fetchCoreDataRecipes()
-        
         recipiesTableView.delegate = self
         recipiesTableView.dataSource = self
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        fetchCoreDataIngredients()
+        fetchCoreDataRecipes()
+    }
     func fetchCoreDataIngredients() {
         let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
 
