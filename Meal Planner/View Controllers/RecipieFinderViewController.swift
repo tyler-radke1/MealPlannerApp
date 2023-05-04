@@ -103,6 +103,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         fetchCoreDataRecipes()
     }
     func fetchCoreDataIngredients() {
+        ingredientsList = []
+        
         let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
 
         do {
@@ -148,7 +150,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
         
-        let recipe = recipes[indexPath.row]
+//        let recipe = recipes[indexPath.row]
         
         configureCell(for: cell, withIndexPath: indexPath)
         
@@ -236,7 +238,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             do {
                 let results = try await recipieSearchByIngredientsList(using: ingredients)
                 
-                self.recipes = results ?? []
+                self.recipes = results
                 
                 recipiesTableView.reloadData()
             }
