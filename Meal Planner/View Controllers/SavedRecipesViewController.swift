@@ -8,32 +8,14 @@
 import UIKit
 import CoreData
 
-class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
-   
-    
+class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
+
+
     private let context = PersistenceController.shared.viewContext
     
-    var recipes: [Recipe] = []
+    private var recipes: [Recipe] = []
     
-    func favoriteButtonTapped(cell: RecipeTableViewCell) {
-        
-        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
-            return
-        }
-        
-        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your favorites?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-            self.recipes.remove(at: indexPath.row)
-            self.savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
+    public static let shared = SavedRecipesViewController()
     
     @IBOutlet weak var savedRecipesTableView: UITableView!
     
@@ -43,84 +25,13 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self
         
-      //  let calendar = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
         
-       // configure(calendar: calendar)
-        
-//        var recipe: Recipe {
-//            let  recipe = Recipe(context: context)
-//            recipe.name = "Scrambled Eggs"
-//
-//            let recipeIngredient = Ingredient(context: context)
-//
-//            recipeIngredient.name = "Large eggs"
-//            recipeIngredient.quantity = "2"
-//
-//            recipeIngredient.recipe = recipe
-//
-//            let recipeIngredient2 = Ingredient(context: context)
-//
-//            recipeIngredient2.name = "Butter"
-//            recipeIngredient2.quantity = "1 tablespoon"
-//
-//            recipeIngredient2.recipe = recipe
-//
-//            let recipeIngredient3 = Ingredient(context: context)
-//
-//            recipeIngredient3.name = "Salt"
-//            recipeIngredient3.quantity = "to taste"
-//
-//            recipeIngredient3.recipe = recipe
-//
-//            let recipeIngredient4 = Ingredient(context: context)
-//
-//
-//            recipeIngredient4.name = "Pepper"
-//            recipeIngredient4.quantity = "to taste"
-//
-//            recipeIngredient4.recipe = recipe
-//
-//            recipe.instructions = """
-//   Instructions:
-//
-//    1. Crack the eggs into a bowl and beat them with a fork.
-//    2. Melt the butter in a non-stick pan over medium heat.
-//    3. Pour the beaten eggs into the pan.
-//    4. Use a spatula to gently stir the eggs as they cook.
-//    5. When the eggs are set but still moist, remove them from the heat.
-//    6. Season with salt and pepper to taste.
-//"""
-//
-//            return recipe
-//        }
-        
-        //recipes.append(recipe)
-    
-        //context.insert(recipe)
-        
-        do {
-            try context.save()
-        } catch {
-            print("ERROR")
-        }
-        
-        
-        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
-
-        do {
-            let results = try context.fetch(fetchRequest)
-
-            for result in results {
-                print(result)
-                recipes.append(result)
-            }
-        } catch let error as NSError {
-            print("you oofed")
-        }
-        
-        print("Recipes - \(recipes)")
-        
+        getRecipesFromCoreData()
         savedRecipesTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getRecipesFromCoreData()
     }
     
     func configure(calendar: UICalendarView) {
@@ -137,8 +48,55 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         calendar.selectionBehavior = dateSelection
     }
     
+    @objc func getRecipesFromCoreData() {
+        self.recipes = []
+        print("getRecipes called")
+        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
+
+        do {
+            let results = try context.fetch(fetchRequest)
+
+            for result in results {
+               // print(result)
+                recipes.append(result)
+            }
+        } catch {
+            print("you oofed")
+        }
+        
+        self.savedRecipesTableView.reloadData()
+    }
+    
+    func saveRecipesToCoreData() {
+        do {
+            try context.save()
+        } catch {
+            print("ERROR")
+        }
+    }
+    
+    
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         
+    }
+    
+    func favoriteButtonTapped(cell: RecipeTableViewCell) {
+        
+        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let alertController = UIAlertController(title: "Delete Recipe", message: "Are you sure you want to remove this recipe from your favorites?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { [self] (action) in
+            context.delete(recipes[indexPath.row])
+            recipes.remove(at: indexPath.row)
+            savedRecipesTableView.deleteRows(at: [indexPath], with: .automatic)
+            saveRecipesToCoreData()
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Navigation

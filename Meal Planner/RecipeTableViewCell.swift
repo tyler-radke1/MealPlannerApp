@@ -34,7 +34,6 @@ class RecipeTableViewCell: UITableViewCell {
         recipeNameLabel.text = recipe.name
     }
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
-        print("Favorite button tapped")
         delegate?.favoriteButtonTapped(cell: self)
     }
     

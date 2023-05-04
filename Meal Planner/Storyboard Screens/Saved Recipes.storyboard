@@ -95,7 +95,7 @@
                     <tabBarItem key="tabBarItem" title="My Recipes" image="books.vertical.circle" catalog="system" id="S7M-tL-L8f"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="jMR-5k-XWz"/>
+                        <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="CPc-gX-kpp"/>
                         <segue destination="RN2-CY-1zB" kind="show" identifier="showRecipeDetails" id="qfR-eo-Trq"/>
                         <segue destination="X82-6m-ZyT" kind="presentation" identifier="segueToCalendar" id="kqC-KY-UkA"/>
                     </connections>
