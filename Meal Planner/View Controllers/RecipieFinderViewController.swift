@@ -56,7 +56,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             } else {
                 guard let recipeId = recipes[indexPath.row].id else { return }
                 
-                if let recipeToDelete = favoritedRecipes.first(where: { $0.id == recipeId }) {
+                if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
+                    let recipeToDelete = favoritedRecipes.remove(at: indexOfRecipeToDelete)
                     self.context.delete(recipeToDelete)
                     print("Succesfully deleted")
                 } else {
