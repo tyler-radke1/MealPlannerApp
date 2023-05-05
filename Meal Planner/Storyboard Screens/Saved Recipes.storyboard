@@ -108,7 +108,7 @@
                     <connections>
                         <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="jMR-5k-XWz"/>
                         <segue destination="RN2-CY-1zB" kind="show" identifier="showRecipeDetails" id="qfR-eo-Trq"/>
-                        <segue destination="X82-6m-ZyT" kind="presentation" identifier="segueToCalendar" id="kqC-KY-UkA"/>
+                        <segue destination="X82-6m-ZyT" kind="presentation" identifier="segueToCalendar" id="6Xe-4h-1Cm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xD5-41-NT7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -213,7 +213,7 @@
         <!--calendarNavController-->
         <scene sceneID="b99-5D-ZkC">
             <objects>
-                <viewControllerPlaceholder storyboardName="Calendar View" referencedIdentifier="calendarNavController" id="X82-6m-ZyT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="calendarView" storyboardName="Calendar View" referencedIdentifier="calendarNavController" id="X82-6m-ZyT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0zh-aB-qGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="747" y="356"/>

@@ -21,8 +21,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     var days: [Date: Day] = [:]
     
-    var addingSavedRecipe: Recipe? = nil
-    
     let context = PersistenceController.shared.viewContext
     @IBOutlet weak var mealButton: UIButton!
     
@@ -33,6 +31,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     private var loadedDinner: Recipe?
     
     @IBOutlet weak var calendarTableView: UITableView!
+    
+    var favoriteRecipeToDisplay: Recipe? 
     
     override func viewDidLoad() {
        
@@ -48,7 +48,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     override func viewWillAppear(_ animated: Bool) {
 //        let today = Date.now
-//        self.dateSelection(self, didSelectDate: DateComponents(day: today.)
+//        self.dateSelection(self, didSelectDate: DateComponents(day: today.
         loadCoreData()
     }
     
@@ -128,6 +128,10 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.reloadData()
     }
     
+    @IBAction func mealButtonTapped(_ sender: UIButton) {
+//        guard let favoriteRecipeToDisplay else { return }
+//        print("button tapped with recipe")
+    }
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents, let date = dateComponents.date else { return }
         loadedDate = date
@@ -193,11 +197,12 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         cell.cellMeal = MealType.allCases[indexPath.section]
         
-        if addingSavedRecipe == nil {
-            cell.recipeNameButton.menu = cell.addMenuItems()
-        } else {
+        cell.favoriteRecipe = self.favoriteRecipeToDisplay
+        
+        //Makes it so if there IS a favoriteRecipe selected, primary action is set to false.
+        cell.recipeNameButton.showsMenuAsPrimaryAction = (favoriteRecipeToDisplay == nil)
             
-        }
+        cell.recipeNameButton.menu = cell.addMenuItems()
         
         let formatter = DateFormatter()
         

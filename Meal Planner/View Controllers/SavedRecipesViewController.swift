@@ -110,14 +110,26 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
     }
     
-    func calendarButtonTapped(cell: RecipeTableViewCell) {
+    func calendarButtonTapped(cell: RecipeTableViewCell, passing recipe: Recipe?) {
         guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
         
-        let recipe = recipes[indexPath.row]
+        if let myRecipe = recipe {
+    
+        }
         
+        let recipe = recipes[indexPath.row]
+
         performSegue(withIdentifier: "segueToCalendar", sender: recipe)
+      ///  let calendar = CalendarView()
+        
+//        calendar.favoriteRecipeToDisplay = recipe
+//
+//        calendar.modalPresentationStyle = .overFullScreen
+//
+//        self.present(calendar, animated: true)
+//
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -129,8 +141,9 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         if segue.identifier == "segueToCalendar" {
-            let destination = segue.destination as? CalendarView
-            destination?.addingSavedRecipe = sender as? Recipe
+            if let destination = segue.destination.children.last as? CalendarView {
+                destination.favoriteRecipeToDisplay = sender as? Recipe
+            } 
         }
     }
 }

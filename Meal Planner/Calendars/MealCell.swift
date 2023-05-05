@@ -25,15 +25,12 @@ class MealCell: UITableViewCell {
     
     let noMeal: Recipe? = nil
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    var favoriteRecipe: Recipe? = nil
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    @IBAction func mealButtonTapped(_ sender: UIButton) {
+        guard let cellMeal, let favoriteRecipe else { return }
         
-        // Configure the view for the selected state
+        delegate?.updateMeal(for: cellMeal, with: favoriteRecipe)
     }
     func addMenuItems()  -> UIMenu  {
         guard let cellMeal, let delegate else { return UIMenu()}
