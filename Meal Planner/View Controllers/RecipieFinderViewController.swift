@@ -18,9 +18,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     var delegate: FavoritedRecipeDelegate? = SavedRecipesViewController.shared
     
     func favoriteButtonTapped(on cell: APIResultTableViewCell) {
-        Task {
-            guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
-            
+        guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
+        changeButtonStateTasks[indexPath] = Task {
             var selectedRecipe = viewedRecipes[indexPath]
             
             if viewedRecipes[indexPath] == nil {
@@ -51,6 +50,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                     savedIngreient.recipe = recipe
                 }
                 
+                favoritedRecipes.append(recipe)
+                
                 print("Successfully created recipe!")
             } else {
                 guard let recipeId = recipes[indexPath.row].id else { return }
@@ -58,9 +59,9 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 if let recipeToDelete = favoritedRecipes.first(where: { $0.id == recipeId }) {
                     self.context.delete(recipeToDelete)
                     print("Succesfully deleted")
-                    //context.save()
+                } else {
+                    print("Couldn't find matching id")
                 }
-                
             }
             
             do {
@@ -85,6 +86,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     var setButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
+    var changeButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
     
     var viewedRecipes = [IndexPath:ViewedRecipe]()
     
@@ -100,11 +102,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        recipes = []
         favoritedRecipes = []
         ingredientsList = []
-        
-        recipiesTableView.reloadData()
         
         fetchCoreDataIngredients()
         fetchCoreDataRecipes()
