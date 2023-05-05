@@ -26,9 +26,6 @@ class IngredientTableViewCell: UITableViewCell {
 
     @IBOutlet var ingredientLabel: UILabel!
     
-//    on delete
-    
-    
     func configure(with ingredient: Ingredient) {
         ingredientLabel.text = ingredient.name
     }
