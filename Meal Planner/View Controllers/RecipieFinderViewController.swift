@@ -105,6 +105,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         favoritedRecipes = []
         ingredientsList = []
         
+        recipiesTableView.reloadData()
+        
         fetchCoreDataIngredients()
         fetchCoreDataRecipes()
     }
