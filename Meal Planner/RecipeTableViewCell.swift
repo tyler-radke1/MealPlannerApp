@@ -10,12 +10,16 @@ import CoreData
 
 protocol RecipeTableViewCellDelegate {
     func favoriteButtonTapped(cell: RecipeTableViewCell)
-    func calendarButtonTapped(cell: RecipeTableViewCell)
+    func calendarButtonTapped(cell: RecipeTableViewCell, passing recipe: Recipe?)
 }
 
 class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeNameLabel: UILabel!
+    
+    @IBOutlet weak var recipeImage: UIImageView!
+    
+    private var recipeToPass: Recipe? = nil
     
     var delegate: RecipeTableViewCellDelegate?
 
@@ -32,6 +36,15 @@ class RecipeTableViewCell: UITableViewCell {
     
     func configure(with recipe: Recipe) {
         recipeNameLabel.text = recipe.name
+        
+        self.recipeToPass = recipe
+        
+        guard let recipeImageData = recipe.photo
+        else {
+            return
+        }
+        
+        recipeImage.image = UIImage(data: recipeImageData)
     }
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
         delegate?.favoriteButtonTapped(cell: self)
@@ -39,7 +52,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
         print("calendar button tapped")
-        delegate?.calendarButtonTapped(cell: self)
+        delegate?.calendarButtonTapped(cell: self, passing: recipeToPass ?? nil)
     }
     
 }

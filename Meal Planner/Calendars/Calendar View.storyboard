@@ -12,7 +12,7 @@
         <!--Calendar View-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="calendarView" title="Calendar View" id="Y6W-OH-hqX" customClass="CalendarView" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="calendarView" title="Calendar View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="CalendarView" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,6 +37,10 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Button" cornerStyle="capsule" titleAlignment="leading">
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="mealButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JRg-wY-NSd"/>
+                                                        <action selector="mealButtonTapped:" destination="oHm-nr-HDq" eventType="touchUpInside" id="ZhV-oC-BW0"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
