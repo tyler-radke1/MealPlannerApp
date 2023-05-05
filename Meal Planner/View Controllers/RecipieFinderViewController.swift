@@ -19,7 +19,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     func favoriteButtonTapped(on cell: APIResultTableViewCell) {
         guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
-        changeButtonStateTasks[indexPath] = Task {
+        Task {
             var selectedRecipe = viewedRecipes[indexPath]
             
             if viewedRecipes[indexPath] == nil {
@@ -86,7 +86,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     var setButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
-    var changeButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
     
     var viewedRecipes = [IndexPath:ViewedRecipe]()
     
