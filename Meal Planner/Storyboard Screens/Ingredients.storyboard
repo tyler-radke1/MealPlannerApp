@@ -77,11 +77,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUv-Az-FMv">
+                                <rect key="frame" x="235" y="68" width="125" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add Sections"/>
+                                <connections>
+                                    <action selector="addSectionButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r1o-wc-BGa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cbL-YK-h1c" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="45" id="0QO-6G-2hY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QUv-Az-FMv" secondAttribute="trailing" constant="30" id="9kC-Bl-vb3"/>
                             <constraint firstItem="gbS-LL-654" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="39" id="BQl-1u-LPG"/>
                             <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="cbL-YK-h1c" secondAttribute="bottom" constant="20.329999999999998" id="QCQ-Tt-2DF"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gbS-LL-654" secondAttribute="trailing" constant="118" id="VMQ-JH-cf9"/>
@@ -94,6 +103,7 @@
                             <constraint firstItem="6Lm-Xh-1VX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iS1-qH-oGj"/>
                             <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="jZ4-zj-b0r"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="leading" secondItem="6Lm-Xh-1VX" secondAttribute="trailing" constant="10" id="olF-8i-GUJ"/>
+                            <constraint firstItem="EvI-zS-wL8" firstAttribute="top" secondItem="QUv-Az-FMv" secondAttribute="bottom" constant="8" id="rqd-3Q-bpq"/>
                             <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="gbS-LL-654" secondAttribute="bottom" constant="46" id="uH8-e9-ZO9"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="top" secondItem="EvI-zS-wL8" secondAttribute="bottom" constant="26" id="xQM-ms-gRF"/>
                             <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="zQT-PK-zfD"/>
