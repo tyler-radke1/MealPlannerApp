@@ -88,7 +88,6 @@
 				9D2CAE442A02CBC800F83182 /* Recipe Finder.storyboard */,
 				844F445429EED68600464FEE /* Saved Recipes.storyboard */,
 				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
-				9DF3D13C29FAC1D0006EA354 /* Ingredients */,
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -154,6 +153,7 @@
 				8420E15F29F19757001A7780 /* RecipeDetailsViewController.swift */,
 				9F9BEC0E29EED6F600C4AB9C /* Objects */,
 				9D9DF43929ED8FAF007D1222 /* View Controllers */,
+				9DF3D13C29FAC1D0006EA354 /* Ingredients */,
 				9D9DF43829ED8F9D007D1222 /* Storyboard Screens */,
 				9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */,
 				9F45F0D429F03F07004FDBD7 /* Calendars */,
@@ -420,7 +420,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9QUPJTJNU5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -451,7 +451,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9QUPJTJNU5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

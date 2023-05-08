@@ -178,19 +178,38 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         return nil
     }
     
+    @objc func imageTapped() {
+       
+        print("image tapped")
+    }
+    
+    
     func configure(cell: MealCell, at indexPath: IndexPath) {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        
+        cell.recipeImage.addGestureRecognizer(tapRecognizer)
+        var recipe: Recipe? = nil
         
         switch indexPath.section {
         case 0:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
+           // cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
+            recipe = days[loadedDate]?.breakfast
         case 1:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.lunch?.name ?? "None")", for: .normal)
+           // cell.recipeNameButton.setTitle("\(days[loadedDate]?.lunch?.name ?? "None")", for: .normal)
+            recipe = days[loadedDate]?.lunch
         case 2:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.dinner?.name ?? "None")", for: .normal)
+           // cell.recipeNameButton.setTitle("\(days[loadedDate]?.dinner?.name ?? "None")", for: .normal)
+            recipe = days[loadedDate]?.dinner
         default:
-            cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
+          //  cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
+            recipe = days[loadedDate]?.breakfast
         }
         
+        cell.recipeNameButton.setTitle(recipe?.name ?? "None", for: .normal)
+        
+        if let data = recipe?.photo {
+            cell.recipeImage.image = UIImage(data: data)
+        }
         cell.recipeNameButton.showsMenuAsPrimaryAction = true
         
         cell.delegate = self

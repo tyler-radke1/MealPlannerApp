@@ -107,7 +107,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="CPc-gX-kpp"/>
-                        <segue destination="RN2-CY-1zB" kind="show" identifier="showRecipeDetails" id="qfR-eo-Trq"/>
+                        <segue destination="RN2-CY-1zB" kind="presentation" identifier="showRecipeDetails" modalPresentationStyle="formSheet" id="qfR-eo-Trq"/>
                         <segue destination="X82-6m-ZyT" kind="presentation" identifier="segueToCalendar" id="6Xe-4h-1Cm"/>
                     </connections>
                 </viewController>
@@ -124,7 +124,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-BT-kx9">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <rect key="frame" x="0.0" y="62" width="393" height="780"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-aR-1WU">
                                         <rect key="frame" x="0.0" y="17" width="393" height="310"/>
@@ -142,7 +142,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="v3M-m7-pAE">
-                                                        <rect key="frame" x="89.666666666666686" y="43.666666666666671" width="200" height="148.33333333333331"/>
+                                                        <rect key="frame" x="89.666666666666686" y="43.666666666666657" width="200" height="148.33333333333334"/>
                                                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                         <constraints>
@@ -151,7 +151,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGO-0u-Cjq">
-                                                        <rect key="frame" x="0.0" y="200.66666666666666" width="379" height="20.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="200.66666666666669" width="379" height="20.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -184,7 +184,7 @@
                                 <constraints>
                                     <constraint firstItem="IlD-aR-1WU" firstAttribute="top" secondItem="bvz-BT-kx9" secondAttribute="top" constant="17" id="QgT-ov-mFW"/>
                                     <constraint firstAttribute="trailing" secondItem="IlD-aR-1WU" secondAttribute="trailing" id="S53-AG-SFW"/>
-                                    <constraint firstAttribute="bottom" secondItem="IlD-aR-1WU" secondAttribute="bottom" constant="515" id="czM-I3-aSD"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlD-aR-1WU" secondAttribute="bottom" constant="453" id="czM-I3-aSD"/>
                                     <constraint firstItem="IlD-aR-1WU" firstAttribute="leading" secondItem="bvz-BT-kx9" secondAttribute="leading" id="ie4-ke-Yrk"/>
                                 </constraints>
                             </scrollView>
@@ -195,7 +195,7 @@
                             <constraint firstAttribute="bottom" secondItem="bvz-BT-kx9" secondAttribute="bottom" id="Gfr-Vz-tn8"/>
                             <constraint firstAttribute="trailing" secondItem="bvz-BT-kx9" secondAttribute="trailing" id="Mqz-Xg-LYc"/>
                             <constraint firstItem="bvz-BT-kx9" firstAttribute="leading" secondItem="3DY-Ok-oLa" secondAttribute="leading" id="dOl-E1-8np"/>
-                            <constraint firstItem="bvz-BT-kx9" firstAttribute="top" secondItem="CZe-EY-Etu" secondAttribute="top" id="etq-Gd-8bV"/>
+                            <constraint firstItem="bvz-BT-kx9" firstAttribute="top" secondItem="CZe-EY-Etu" secondAttribute="top" constant="62" id="etq-Gd-8bV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nIk-EJ-VIh"/>

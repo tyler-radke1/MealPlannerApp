@@ -26,6 +26,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         tableview.dataSource = self
         tableview.delegate = self
         createFetchRequest()
+        hideKeyboardWhenTapped()
     }
 
     @IBOutlet var editButton: UIButton!

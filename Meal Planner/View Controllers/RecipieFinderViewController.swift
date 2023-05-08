@@ -99,6 +99,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         recipiesTableView.delegate = self
         recipiesTableView.dataSource = self
         
+        hideKeyboardWhenTapped()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

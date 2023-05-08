@@ -27,17 +27,23 @@ class MealCell: UITableViewCell {
     
     var favoriteRecipe: Recipe? = nil
     
+    @IBOutlet weak var recipeImage: UIImageView!
+    
     @IBAction func mealButtonTapped(_ sender: UIButton) {
         guard let cellMeal, let favoriteRecipe else { return }
         
         delegate?.updateMeal(for: cellMeal, with: favoriteRecipe)
     }
+    
+    
+    
     func addMenuItems()  -> UIMenu  {
         guard let cellMeal, let delegate else { return UIMenu()}
+        
         var actions: [UIAction] = []
         
         let noMealAction = UIAction(title: "Leave Blank") { action in
-           delegate.updateMeal(for: cellMeal, with: nil)
+            delegate.updateMeal(for: cellMeal, with: nil)
         }
         actions.append(noMealAction)
         
