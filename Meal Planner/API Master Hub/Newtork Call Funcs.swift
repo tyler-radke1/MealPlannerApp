@@ -153,6 +153,7 @@ struct RecipieResult: CustomStringConvertible, Codable {
     var image: String?
     var imageType: String?
     
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -171,20 +172,70 @@ struct RecipieResult: CustomStringConvertible, Codable {
 
 struct ViewedRecipe: Codable {
     var name: String
+    var readyInMinutes: Int?
+    var servings: Int?
     var ingredients: [ViewedIngredient]
+   // var instructions: String?
+    
+    var calories: Double?
     var instructions: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "title"
         case ingredients = "extendedIngredients"
-        case instructions
+        //case instructions
+        case instructions = "analyzedInstructions"
+        case readyInMinutes
+        case servings
+//        case nutrition
+        case calories
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.ingredients = try container.decode([ViewedIngredient].self, forKey: .ingredients)
-        self.instructions = try container.decodeIfPresent(String.self, forKey: .instructions)
+        self.readyInMinutes = try container.decodeIfPresent(Int.self, forKey: .readyInMinutes)
+//self.instructions = try container.decodeIfPresent(String.self, forKey: .instructions)
+        var instructionsArray = try container.decodeIfPresent([ViewedInstruction].self, forKey: .instructions)
+        self.servings = try container.decodeIfPresent(Int.self, forKey: .servings)
+//        if let nutrition = try container.decodeIfPresent(Nutrition.self, forKey: .nutrition) {
+           // self.calories = nutrition.calories
+        var instructionsString = ""
+        guard let instructionsArray else {
+           return
+        }
+            for instructions in instructionsArray {
+            var string = "\(instructions.number). \(instructions.step) \n"
+                print(string)
+            instructionsString += string
+            
+        }
+        self.instructions = instructionsString
+    }
+}
+
+//struct Nutrition: Codable {
+//
+//    var calories: Double? {
+//        return nutrients.first(where: { $0.name.lowercased() == "calories" })?.amount
+//    }
+//}
+//struct Nutrient: Codable {
+//    var name: String
+//    var amount: Double
+////    var unit: String
+//}
+
+struct ViewedInstruction: Codable {
+    var number: Int
+    var step: String
+    var ingredients: [ViewedIngredient]
+    
+    enum CodingKeys: String, CodingKey {
+        case number
+        case step
+        case ingredients
     }
 }
 
@@ -214,6 +265,11 @@ struct ViewedIngredient: Codable {
         
         try container.encode(Double(strings.first ?? "0"), forKey: .amount)
         try container.encode(strings.last ?? "", forKey: .unit)
+    }
+    
+    init(name: String, quantity: String) {
+        self.name = name
+        self.quantity = quantity
     }
 }
 
