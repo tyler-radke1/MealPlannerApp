@@ -64,11 +64,20 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarTableView" destination="CZz-y1-7pe" id="82x-wL-dOY"/>
+                        <segue destination="gvW-7Y-veF" kind="presentation" identifier="presentDetailView" id="ey5-qs-sHf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="973.28244274809151" y="-2.1126760563380285"/>
+        </scene>
+        <!--recipeDetailView-->
+        <scene sceneID="6Ii-ex-Qcx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Saved Recipes" referencedIdentifier="recipeDetailView" id="gvW-7Y-veF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIk-c1-1vp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1895" y="-2"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="JDV-Ay-z1p">

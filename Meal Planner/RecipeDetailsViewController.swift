@@ -30,7 +30,6 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if let recipe = recipe {
             recipeNameLabel.text = recipe.name
             

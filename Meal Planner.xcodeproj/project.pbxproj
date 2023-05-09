@@ -22,6 +22,7 @@
 		9DF3D14029FAC1D0006EA354 /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3D13E29FAC1D0006EA354 /* IngredientViewController.swift */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
 		9F60640F29F2DDF60024584D /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F60640E29F2DDF60024584D /* MealCell.swift */; };
+		9F7903722A0A8C1500985FEB /* ImageTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7903712A0A8C1500985FEB /* ImageTapGesture.swift */; };
 		9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */; };
 		9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */; };
 		9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E029ED8A6A009F8B79 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		9DF3D13E29FAC1D0006EA354 /* IngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
 		9F60640E29F2DDF60024584D /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
+		9F7903712A0A8C1500985FEB /* ImageTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTapGesture.swift; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				9F9BEC0E29EED6F600C4AB9C /* Objects */,
 				9D9DF43929ED8FAF007D1222 /* View Controllers */,
 				9DF3D13C29FAC1D0006EA354 /* Ingredients */,
+				9F7903712A0A8C1500985FEB /* ImageTapGesture.swift */,
 				9D9DF43829ED8F9D007D1222 /* Storyboard Screens */,
 				9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */,
 				9F45F0D429F03F07004FDBD7 /* Calendars */,
@@ -265,6 +268,7 @@
 				9F60640F29F2DDF60024584D /* MealCell.swift in Sources */,
 				9DF3D13F29FAC1D0006EA354 /* IngredientTableViewCell.swift in Sources */,
 				9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */,
+				9F7903722A0A8C1500985FEB /* ImageTapGesture.swift in Sources */,
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				8420E16029F19757001A7780 /* RecipeDetailsViewController.swift in Sources */,
 				9D20EA5C29FACDF30032F62C /* APIResultTableViewCell.swift in Sources */,

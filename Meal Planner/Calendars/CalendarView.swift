@@ -47,8 +47,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        let today = Date.now
-//        self.dateSelection(self, didSelectDate: DateComponents(day: today.
         loadCoreData()
     }
     
@@ -128,10 +126,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.reloadData()
     }
     
-    @IBAction func mealButtonTapped(_ sender: UIButton) {
-//        guard let favoriteRecipeToDisplay else { return }
-//        print("button tapped with recipe")
-    }
+
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         guard let dateComponents, let date = dateComponents.date else { return }
         loadedDate = date
@@ -178,30 +173,33 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         return nil
     }
     
-    @objc func imageTapped() {
-       
-        print("image tapped")
+    @objc func imageTapped(sender: ImageTapGesture) {
+        guard let recipe = sender.recipe else { return }
+        performSegue(withIdentifier: "presentDetailView", sender: recipe)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "presentDetailView" {
+            guard let destination = segue.destination as? RecipeDetailsViewController else { return }
+            
+            destination.recipe = sender as? Recipe
+        }
     }
     
     
     func configure(cell: MealCell, at indexPath: IndexPath) {
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        let tapRecognizer = ImageTapGesture(target: self, action: #selector(imageTapped))
         
-        cell.recipeImage.addGestureRecognizer(tapRecognizer)
         var recipe: Recipe? = nil
         
         switch indexPath.section {
         case 0:
-           // cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
             recipe = days[loadedDate]?.breakfast
         case 1:
-           // cell.recipeNameButton.setTitle("\(days[loadedDate]?.lunch?.name ?? "None")", for: .normal)
             recipe = days[loadedDate]?.lunch
         case 2:
-           // cell.recipeNameButton.setTitle("\(days[loadedDate]?.dinner?.name ?? "None")", for: .normal)
             recipe = days[loadedDate]?.dinner
         default:
-          //  cell.recipeNameButton.setTitle("\(days[loadedDate]?.breakfast?.name ?? "None")", for: .normal)
             recipe = days[loadedDate]?.breakfast
         }
         
@@ -209,6 +207,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         if let data = recipe?.photo {
             cell.recipeImage.image = UIImage(data: data)
+        } else {
+            cell.recipeImage.image = UIImage(systemName: "photo")
         }
         cell.recipeNameButton.showsMenuAsPrimaryAction = true
         
@@ -218,6 +218,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         
         cell.favoriteRecipe = self.favoriteRecipeToDisplay
         
+        tapRecognizer.recipe = recipe
+        
+        cell.recipeImage.addGestureRecognizer(tapRecognizer)
         //Makes it so if there IS a favoriteRecipe selected, primary action is set to false.
         cell.recipeNameButton.showsMenuAsPrimaryAction = (favoriteRecipeToDisplay == nil)
             
@@ -226,37 +229,5 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         let formatter = DateFormatter()
         
         formatter.dateStyle = .short
-    }
-}
-
-
-class DummyData {
-   
-    static let shared = DummyData()
-    
-    func generateData() {
-        
-        let names = ["Pizza", "Duck Soup", "Tacos", "Whale Blubber Ice Cream", "Toenail Smoothie"]
-        let context = PersistenceController.shared.viewContext
-        
-        let ingredient = Ingredient(context: context)
-        
-        ingredient.name = "Test Name"
-        ingredient.quantity = "69"
-        
-        for i in 0...4 {
-            let recipe = Recipe(context: context)
-            recipe.name = names[i]
-            
-            recipe.ingredients = NSSet(array: [ingredient])
-            
-            context.insert(recipe)
-        }
-        
-        do {
-            try context.save()
-        } catch {
-            print("failed to save")
-        }
     }
 }

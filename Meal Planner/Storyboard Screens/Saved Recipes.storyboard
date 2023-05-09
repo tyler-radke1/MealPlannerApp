@@ -118,12 +118,12 @@
         <!--Recipe Details View Controller-->
         <scene sceneID="IXN-8z-Fr3">
             <objects>
-                <viewController id="RN2-CY-1zB" customClass="RecipeDetailsViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recipeDetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RN2-CY-1zB" customClass="RecipeDetailsViewController" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3DY-Ok-oLa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-BT-kx9">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="recipeDetailView" translatesAutoresizingMaskIntoConstraints="NO" id="bvz-BT-kx9">
                                 <rect key="frame" x="0.0" y="62" width="393" height="780"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-aR-1WU">
