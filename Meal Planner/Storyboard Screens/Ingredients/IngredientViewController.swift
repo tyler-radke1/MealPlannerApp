@@ -28,8 +28,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         tableview.dataSource = self
         tableview.delegate = self
         
-        createFetchRequest()
         fetchCategory()
+        createFetchRequest()
+        
     }
 
     @IBOutlet var editButton: UIButton!
@@ -85,10 +86,11 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
                      case nil:
                          if let noCategoryArray = ingredientsByCategories["Uncategorized"]{
                              ingredientsByCategories["Uncategorized"]!.append(result)
-                         } else {
-//                             categories.append("Uncaterized")
-                             ingredientsByCategories["Uncategorized"] = [result]
                          }
+//                         else {
+////                             categories.append("Uncaterized")
+//                             ingredientsByCategories["Uncategorized"] = [result]
+//                         }
                          
                      default:
                          guard  let categoryName = result.category?.categoryName else {
@@ -97,9 +99,10 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
                          }
                          if let categoryArray = ingredientsByCategories[categoryName]{
                              ingredientsByCategories[categoryName]!.append(result)
-                         } else {
-                             ingredientsByCategories[categoryName] = [result]
                          }
+//                         else {
+//                             ingredientsByCategories[categoryName] = [result]
+//                         }
                      }
 //                     self.ingredients.append(result)
                  }
@@ -168,7 +171,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         do {
             let results = try context.fetch(fetchRequet)
             
-//            categories = results
+            ingredientsByCategories["Uncategorized"] = []
+            categories.append("Uncategorized")
+            
             for category in results {
                 ingredientsByCategories[category.categoryName!] = []
                 categories.append(category.categoryName!)
@@ -203,74 +208,74 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
      
     func numberOfSections(in tableView: UITableView) -> Int {
 //        return categories.count + 1
-        if let noCategory = ingredientsByCategories["Uncategorized"] {
-            return categories.count + 1
-        }else{
+//        if let noCategory = ingredientsByCategories["Uncategorized"] {
+//            return categories.count + 1
+//        }else{
             return categories.count
-        }
+//        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard !categories.isEmpty else{ return nil }
         
-        switch section {
-        case 0:
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                return "Uncategorized"
-            } else {
-                return categories[0]
-            }
-        default:
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                return categories[section - 1]
-            } else {
+//        switch section {
+//        case 0:
+////            if let noCategory = ingredientsByCategories["Uncategorized"] {
+////                return "Uncategorized"
+////            } else {
+//                return categories[0]
+////            }
+//        default:
+//            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//                return categories[section - 1]
+//            } else {
                 return categories[section]
-            }
-        }
+//            }
+//        }
         
 //        return section == 0 ? "Uncategorized" : categories[section - 1].categoryName
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //         return ingredients.count
-        switch section {
-        case 0:
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                return noCategory.count
-            } else {
-                return ingredientsByCategories[categories[0]]!.count
-            }
-        default:
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                return ingredientsByCategories[categories[section - 1]]!.count
-            } else {
+//        switch section {
+//        case 0:
+//            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//                return noCategory.count
+//            } else {
+//                return ingredientsByCategories[categories[0]]!.count
+//            }
+//        default:
+//            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//                return ingredientsByCategories[categories[section - 1]]!.count
+//            } else {
                 return ingredientsByCategories[categories[section]]!.count
-            }
-        }
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsCell", for: indexPath)  as! IngredientTableViewCell
 //        let ingredient = ingredients [indexPath.row]
         
-        switch indexPath.section {
-        case 0:
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                let ingredient = ingredientsByCategories["Uncategorized"]![indexPath.row]
-                cell.configure(with: ingredient)
-            } else {
+//        switch indexPath.section {
+//        case 0:
+//            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//                let ingredient = ingredientsByCategories["Uncategorized"]![indexPath.row]
+//                cell.configure(with: ingredient)
+//            } else {
+//                let ingredient = ingredientsByCategories[categories[indexPath.section]]![indexPath.row]
+//                cell.configure(with: ingredient)
+//            }
+//        default:
+//            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//                let ingredient = ingredientsByCategories[categories[indexPath.section - 1]]![indexPath.row]
+//                cell.configure(with: ingredient)
+//            } else {
                 let ingredient = ingredientsByCategories[categories[indexPath.section]]![indexPath.row]
                 cell.configure(with: ingredient)
-            }
-        default:
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                let ingredient = ingredientsByCategories[categories[indexPath.section - 1]]![indexPath.row]
-                cell.configure(with: ingredient)
-            } else {
-                let ingredient = ingredientsByCategories[categories[indexPath.section]]![indexPath.row]
-                cell.configure(with: ingredient)
-            }
-        }
+//            }
+//        }
         
         
         
@@ -290,16 +295,16 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
                 print("Failed to save")
             }
 //            self.ingredients.remove(at: indexPath.row)
-            if let noCategory = ingredientsByCategories["Uncategorized"] {
-                if indexPath.section != 0 {
-                    self.ingredientsByCategories[categories[indexPath.section - 1]]?.remove(at: indexPath.row)
-                } else {
-                    self.ingredientsByCategories["Uncategorized"]?.remove(at: indexPath.row)
-                }
-                
-            } else {
+//            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//                if indexPath.section != 0 {
+//                    self.ingredientsByCategories[categories[indexPath.section - 1]]?.remove(at: indexPath.row)
+//                } else {
+//                    self.ingredientsByCategories["Uncategorized"]?.remove(at: indexPath.row)
+//                }
+//
+//            } else {
                 self.ingredientsByCategories[categories[indexPath.section]]?.remove(at: indexPath.row)
-            }
+//            }
            
             self.tableview.deleteRows(at: [indexPath], with: .automatic)
 //            self.tableview.reloadData()
