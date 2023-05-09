@@ -196,7 +196,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         ingredients.remove(at: sourceIndexPath.row)
         ingredients.insert(movedIngredient, at: destinationIndexPath.row)
         for (index, ingredient) in ingredients.enumerated() {
-            ingredient.index = Int64(index)
+            ingredient.index = CoreDataIndexPath(indexPath: index)
         }
         do {
             try context.save()
