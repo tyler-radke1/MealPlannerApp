@@ -12,7 +12,7 @@
         <!--Calendar View-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="calendarView" title="Calendar View" id="Y6W-OH-hqX" customClass="CalendarView" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="calendarView" title="Calendar View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="CalendarView" customModule="Meal_Planner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,16 +31,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="BmF-uy-0zr">
-                                                    <rect key="frame" x="20" y="4" width="321" height="35"/>
+                                                    <rect key="frame" x="20" y="4" width="235" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Button" cornerStyle="capsule" titleAlignment="leading">
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="mealButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JRg-wY-NSd"/>
+                                                        <action selector="mealButtonTapped:" destination="oHm-nr-HDq" eventType="touchUpInside" id="ZhV-oC-BW0"/>
+                                                    </connections>
                                                 </button>
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cy1-uZ-N5X">
+                                                    <rect key="frame" x="283" y="2" width="58" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="recipeImage" destination="cy1-uZ-N5X" id="a4Z-8V-dZx"/>
                                             <outlet property="recipeNameButton" destination="BmF-uy-0zr" id="4u9-Rx-Zxe"/>
                                         </connections>
                                     </tableViewCell>
@@ -84,6 +93,7 @@
     </scenes>
     <resources>
         <image name="calendar.circle" catalog="system" width="128" height="123"/>
+        <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

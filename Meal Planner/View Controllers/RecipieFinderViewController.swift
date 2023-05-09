@@ -8,12 +8,18 @@
 import UIKit
 import CoreData
 
+protocol FavoritedRecipeDelegate {
+    func getRecipesFromCoreData()
+    func saveRecipesToCoreData()
+}
+
 class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIResultTableViewCellDelegate {
     
+    var delegate: FavoritedRecipeDelegate? = SavedRecipesViewController.shared
+    
     func favoriteButtonTapped(on cell: APIResultTableViewCell) {
+        guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
         Task {
-            guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
-            
             var selectedRecipe = viewedRecipes[indexPath]
             
             if viewedRecipes[indexPath] == nil {
@@ -30,7 +36,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             }
             
             if cell.favoriteButton.isSelected {
-                let recipe = Recipe(context: context)
+                let recipe = Recipe(context: self.context)
                 
                 recipe.id = Int64(recipeToSave.id!)
                 recipe.name = recipeDetailsToSave.name
@@ -44,14 +50,18 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                     savedIngreient.recipe = recipe
                 }
                 
+                favoritedRecipes.append(recipe)
+                
                 print("Successfully created recipe!")
             } else {
-                for favoriteRecipe in favoritedRecipes {
-                    if Int(favoriteRecipe.id) == recipes[indexPath.row].id {
-//                        for ingedient in favoriteRecipe
-                        context.delete(favoriteRecipe)
-                        print("\(favoriteRecipe.name ?? "") was successfully deleted")
-                    }
+                guard let recipeId = recipes[indexPath.row].id else { return }
+                
+                if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
+                    let recipeToDelete = favoritedRecipes.remove(at: indexOfRecipeToDelete)
+                    self.context.delete(recipeToDelete)
+                    print("Succesfully deleted")
+                } else {
+                    print("Couldn't find matching id")
                 }
             }
             
@@ -86,15 +96,22 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fetchCoreDataIngredients()
-        fetchCoreDataRecipes()
-        
         recipiesTableView.delegate = self
         recipiesTableView.dataSource = self
         
+        hideKeyboardWhenTapped()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        favoritedRecipes = []
+        ingredientsList = []
+        
+        recipiesTableView.reloadData()
+        
+        fetchCoreDataIngredients()
+        fetchCoreDataRecipes()
+    }
     func fetchCoreDataIngredients() {
         let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
 
@@ -141,7 +158,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
         
-        let recipe = recipes[indexPath.row]
+//        let recipe = recipes[indexPath.row]
         
         configureCell(for: cell, withIndexPath: indexPath)
         
@@ -157,11 +174,15 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         cell.delegate = self
         
         setButtonStateTasks[indexPath] = Task {
-            for favoriteRecipe in favoritedRecipes {
-                if Int(favoriteRecipe.id) == recipe.id {
-                    cell.favoriteButton.isSelected = true
-                }
-            }
+//            for favoriteRecipe in favoritedRecipes {
+//                if Int(favoriteRecipe.id) == recipe.id {
+//                    cell.favoriteButton.isSelected = true
+//                }
+//            }
+            guard let recipeId = recipe.id else { return }
+            let check = favoritedRecipes.first(where: { $0.id == recipeId })
+            
+            cell.favoriteButton.isSelected = (check == nil ? false : true)
         }
         
         imageLoadTasks[indexPath] = Task {
@@ -229,7 +250,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             do {
                 let results = try await recipieSearchByIngredientsList(using: ingredients)
                 
-                self.recipes = results.recipes ?? []
+                self.recipes = results
                 
                 recipiesTableView.reloadData()
             }
@@ -249,50 +270,4 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         return recipeDetails
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 
@@ -33,5 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
 //
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTapped() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
+        tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
