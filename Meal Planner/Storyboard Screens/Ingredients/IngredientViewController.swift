@@ -80,7 +80,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         request.sortDescriptors = [sortDescriptor]
              do {
                  let results = try context.fetch(request)
-                 
+ 
                  for result in results {
                      switch result.category {
                      case nil:
@@ -124,7 +124,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
             let ingredient = Ingredient(context: /* AppDelegate().managedObjectContext */  context)
             ingredient.quantity = "23"
             ingredient.name = ingredientName
-        ingredient.index = Int64(ingredients.count - 1)
+//        ingredient.index = Int64(ingredients.count - 1)
 //            return ingredient
 //        }
         
@@ -192,12 +192,25 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     }
 //MARK: i dont like alphibeticle order while i working on moving the rows
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedIngredient = ingredients[sourceIndexPath.row]
-        ingredients.remove(at: sourceIndexPath.row)
-        ingredients.insert(movedIngredient, at: destinationIndexPath.row)
-        for (index, ingredient) in ingredients.enumerated() {
-            ingredient.index = CoreDataIndexPath(indexPath: index)
+//        let movedIngredient = ingredients[sourceIndexPath.row]
+//        ingredients.remove(at: sourceIndexPath.row)
+//        ingredients.insert(movedIngredient, at: destinationIndexPath.row)
+//        for (index, ingredient) in ingredients.enumerated() {
+//            ingredient.index = CoreDataIndexPath(indexPath: index)
+//        }
+        
+        let movedIngredient = ingredientsByCategories[categories[sourceIndexPath.section]]![sourceIndexPath.row]
+        
+        ingredientsByCategories[categories[sourceIndexPath.section]]!.remove(at: sourceIndexPath.row)
+        ingredientsByCategories[categories[destinationIndexPath.section]]!.insert(movedIngredient, at: destinationIndexPath.row)
+        
+        for (sectionIndex, category) in categories.enumerated() {
+            for (rowIndex, ingredient) in ingredientsByCategories[category]!.enumerated() {
+                ingredient.index = CoreDataIndexPath(indexPath: IndexPath(row: rowIndex, section: sectionIndex))
+            }
         }
+        
+        
         do {
             try context.save()
             
