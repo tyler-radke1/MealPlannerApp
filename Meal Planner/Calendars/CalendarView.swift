@@ -35,8 +35,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     var favoriteRecipeToDisplay: Recipe? 
     
     override func viewDidLoad() {
-       
-        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 550))
+        let width = view.frame.width
+        let height = view.frame.height
+        let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: width * 0.9, height: height / 2))
         configure(calendar: myCalendarView)
 
         calendarTableView.dataSource = self
@@ -94,9 +95,17 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     func configure(calendar: UICalendarView) {
         calendar.delegate = self
         
+        //calendar.center = self.ce
+        let centerX = self.view.center.x
+        let centerY = self.view.center.y - 195
+        print(centerY)
+        calendar.center = CGPoint(x: centerX, y: centerY)
+        
         let gregorian = Calendar(identifier: .gregorian)
         
         calendar.calendar = gregorian
+        
+        calendar.backgroundColor = .customLightBlue
         
         self.view.addSubview(calendar)
         
@@ -146,6 +155,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.reloadData()
     }
     
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         //Each meal will be their own section
         3

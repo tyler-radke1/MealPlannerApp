@@ -24,10 +24,10 @@
                                     <navigationItem title="My Recipes" id="XoS-8g-Xst"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ccy-EM-58N">
-                                <rect key="frame" x="0.0" y="50" width="393" height="758"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ccy-EM-58N">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" rowHeight="81" id="YqP-Yp-bto" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="81"/>
@@ -45,7 +45,9 @@
                                                                 <constraint firstAttribute="width" constant="50" id="i5s-DQ-xEB"/>
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title=""/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title="">
+                                                                <color key="baseForegroundColor" red="0.094117648900000003" green="0.1725490093" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="favoriteButtonTapped:" destination="YqP-Yp-bto" eventType="touchUpInside" id="y4g-3h-XlN"/>
                                                             </connections>
@@ -56,7 +58,9 @@
                                                                 <constraint firstAttribute="width" constant="50" id="AsN-ym-voy"/>
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="calendar.badge.plus" catalog="system">
+                                                                <color key="baseForegroundColor" red="0.094117648900000003" green="0.1725490093" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="calendarButtonTapped:" destination="YqP-Yp-bto" eventType="touchUpInside" id="smx-7w-glC"/>
                                                             </connections>
@@ -79,6 +83,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="6gV-B3-LYv" secondAttribute="bottom" constant="7" id="767-d5-rGE"/>
                                                 <constraint firstItem="419-Cj-7gW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="M8b-EF-8GE" secondAttribute="trailing" constant="7" id="SNM-Ik-7a9"/>
@@ -101,7 +106,14 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BYa-WC-O9y"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.2941176593" green="0.44313728810000003" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="BYa-WC-O9y" firstAttribute="bottom" secondItem="ccy-EM-58N" secondAttribute="bottom" id="7j1-l8-mVN"/>
+                            <constraint firstItem="ccy-EM-58N" firstAttribute="trailing" secondItem="BYa-WC-O9y" secondAttribute="trailing" id="b72-6f-3ba"/>
+                            <constraint firstItem="ccy-EM-58N" firstAttribute="leading" secondItem="BYa-WC-O9y" secondAttribute="leading" id="gd6-7K-dVS"/>
+                            <constraint firstItem="ccy-EM-58N" firstAttribute="top" secondItem="BYa-WC-O9y" secondAttribute="top" id="xOb-qj-6WY"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Recipes" image="books.vertical.circle" catalog="system" id="S7M-tL-L8f"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -171,7 +183,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="kiI-gL-sgM" firstAttribute="top" secondItem="IlD-aR-1WU" secondAttribute="top" constant="30" id="OrE-vK-Ile"/>
                                             <constraint firstAttribute="width" constant="393" id="bL2-3w-gXo"/>
@@ -181,6 +193,8 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="IlD-aR-1WU" firstAttribute="top" secondItem="bvz-BT-kx9" secondAttribute="top" constant="17" id="QgT-ov-mFW"/>
                                     <constraint firstAttribute="trailing" secondItem="IlD-aR-1WU" secondAttribute="trailing" id="S53-AG-SFW"/>
