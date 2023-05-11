@@ -98,12 +98,14 @@ class RecipeDetailsViewController: UIViewController {
             
             instructionsLabel.text = instructionString
             
-            if let calories = recipe.calories?.allObjects {
-                print(recipe)
-                nutritionInformationLabel.text = "Calories: \(calories)"
-                print("This is where the calories should be showing")
+            if let nutrients = recipe.nutrients?.allObjects as? [Nutrient] {
+                print(nutrients)
+                if let calories = nutrients.first(where: {$0.name == "Calories"}) {
+                    nutritionInformationLabel.text = "Calories: \(calories.amount.rounded().formatted())"
+                }
             } else {
-                nutritionInformationLabel.text = ""
+                print("This is where the calories should be showing")
+//                nutritionInformationLabel.text = ""
             }
         }
     }

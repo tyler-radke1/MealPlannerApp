@@ -112,13 +112,15 @@ func retrieveRecipieInfo(usingRecipieID id: Int) async throws -> ViewedRecipe {
         "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
     ]
 
-    let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/\(id)/information")! as URL,
+    let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/\(id)/information?includeNutrition=true")! as URL,
                                             cachePolicy: .useProtocolCachePolicy,
                                         timeoutInterval: 10.0)
     request.httpMethod = "GET"
     request.allHTTPHeaderFields = headers
 
     let (data, response) = try await URLSession.shared.data(for: request as URLRequest)
+    
+    print(data.prettyPrintedJSONString())
     
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
         throw APIErrors.fetchRecipeDetailsFailed
@@ -208,12 +210,12 @@ extension String {
 }
 
 struct ViewedRecipe: Codable {
-    var name: String
+    var name: String?
     var readyInMinutes: Int?
     var servings: Int?
-    var ingredients: [ViewedIngredient]
-    var instructions: [AnalyzedInstructions]
-    var calories: Double?
+    var ingredients: [ViewedIngredient]?
+    var instructions: [AnalyzedInstructions]?
+    var nutrition: APINutrition?
     
     enum CodingKeys: String, CodingKey {
         case name = "title"
@@ -221,85 +223,129 @@ struct ViewedRecipe: Codable {
         case instructions = "analyzedInstructions"
         case readyInMinutes
         case servings
-        case calories
+        case nutrition
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.ingredients = try container.decode([ViewedIngredient].self, forKey: .ingredients)
-        self.readyInMinutes = try container.decodeIfPresent(Int.self, forKey: .readyInMinutes)
         self.instructions = try container.decode([AnalyzedInstructions].self, forKey: .instructions)
+        self.readyInMinutes = try container.decodeIfPresent(Int.self, forKey: .readyInMinutes)
         self.servings = try container.decodeIfPresent(Int.self, forKey: .servings)
-        self.calories = try container.decodeIfPresent(Double.self, forKey: .calories)
-  
+        self.nutrition = try container.decode(APINutrition.self, forKey: .nutrition)
     }
+}
+
+struct APINutrition: Codable {
+    var nutrients: [APINutrients]
     
-    struct AnalyzedInstructions: Codable {
-        var name: String
-        var steps: [Step]
-    }
-    
-//    extension [AnalyzedInstructions] {
-//        func getString() {
-//
-//        }
-//    }
-    
-  //  recipe.instructions.getString()
-    
-    struct Step: Codable {
-        var number: Int
-        var step: String
-    }
-    
-    struct ViewedInstruction: Codable {
-        var number: Int
-        var step: String
-        var ingredients: [ViewedIngredient]
-        
-        enum CodingKeys: String, CodingKey {
-            case number
-            case step
-            case ingredients
-        }
-    }
-    
-    struct ViewedIngredient: Codable {
-        var name: String
-        var quantity: String
-        
-        enum CodingKeys: String, CodingKey {
-            case name
-            case amount
-            case unit
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.name = try container.decode(String.self, forKey: .name)
-            let amount = try container.decode(Double.self, forKey: .amount)
-            let unit = try container.decode(String.self, forKey: .unit)
-            self.quantity = "\(amount) \(unit)"
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(name, forKey: .name)
-            
-            let strings = quantity.components(separatedBy: " ")
-            
-            try container.encode(Double(strings.first ?? "0"), forKey: .amount)
-            try container.encode(strings.last ?? "", forKey: .unit)
-        }
-        
-        init(name: String, quantity: String) {
-            self.name = name
-            self.quantity = quantity
-        }
+    enum CodingKeys: String, CodingKey {
+        case nutrients
     }
 
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.nutrients = try container.decode([APINutrients].self, forKey: .nutrients)
+    }
 }
+
+
+struct APINutrients: Codable {
+    var name: String
+    var amount: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case amount
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.amount = try container.decode(Double.self, forKey: .amount)
+    }
+}
+
+
+struct AnalyzedInstructions: Codable {
+    var name: String
+    var steps: [APIStep]
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case steps
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.steps = try container.decode([APIStep].self, forKey: .steps)
+    }
+}
+    
+struct APIStep: Codable {
+    var number: Int
+    var step: String
+    
+    enum CodingKeys: String, CodingKey {
+        case number
+        case step
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try container.decode(Int.self, forKey: .number)
+        self.step = try container.decode(String.self, forKey: .step)
+    }
+}
+    
+struct ViewedInstruction: Codable {
+    var number: Int
+    var step: String
+    var ingredients: [ViewedIngredient]
+    
+    enum CodingKeys: String, CodingKey {
+        case number
+        case step
+        case ingredients
+    }
+}
+    
+struct ViewedIngredient: Codable {
+    var name: String
+    var quantity: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case amount
+        case unit
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        let amount = try container.decode(Double.self, forKey: .amount)
+        let unit = try container.decode(String.self, forKey: .unit)
+        self.quantity = "\(amount) \(unit)"
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        
+        let strings = quantity.components(separatedBy: " ")
+        
+        try container.encode(Double(strings.first ?? "0"), forKey: .amount)
+        try container.encode(strings.last ?? "", forKey: .unit)
+    }
+    
+    init(name: String, quantity: String) {
+        self.name = name
+        self.quantity = quantity
+    }
+}
+
+
     extension Data {
         func prettyPrintedJSONString() {
             guard

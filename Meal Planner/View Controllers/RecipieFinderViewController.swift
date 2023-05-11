@@ -42,21 +42,32 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 recipe.name = recipeDetailsToSave.name
                 recipe.photo = cell.recipeimage.image?.pngData()
                 
-                for (index, ingredient) in recipeDetailsToSave.ingredients.enumerated() {
-                    let savedIngredient = Ingredient(context: context)
-                    savedIngredient.name = ingredient.name
-                    savedIngredient.quantity = ingredient.quantity
-                    savedIngredient.recipe = recipe
-                    savedIngredient.sortID = Int64(index)
+                if let ingredients = recipeDetailsToSave.ingredients {
+                    for (index, ingredient) in ingredients.enumerated() {
+                        let savedIngredient = Ingredient(context: context)
+                        savedIngredient.name = ingredient.name
+                        savedIngredient.quantity = ingredient.quantity
+                        savedIngredient.recipe = recipe
+                        savedIngredient.sortID = Int64(index)
+                    }
                 }
                 
-                if recipeDetailsToSave.instructions.count != 0 {
+                if let instructions = recipeDetailsToSave.instructions, instructions.count != 0 {
                     
-                    for step in recipeDetailsToSave.instructions.first!.steps {
+                    for step in instructions.first!.steps {
                         let savedStep = Step(context: context)
                         savedStep.number = Int16(step.number)
                         savedStep.step = step.step
                         savedStep.recipe = recipe
+                    }
+                }
+                
+                if let nutrients = recipeDetailsToSave.nutrition?.nutrients {
+                    for nutrient in nutrients {
+                        let savedNutrient = Nutrient(context: context)
+                        savedNutrient.name = nutrient.name
+                        savedNutrient.amount = nutrient.amount
+                        savedNutrient.recipe = recipe
                     }
                 }
                 
