@@ -10,18 +10,55 @@ import UIKit
 extension UIColor {
     
     static var customLight: UIColor {
-        return UIColor(red: 249 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1)
+        let red: CGFloat = 249
+        let green: CGFloat = 247
+        let blue: CGFloat = 247
+        
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
     
     static var customLightBlue: UIColor {
-        return UIColor(red: 219 / 255, green: 226 / 255, blue: 239 / 255, alpha: 1)
+        let red: CGFloat = 219
+        let green: CGFloat = 226
+        let blue: CGFloat = 239
+        
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
     
     static var customBlue: UIColor {
-        return UIColor(red: 63 / 255, green: 114 / 255, blue: 175 / 255, alpha: 1)
+        let red: CGFloat = 63
+        let green: CGFloat = 114
+        let blue: CGFloat = 175
+        
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
     
     static var customDarkBlue: UIColor {
-       return UIColor(red: 17, green: 45, blue: 78, alpha: 1)
+        let red: CGFloat = 17
+        let green: CGFloat = 45
+        let blue: CGFloat = 78
+        
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
+    }
+}
+
+extension UIViewController {
+        func setColor() {
+        view.backgroundColor = .customBlue
+        view.tintColor = .customLight
+    }
+}
+
+extension UITableView {
+    func setTableViewColor() {
+        self.backgroundColor = .customLightBlue
+        self.tintColor = .customLight
+    }
+}
+
+extension UITableViewCell {
+    func setCellColor() {
+        self.backgroundColor = .customLightBlue
+        self.tintColor = .customLight
     }
 }

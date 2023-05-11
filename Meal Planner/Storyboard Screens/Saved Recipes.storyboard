@@ -26,8 +26,7 @@
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ccy-EM-58N">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
-                                <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="sectionIndexBackgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipesTableViewCell" rowHeight="81" id="YqP-Yp-bto" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="81"/>
@@ -83,7 +82,6 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="6gV-B3-LYv" secondAttribute="bottom" constant="7" id="767-d5-rGE"/>
                                                 <constraint firstItem="419-Cj-7gW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="M8b-EF-8GE" secondAttribute="trailing" constant="7" id="SNM-Ik-7a9"/>
@@ -106,8 +104,6 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BYa-WC-O9y"/>
-                        <color key="backgroundColor" red="0.2941176593" green="0.44313728810000003" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="tintColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="BYa-WC-O9y" firstAttribute="bottom" secondItem="ccy-EM-58N" secondAttribute="bottom" id="7j1-l8-mVN"/>
                             <constraint firstItem="ccy-EM-58N" firstAttribute="trailing" secondItem="BYa-WC-O9y" secondAttribute="trailing" id="b72-6f-3ba"/>
@@ -183,7 +179,6 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="kiI-gL-sgM" firstAttribute="top" secondItem="IlD-aR-1WU" secondAttribute="top" constant="30" id="OrE-vK-Ile"/>
                                             <constraint firstAttribute="width" constant="393" id="bL2-3w-gXo"/>

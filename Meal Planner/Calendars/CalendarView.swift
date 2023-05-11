@@ -43,8 +43,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
         
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        print(paths)
+        setColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +105,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendar.calendar = gregorian
         
         calendar.backgroundColor = .customLightBlue
+        
+        calendar.tintColor = .customBlue
         
         self.view.addSubview(calendar)
         
@@ -198,6 +199,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     
     func configure(cell: MealCell, at indexPath: IndexPath) {
+        cell.setCellColor()
+        
         let tapRecognizer = ImageTapGesture(target: self, action: #selector(imageTapped))
         
         var recipe: Recipe? = nil

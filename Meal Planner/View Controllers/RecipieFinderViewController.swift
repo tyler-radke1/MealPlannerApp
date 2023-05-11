@@ -100,6 +100,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         recipiesTableView.dataSource = self
         
         hideKeyboardWhenTapped()
+        setColor()
+        recipiesTableView.setTableViewColor()
         
     }
     
@@ -166,7 +168,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
-                
+        cell.setCellColor()
+        
         let recipe = recipes[indexPath.row]
         
         cell.recipeTitleLabel.text = recipe.title
@@ -174,11 +177,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         cell.delegate = self
         
         setButtonStateTasks[indexPath] = Task {
-//            for favoriteRecipe in favoritedRecipes {
-//                if Int(favoriteRecipe.id) == recipe.id {
-//                    cell.favoriteButton.isSelected = true
-//                }
-//            }
             guard let recipeId = recipe.id else { return }
             let check = favoritedRecipes.first(where: { $0.id == recipeId })
             

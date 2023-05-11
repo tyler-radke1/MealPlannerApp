@@ -39,7 +39,6 @@
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="mealButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JRg-wY-NSd"/>
                                                         <action selector="mealButtonTapped:" destination="oHm-nr-HDq" eventType="touchUpInside" id="ZhV-oC-BW0"/>
                                                     </connections>
                                                 </button>
@@ -59,7 +58,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" red="0.2941176593" green="0.44313728810000003" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CZz-y1-7pe" secondAttribute="trailing" constant="16" id="0ZJ-bs-4AD"/>

@@ -55,9 +55,8 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-gp-2Ee">
                                 <rect key="frame" x="0.0" y="183.66666666666669" width="393" height="585.33333333333326"/>
-                                <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexBackgroundColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="apiTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="APIResultTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="81"/>
@@ -121,7 +120,6 @@
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.86274516580000005" green="0.88627451660000001" blue="0.93333339689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7iP-OA-yar" secondAttribute="bottom" constant="8" id="4bE-8G-dDT"/>
                                                 <constraint firstItem="EMT-3G-ZJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7iP-OA-yar" secondAttribute="trailing" id="BBl-IL-by7"/>
@@ -144,7 +142,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BWi-ap-CIE"/>
-                        <color key="backgroundColor" red="0.2941176593" green="0.44313728810000003" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.97647058823529409" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SSh-gp-2Ee" firstAttribute="top" secondItem="kas-4o-K6X" secondAttribute="bottom" constant="8" id="1nA-F7-00H"/>
