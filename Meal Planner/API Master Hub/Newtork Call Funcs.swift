@@ -177,26 +177,31 @@ struct RecipieResult: CustomStringConvertible, Codable {
 extension String {
     private func doubleToFraction(double: Double) -> String {
         let tolerance = 0.0001
+        let whole = Int(double)
+        let frac = double - Double(whole)
         var num = 1
         var den = 1
-        var frac: Double = Double(num) / Double(den)
+        var fracValue: Double = Double(num) / Double(den)
         
-        while abs(frac - double) > tolerance {
-            if frac < double {
+        while abs(fracValue - frac) > tolerance {
+            if fracValue < frac {
                 num += 1
             } else {
                 den += 1
-                num = Int(double * Double(den))
+                num = Int(frac * Double(den))
             }
-            frac = Double(num) / Double(den)
+            fracValue = Double(num) / Double(den)
         }
         
-        if den == 1 {
-            return "\(num)"
-        } else {
+        if frac == 0 {
+            return "\(whole)"
+        } else if whole == 0 {
             return "\(num)/\(den)"
+        } else {
+            return "\(whole) \(num)/\(den)"
         }
     }
+
 
     var formattedIngredientQuantity: String {
         let strings = components(separatedBy: " ")
