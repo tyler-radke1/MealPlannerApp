@@ -9,8 +9,7 @@ import UIKit
 import CoreData
 
 class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
-
-
+   
     private let context = PersistenceController.shared.viewContext
     
     private var recipes: [Recipe] = []
@@ -119,6 +118,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func calendarButtonTapped(cell: RecipeTableViewCell) {
+        
     }
     
     // MARK: - Navigation

@@ -23,6 +23,9 @@ class RecipeDetailsViewController: UIViewController {
     
     @IBOutlet weak var recipeImage: UIImageView!
     
+    @IBOutlet weak var nutritionInformationLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -37,10 +40,33 @@ class RecipeDetailsViewController: UIViewController {
             var ingredientStrings: [String] = []
             
             if let ingredientsSet = recipe.ingredients as? Set<Ingredient> {
-                let ingredientsArray = Array(ingredientsSet)
+                var ingredientsArray = Array(ingredientsSet)
+                /// Add `orderID` variable to the Core Data Ingredient object
+                /// When you save the JSON object to Core Data, grab out the index of the Ingredient and save it as the `orderID` of that ingredient.
+                /// ex:
+                /// JSON: [Eggs, Beans, Toast]
+                /// Core Data:
+                /// Ingedient("Eggs", orderID: <Array Index, which is 0>)
+                /// Ingredient("Toast", orderID: 2)
+                ///
+                /// Notes:
+                /// array.enumerated() -> [(Index, Element)]
+                /// - for (index, ingredient) in ingredients.enumerated() {
+                ///
+                /// When you read the ingredients from Core Data, sort them by orderID
+                /// i.e.
+                /// 1. Set -> Array ✅
+                /// 2. array.sorted(by orderID)
+                ///
                 
+                
+                ingredientsArray.sort { ingredient1, ingredient2 in
+                    return ingredient1.sortID < ingredient2.sortID
+                }
+//                ingredientsArray.sort { $0.sortID < $1.sortID }
+
                 for ingredient in ingredientsArray {
-                    let ingredientString = "\(ingredient.quantity ?? "") - \(ingredient.name ?? "")"
+                    let ingredientString = "\(ingredient.quantity?.formattedIngredientQuantity ?? "") \(ingredient.name ?? "")"
                     
                     ingredientStrings.append(ingredientString)
                 }
@@ -57,19 +83,37 @@ class RecipeDetailsViewController: UIViewController {
                 
             }
             
-            instructionsLabel.text = recipe.instructions
+            
+            var instructionString = ""
+            
+            if var instructions = recipe.instructions?.allObjects as? [Step] {
+                
+                instructions.sort { $0.number < $1.number }
+                
+                for step in instructions {
+                    instructionString.append("Step \(step.number): ")
+                    instructionString.append("\(step.step ?? "")\n\n")
+                }
+            }
+            
+            instructionsLabel.text = instructionString
+            
+            if let calories = recipe.calories?.allObjects {
+                print(recipe)
+                nutritionInformationLabel.text = "Calories: \(calories)"
+                print("This is where the calories should be showing")
+            } else {
+                nutritionInformationLabel.text = ""
+            }
         }
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension Optional where Wrapped == NSSet {
+    func array<T: Hashable>(of: T.Type) -> [T] {
+        if let set = self as? Set<T> {
+            return Array(set)
+        }
+        return [T]()
     }
-    */
-
 }
