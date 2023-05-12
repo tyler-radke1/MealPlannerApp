@@ -109,20 +109,48 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 
                 recipe.id = Int64(recipeToSave.id!)
                 recipe.name = recipeDetailsToSave.name
-                recipe.instructions = recipeDetailsToSave.instructions
                 recipe.photo = cell.recipeimage.image?.pngData()
                 
-                for ingredient in recipeDetailsToSave.ingredients {
-                    let savedIngreient = Ingredient(context: context)
-                    savedIngreient.name = ingredient.name
-                    savedIngreient.quantity = ingredient.quantity
-                    savedIngreient.recipe = recipe
+                if let ingredients = recipeDetailsToSave.ingredients {
+                    for (index, ingredient) in ingredients.enumerated() {
+                        let savedIngredient = Ingredient(context: context)
+                        savedIngredient.name = ingredient.name
+                        savedIngredient.quantity = ingredient.quantity
+                        savedIngredient.recipe = recipe
+                        savedIngredient.sortID = Int64(index)
+                    }
+                }
+                
+                if let instructions = recipeDetailsToSave.instructions, instructions.count != 0 {
+                    
+                    for step in instructions.first!.steps {
+                        let savedStep = Step(context: context)
+                        savedStep.number = Int16(step.number)
+                        savedStep.step = step.step
+                        savedStep.recipe = recipe
+                    }
+                }
+                
+                if let nutrients = recipeDetailsToSave.nutrition?.nutrients {
+                    for nutrient in nutrients {
+                        let savedNutrient = Nutrient(context: context)
+                        savedNutrient.name = nutrient.name
+                        savedNutrient.amount = nutrient.amount
+                        savedNutrient.recipe = recipe
+                    }
                 }
                 
                 favoritedRecipes.append(recipe)
                 
                 print("Successfully created recipe!")
-            } else {
+                
+                do {
+                    try context.save()
+                    print("Sucessfully saved context!")
+                } catch {
+                    print("Failed to save recipe")
+                }
+            }  else {
                 guard let recipeId = recipes[indexPath.row].id else { return }
                 
                 if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
@@ -133,44 +161,33 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                     print("Couldn't find matching id")
                 }
             }
-            
-            do {
-                try context.save()
-                print("Sucessfully saved context!")
-            } catch {
-                print("Failed to save recipe")
-            }
         }
     }
     
     func calendarButtonTapped(on cell: APIResultTableViewCell) {
         
     }
-    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return recipes.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
-        
         configureCell(for: cell, withIndexPath: indexPath)
-        
         return cell
     }
     
     func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
         cell.setCellColor()
-        
+
         let recipe = recipes[indexPath.row]
         
         cell.recipeTitleLabel.text = recipe.title
@@ -195,12 +212,14 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         }
         
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewedRecipes[indexPath] == nil {
             Task {
                 do {
+                    
                    let recipeDetails = try await recipieDetailsSearch(using: indexPath)
+
                 } catch {
                     print(error)
                 }
