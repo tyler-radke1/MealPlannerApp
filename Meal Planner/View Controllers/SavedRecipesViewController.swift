@@ -21,6 +21,8 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setColor()
+        savedRecipesTableView.setTableViewColor()
         
         self.savedRecipesTableView.dataSource = self
         self.savedRecipesTableView.delegate = self

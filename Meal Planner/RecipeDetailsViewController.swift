@@ -10,10 +10,9 @@ import CoreData
 
 
 class RecipeDetailsViewController: UIViewController {
-    
     var recipe: Recipe?
-    var ingredients: [Ingredient] = []
     
+    var ingredients: [Ingredient] = []
     
     @IBOutlet weak var recipeNameLabel: UILabel!
     
@@ -25,7 +24,7 @@ class RecipeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       setColor()
         // Do any additional setup after loading the view.
     }
     
@@ -59,16 +58,5 @@ class RecipeDetailsViewController: UIViewController {
             instructionsLabel.text = recipe.instructions
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

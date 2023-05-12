@@ -23,14 +23,12 @@
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
 		9F60640F29F2DDF60024584D /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F60640E29F2DDF60024584D /* MealCell.swift */; };
 		9F7903722A0A8C1500985FEB /* ImageTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7903712A0A8C1500985FEB /* ImageTapGesture.swift */; };
+		9F7903742A0BE3D600985FEB /* Color Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7903732A0BE3D600985FEB /* Color Extension.swift */; };
 		9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */; };
 		9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */; };
 		9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E029ED8A6A009F8B79 /* Main.storyboard */; };
 		9F88E5E429ED8A6B009F8B79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E329ED8A6B009F8B79 /* Assets.xcassets */; };
 		9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E529ED8A6B009F8B79 /* LaunchScreen.storyboard */; };
-		9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */; };
-		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
-		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
 		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +48,7 @@
 		9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Calendar View.storyboard"; sourceTree = "<group>"; };
 		9F60640E29F2DDF60024584D /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		9F7903712A0A8C1500985FEB /* ImageTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTapGesture.swift; sourceTree = "<group>"; };
+		9F7903732A0BE3D600985FEB /* Color Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color Extension.swift"; sourceTree = "<group>"; };
 		9F88E5D729ED8A6A009F8B79 /* Meal Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meal Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F88E5DC29ED8A6A009F8B79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +56,6 @@
 		9F88E5E329ED8A6B009F8B79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F88E5E629ED8A6B009F8B79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F88E5E829ED8A6B009F8B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		FF012C0F29F1846D00E7033D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,11 +145,11 @@
 		9F88E5D929ED8A6A009F8B79 /* Meal Planner */ = {
 			isa = PBXGroup;
 			children = (
+				9F7903732A0BE3D600985FEB /* Color Extension.swift */,
 				9DF3D14329FAC823006EA354 /* Table View Cells */,
 				9D39F38829F18E95000955C1 /* API Master Hub */,
 				844F445829EEFCE700464FEE /* RecipeTableViewCell.swift */,
 				8420E15F29F19757001A7780 /* RecipeDetailsViewController.swift */,
-				9F9BEC0E29EED6F600C4AB9C /* Objects */,
 				9D9DF43929ED8FAF007D1222 /* View Controllers */,
 				9DF3D13C29FAC1D0006EA354 /* Ingredients */,
 				9F7903712A0A8C1500985FEB /* ImageTapGesture.swift */,
@@ -168,16 +164,6 @@
 				9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */,
 			);
 			path = "Meal Planner";
-			sourceTree = "<group>";
-		};
-		9F9BEC0E29EED6F600C4AB9C /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				9F9BEC0A29EED6C000C4AB9C /* Ingredient.swift */,
-				9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */,
-				9F9BEC0F29EED71500C4AB9C /* Day.swift */,
-			);
-			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,17 +248,15 @@
 				844F445729EEE69600464FEE /* SavedRecipesViewController.swift in Sources */,
 				9DF3D14029FAC1D0006EA354 /* IngredientViewController.swift in Sources */,
 				84D3172829F97CCA00EC1A48 /* Persistence.swift in Sources */,
-				9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */,
 				9F88E5DB29ED8A6A009F8B79 /* AppDelegate.swift in Sources */,
 				9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */,
 				9F60640F29F2DDF60024584D /* MealCell.swift in Sources */,
 				9DF3D13F29FAC1D0006EA354 /* IngredientTableViewCell.swift in Sources */,
-				9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */,
 				9F7903722A0A8C1500985FEB /* ImageTapGesture.swift in Sources */,
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				8420E16029F19757001A7780 /* RecipeDetailsViewController.swift in Sources */,
+				9F7903742A0BE3D600985FEB /* Color Extension.swift in Sources */,
 				9D20EA5C29FACDF30032F62C /* APIResultTableViewCell.swift in Sources */,
-				9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */,
 				9D39F38A29F18EB6000955C1 /* Newtork Call Funcs.swift in Sources */,
 				844F445929EEFCE700464FEE /* RecipeTableViewCell.swift in Sources */,
 				8442AF6929FC099D001D63F1 /* RecipieFinderViewController.swift in Sources */,

@@ -41,6 +41,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         recipiesTableView.dataSource = self
         
         hideKeyboardWhenTapped()
+        setColor()
+        recipiesTableView.setTableViewColor()
         
     }
     
@@ -53,6 +55,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         fetchCoreDataIngredients()
         fetchCoreDataRecipes()
     }
+    
     func fetchCoreDataIngredients() {
         let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
 
@@ -143,9 +146,9 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     func calendarButtonTapped(on cell: APIResultTableViewCell) {
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -166,7 +169,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
-                
+        cell.setCellColor()
+        
         let recipe = recipes[indexPath.row]
         
         cell.recipeTitleLabel.text = recipe.title
@@ -258,8 +262,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
         viewedRecipes[indexPath] = recipeDetails
-        
-        print(viewedRecipes)
         
         return recipeDetails
     }
