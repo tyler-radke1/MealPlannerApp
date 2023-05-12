@@ -25,12 +25,29 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        tableview.dataSource = self
-        tableview.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         
         fetchCategory()
         createFetchRequest()
         
+        
+        self.tableView.register(
+            SectionHeaderView.nib,
+            forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseIdentifier
+        )
+//        self.tableView.register(
+//            SectionHeaderView.self,
+//            forHeaderFooterViewReuseIdentifier: "catergoryHeader"
+//        )
+    }
+    
+    func tableView(_ tableView: UITableView,
+            viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderView.reuseIdentifier) as! SectionHeaderView
+        view.textLabel?.text = categories[section]
+
+       return view
     }
 
     @IBOutlet var editButton: UIButton!
@@ -40,7 +57,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet var textField: UITextField!
     
     
-    @IBOutlet var tableview: UITableView!
+    @IBOutlet var tableView: UITableView!
     
     
     @IBAction func addSectionButtonTapped(_ sender: Any) {
@@ -62,7 +79,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
                        try context.save()
                         ingredientsByCategories[category.categoryName!] = []
                         categories.append(category.categoryName!)
-                        tableview.reloadData()
+                        tableView.reloadData()
                     } catch {
                         print(error)
                     }
@@ -74,10 +91,30 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
             present(alertController, animated: true, completion: nil)
         }
     
+    func fetchCategory() {
+        let fetchRequet = NSFetchRequest<Category>(entityName: "Category")
+        do {
+            let results = try context.fetch(fetchRequet)
+            
+            ingredientsByCategories["Uncategorized"] = []
+            categories.append("Uncategorized")
+            
+            for category in results {
+                ingredientsByCategories[category.categoryName!] = []
+                categories.append(category.categoryName!)
+            }
+        }catch {
+            print(error)
+        }
+    }
+    
     func createFetchRequest() {
         let request = NSFetchRequest<Ingredient>(entityName: "Ingredient")
-        let sortDescriptor = NSSortDescriptor(key: "index", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
+        let sectionSortDescriptor = NSSortDescriptor(key: "sectionIndex", ascending: true)
+        let rowSortDescriptor = NSSortDescriptor(key: "rowIndex", ascending: true)
+        
+        
+        request.sortDescriptors = [sectionSortDescriptor, rowSortDescriptor]
              do {
                  let results = try context.fetch(request)
  
@@ -132,12 +169,12 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         addIngredientCd(ingredient: ingredient)
         if ingredient.category == nil {
             ingredientsByCategories["Uncategorized"]?.append(ingredient)
-//            tableview.insertRows(at: [0], with: .automatic)
+//            tableView.insertRows(at: [0], with: .automatic)
         } else {
             ingredientsByCategories[ingredient.category!.categoryName!]?.append(ingredient)
         }
 //        ingredients.append(ingredient)
-        tableview.reloadData()
+        tableView.reloadData()
         
         textField.text = ""
     }
@@ -157,7 +194,11 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     @IBAction func editButtonTapped(_ sender: Any) {
 //        editmode
         isEditingEnabled.toggle()
-        tableview.setEditing(isEditingEnabled, animated: true)
+        tableView.setEditing(isEditingEnabled, animated: true)
+        
+        headerViews.values.forEach { headerView in
+            headerView.subviews.last?.isHidden = !isEditingEnabled
+        }
     }
     //    MARK: Managing navigation
 //    let ingreadientListViewController = IngredientListViewController()
@@ -166,23 +207,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     
     
     
-    func fetchCategory() {
-        let fetchRequet = NSFetchRequest<Category>(entityName: "Category")
-        do {
-            let results = try context.fetch(fetchRequet)
-            
-            ingredientsByCategories["Uncategorized"] = []
-            categories.append("Uncategorized")
-            
-            for category in results {
-                ingredientsByCategories[category.categoryName!] = []
-                categories.append(category.categoryName!)
-            }
-        }catch {
-            print(error)
-        }
-    }
-    
+   
     
     
     
@@ -206,10 +231,23 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         
         for (sectionIndex, category) in categories.enumerated() {
             for (rowIndex, ingredient) in ingredientsByCategories[category]!.enumerated() {
-                ingredient.index = CoreDataIndexPath(indexPath: IndexPath(row: rowIndex, section: sectionIndex))
+                ingredient.sectionIndex = Int64(sectionIndex)
+                ingredient.rowIndex = Int64(rowIndex)
+                
+                if sectionIndex != 0 {
+                    let fetchRequet = NSFetchRequest<Category>(entityName: "Category")
+                    do {
+                        let results = try context.fetch(fetchRequet)
+                        
+                        ingredient.category = results[sectionIndex - 1]
+                    }catch {
+                        print(error)
+                    }
+                } else {
+                    ingredient.category = nil
+                }
             }
         }
-        
         
         do {
             try context.save()
@@ -228,27 +266,51 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //        }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard !categories.isEmpty else{ return nil }
-        
-//        switch section {
-//        case 0:
-////            if let noCategory = ingredientsByCategories["Uncategorized"] {
-////                return "Uncategorized"
-////            } else {
-//                return categories[0]
-////            }
-//        default:
-//            if let noCategory = ingredientsByCategories["Uncategorized"] {
-//                return categories[section - 1]
-//            } else {
-                return categories[section]
-//            }
-//        }
-        
-//        return section == 0 ? "Uncategorized" : categories[section - 1].categoryName
-    }
+    var headerViews = [Int: UIStackView]()
     
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard !categories.isEmpty else{ return nil }
+//
+//        let label = UILabel()
+//        label.text = categories[section]
+//
+//        let button = UIButton()
+//        var config = UIButton.Configuration.bordered()
+//        config.title = "REMOVE"
+//        button.configuration = config
+//        button.isHidden = !tableView.isEditing
+//
+//        let hStack = UIStackView(arrangedSubviews: [label, button])
+//        hStack.axis = .horizontal
+////        hStack.insetsLayoutMarginsFromSafeArea = true
+//
+//        headerViews[section] = hStack
+//
+//        return hStack
+//
+//    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        guard !categories.isEmpty else{ return nil }
+//
+////        switch section {
+////        case 0:
+//////            if let noCategory = ingredientsByCategories["Uncategorized"] {
+//////                return "Uncategorized"
+//////            } else {
+////                return categories[0]
+//////            }
+////        default:
+////            if let noCategory = ingredientsByCategories["Uncategorized"] {
+////                return categories[section - 1]
+////            } else {
+//                return categories[section]
+////            }
+//        }
+
+//        return section == 0 ? "Uncategorized" : categories[section - 1].categoryName
+//    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //         return ingredients.count
 //        switch section {
@@ -301,7 +363,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
            
             
 //            tableView.deleteRows(at: [indexPath], with: .fade)
-            self.context.delete(self.ingredients[indexPath.row])
+            self.context.delete(self.ingredientsByCategories[categories[indexPath.section]]![indexPath.row])
             do {
                 try self.context.save()
             } catch {
@@ -319,8 +381,8 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
                 self.ingredientsByCategories[categories[indexPath.section]]?.remove(at: indexPath.row)
 //            }
            
-            self.tableview.deleteRows(at: [indexPath], with: .automatic)
-//            self.tableview.reloadData()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+//            self.tableView.reloadData()
         }
     }
     

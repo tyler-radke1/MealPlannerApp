@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionHeaderView" customModule="Meal_Planner" customModuleProvider="target">
+            <connections>
+                <outlet property="headerTitle" destination="4aF-J3-LXL" id="Xiv-Tm-NQP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="rVf-Ba-oVG" userLabel="Section Header" customClass="SectionHeaderView" customModule="Meal_Planner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="394" height="39"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aF-J3-LXL">
+                    <rect key="frame" x="16" y="8" width="46" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="destructive" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-IW-yKt">
+                    <rect key="frame" x="312.66666666666669" y="2" width="73.333333333333314" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                    <connections>
+                        <action selector="deleteButtonTapped" destination="-1" eventType="touchUpInside" id="aCP-fq-Lta"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="8X8-if-AK3"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <accessibility key="accessibilityConfiguration" identifier="catergoryHeader"/>
+            <constraints>
+                <constraint firstItem="4aF-J3-LXL" firstAttribute="leading" secondItem="rVf-Ba-oVG" secondAttribute="leading" constant="16" id="EJb-Ya-MBo"/>
+                <constraint firstItem="EbN-IW-yKt" firstAttribute="centerY" secondItem="rVf-Ba-oVG" secondAttribute="centerY" id="Ilu-XY-5gL"/>
+                <constraint firstItem="4aF-J3-LXL" firstAttribute="centerY" secondItem="rVf-Ba-oVG" secondAttribute="centerY" id="j6a-DP-Apo"/>
+                <constraint firstItem="8X8-if-AK3" firstAttribute="trailing" secondItem="EbN-IW-yKt" secondAttribute="trailing" constant="8" id="xAA-6g-ypW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-24313.846153846152" y="611.72985781990519"/>
+        </view>
+    </objects>
+</document>

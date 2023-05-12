@@ -115,7 +115,7 @@
                     <connections>
                         <outlet property="addButton" destination="EvI-zS-wL8" id="4Xj-88-Gwo"/>
                         <outlet property="editButton" destination="cbL-YK-h1c" id="6o9-7M-yhV"/>
-                        <outlet property="tableview" destination="snH-vR-cHh" id="XaR-Lk-qxx"/>
+                        <outlet property="tableView" destination="snH-vR-cHh" id="PSK-R8-GmU"/>
                         <outlet property="textField" destination="6Lm-Xh-1VX" id="FHe-9W-tO8"/>
                     </connections>
                 </viewController>
