@@ -58,7 +58,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="apiTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="APIResultTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="apiTableViewCell" rowHeight="81" id="fcI-BR-mL6" customClass="RecipeTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fcI-BR-mL6" id="Ck1-ps-I6i">
@@ -98,7 +98,7 @@
                                                             </state>
                                                             <state key="highlighted" image="heart.fill" catalog="system"/>
                                                             <connections>
-                                                                <action selector="favoriteButtonTapped" destination="fcI-BR-mL6" eventType="touchUpInside" id="mLR-Pv-cIj"/>
+                                                                <action selector="favoriteButtonTapped:" destination="fcI-BR-mL6" eventType="touchUpInside" id="s6y-st-Hrj"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RP6-ED-t4l">
@@ -111,7 +111,7 @@
                                                                 <color key="baseForegroundColor" red="0.094117648900000003" green="0.1725490093" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </buttonConfiguration>
                                                             <connections>
-                                                                <action selector="calendarButtonTapped" destination="fcI-BR-mL6" eventType="touchUpInside" id="Hdw-65-CeS"/>
+                                                                <action selector="calendarButtonTapped:" destination="fcI-BR-mL6" eventType="touchUpInside" id="lqR-qC-Wqi"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -133,9 +133,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="favoriteButton" destination="wws-rJ-wsG" id="7XE-af-iYK"/>
-                                            <outlet property="recipeTitleLabel" destination="7iP-OA-yar" id="pwh-ma-kuf"/>
-                                            <outlet property="recipeimage" destination="bEb-sI-aiN" id="KSh-xW-usA"/>
+                                            <outlet property="favoriteButton" destination="wws-rJ-wsG" id="huw-Gq-asY"/>
+                                            <outlet property="recipeImage" destination="bEb-sI-aiN" id="lMJ-qm-I9a"/>
+                                            <outlet property="recipeNameLabel" destination="7iP-OA-yar" id="Kiw-Qz-SnZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -161,11 +161,20 @@
                     <connections>
                         <outlet property="recipieNameTextField" destination="5f9-GV-bVq" id="2q6-h7-ACz"/>
                         <outlet property="recipiesTableView" destination="SSh-gp-2Ee" id="ZRl-0i-NCd"/>
+                        <segue destination="OQa-jb-5D2" kind="presentation" identifier="segueToCalendar" id="DNi-nb-8Fo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAQ-x6-4g8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="934" y="-138"/>
+        </scene>
+        <!--Calendar View-->
+        <scene sceneID="afN-f7-2qk">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="calendarNavController" storyboardName="Calendar View" id="OQa-jb-5D2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9hQ-Jr-eTZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1550" y="-194"/>
         </scene>
     </scenes>
     <resources>

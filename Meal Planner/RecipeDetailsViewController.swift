@@ -24,7 +24,7 @@ class RecipeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       setColor()
+        setColor()
         // Do any additional setup after loading the view.
     }
     
@@ -43,7 +43,6 @@ class RecipeDetailsViewController: UIViewController {
                     ingredientStrings.append(ingredientString)
                 }
                 
-                
                 let allIngredientsString = ingredientStrings.joined(separator: "\n")
                 
                 ingredientsLabel.text = allIngredientsString
@@ -52,11 +51,9 @@ class RecipeDetailsViewController: UIViewController {
             
              if let photoData = recipe.photo {
                 recipeImage.image = UIImage(data: photoData)
-                
             }
             
             instructionsLabel.text = recipe.instructions
         }
     }
-
 }

@@ -94,10 +94,10 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     func configure(calendar: UICalendarView) {
         calendar.delegate = self
         
-        //calendar.center = self.ce
         let centerX = self.view.center.x
+        
         let centerY = self.view.center.y - 195
-        print(centerY)
+       
         calendar.center = CGPoint(x: centerX, y: centerY)
         
         let gregorian = Calendar(identifier: .gregorian)

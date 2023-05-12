@@ -8,8 +8,7 @@
 import UIKit
 import CoreData
 
-class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
-
+class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
 
     private let context = PersistenceController.shared.viewContext
     
@@ -32,7 +31,6 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         } catch {
             print("ERROR")
         }
-        
         
         let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
 
@@ -103,7 +101,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    func favoriteButtonTapped(cell: RecipeTableViewCell) {
+    func favoriteButtonTapped(cell: UITableViewCell) {
         
         guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
@@ -147,15 +145,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
     }
     
-    func calendarButtonTapped(cell: RecipeTableViewCell, passing recipe: Recipe?) {
-        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+    func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
+        guard let cell = cell as? RecipeTableViewCell, let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
-        
-        if let myRecipe = recipe {
-    
-        }
-        
         let recipe = recipes[indexPath.row]
 
         performSegue(withIdentifier: "segueToCalendar", sender: recipe)

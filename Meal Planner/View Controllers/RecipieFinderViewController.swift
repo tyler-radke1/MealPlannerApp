@@ -13,8 +13,7 @@ protocol FavoritedRecipeDelegate {
     func saveRecipesToCoreData()
 }
 
-class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIResultTableViewCellDelegate {
-    
+class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeCellDelegate {
     private let context = PersistenceController.shared.viewContext
     
     var delegate: FavoritedRecipeDelegate? = SavedRecipesViewController.shared
@@ -86,8 +85,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func favoriteButtonTapped(on cell: APIResultTableViewCell) {
-        guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
+    func favoriteButtonTapped(cell: UITableViewCell) {
+        guard let cell = cell as? RecipeTableViewCell, let indexPath = recipiesTableView.indexPath(for: cell) else { return }
         Task {
             var selectedRecipe = viewedRecipes[indexPath]
             
@@ -110,7 +109,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 recipe.id = Int64(recipeToSave.id!)
                 recipe.name = recipeDetailsToSave.name
                 recipe.instructions = recipeDetailsToSave.instructions
-                recipe.photo = cell.recipeimage.image?.pngData()
+                recipe.photo = cell.recipeImage.image?.pngData()
                 
                 for ingredient in recipeDetailsToSave.ingredients {
                     let savedIngreient = Ingredient(context: context)
@@ -143,8 +142,10 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func calendarButtonTapped(on cell: APIResultTableViewCell) {
+    func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
+        guard let recipeResult else { return }
         
+        performSegue(withIdentifier: "segueToCalendar", sender: recipe)
     }
     
     // MARK: - Table view data source
@@ -161,19 +162,21 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! RecipeTableViewCell
         
         configureCell(for: cell, withIndexPath: indexPath)
         
         return cell
     }
     
-    func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
+    func configureCell(for cell: RecipeTableViewCell, withIndexPath indexPath: IndexPath) {
         cell.setCellColor()
         
         let recipe = recipes[indexPath.row]
         
-        cell.recipeTitleLabel.text = recipe.title
+        cell.recipeResult = recipe
+        
+        cell.recipeNameLabel.text = recipe.title
         
         cell.delegate = self
         
@@ -188,7 +191,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             do {
                 guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
                 let image = try await retrieveRecipeImage(using: imageURL)
-                cell.recipeimage.image = image
+                cell.recipeImage.image = image
             } catch {
                 print(error)
             }
