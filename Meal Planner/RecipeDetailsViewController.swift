@@ -28,12 +28,11 @@ class RecipeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        setColor()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if let recipe = recipe {
             recipeNameLabel.text = recipe.name
             
@@ -63,8 +62,8 @@ class RecipeDetailsViewController: UIViewController {
                 ingredientsArray.sort { ingredient1, ingredient2 in
                     return ingredient1.sortID < ingredient2.sortID
                 }
-//                ingredientsArray.sort { $0.sortID < $1.sortID }
-
+                //                ingredientsArray.sort { $0.sortID < $1.sortID }
+                
                 for ingredient in ingredientsArray {
                     let ingredientString = "\(ingredient.quantity?.formattedIngredientQuantity ?? "") \(ingredient.name ?? "")"
                     
@@ -78,7 +77,7 @@ class RecipeDetailsViewController: UIViewController {
                 
             }
             
-             if let photoData = recipe.photo {
+            if let photoData = recipe.photo {
                 recipeImage.image = UIImage(data: photoData)
                 
             }
@@ -105,17 +104,8 @@ class RecipeDetailsViewController: UIViewController {
                 }
             } else {
                 print("This is where the calories should be showing")
-//                nutritionInformationLabel.text = ""
+                //                nutritionInformationLabel.text = ""
             }
         }
-    }
-}
-
-extension Optional where Wrapped == NSSet {
-    func array<T: Hashable>(of: T.Type) -> [T] {
-        if let set = self as? Set<T> {
-            return Array(set)
-        }
-        return [T]()
     }
 }
