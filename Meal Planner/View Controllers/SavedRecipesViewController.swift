@@ -31,18 +31,18 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
             print("ERROR")
         }
         
-        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
-
-        do {
-            let results = try context.fetch(fetchRequest)
-
-            for result in results {
-                print(result)
-                recipes.append(result)
-            }
-        } catch {
-            print("you oofed")
-        }
+//        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
+//
+//        do {
+//            let results = try context.fetch(fetchRequest)
+//
+//            for result in results {
+//                print(result)
+//                recipes.append(result)
+//            }
+//        } catch {
+//            print("you oofed")
+//        }
         
         print("Recipes - \(recipes)")
         
@@ -80,6 +80,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
                // print(result)
                 recipes.append(result)
             }
+            print(results.count)
         } catch {
             print("you oofed")
         }
