@@ -14,7 +14,7 @@ protocol APIResultTableViewCellDelegate {
 
 class APIResultTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var recipeimage: UIImageView!
+    @IBOutlet weak var recipeImage: UIImageView!
     
     @IBOutlet weak var recipeTitleLabel: UILabel!
     

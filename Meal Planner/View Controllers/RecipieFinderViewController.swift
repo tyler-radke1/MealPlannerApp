@@ -40,7 +40,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 
                 recipe.id = Int64(recipeToSave.id!)
                 recipe.name = recipeDetailsToSave.name
-                recipe.photo = cell.recipeimage.image?.pngData()
+                recipe.photo = cell.recipeImage.image?.pngData()
                 
                 if let ingredients = recipeDetailsToSave.ingredients {
                     for (index, ingredient) in ingredients.enumerated() {
@@ -190,7 +190,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
         cell.setCellColor()
-
+        
         
         let recipe = recipes[indexPath.row]
         
@@ -209,28 +209,44 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             do {
                 guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
                 let image = try await retrieveRecipeImage(using: imageURL)
-                cell.recipeimage.image = image
+                cell.recipeImage.image = image
             } catch {
                 print(error)
             }
         }
-        
+    }
+    
+    func loadRecipeIfNeeded(using indexPath: IndexPath) async throws ->
+    ViewedRecipe {
+        if let viewedRecipe = viewedRecipes[indexPath] {
+            return viewedRecipe
+        } else {
+            let recipeDetails = try await recipieDetailsSearch(using: indexPath)
+            viewedRecipes[indexPath] = recipeDetails
+            return recipeDetails
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if viewedRecipes[indexPath] == nil {
+        let selectedRecipe = viewedRecipes[indexPath]
+        //        performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
+        if let detailVC = UIStoryboard(name: "Saved Recipes", bundle: .main).instantiateViewController(withIdentifier: "recipeDetailView") as? RecipeDetailsViewController {
             Task {
                 do {
-                    let recipeDetails = try await recipieDetailsSearch(using: indexPath)
+                    let recipeDetails = try await loadRecipeIfNeeded(using: indexPath)
                     
                     // Diplay detail screen using viewedRecipes[indexPath]
+                    
+                    DispatchQueue.main.async {
+                        
+                        detailVC.viewedRecipe = recipeDetails
+                        detailVC.viewedRecipeImage = (tableView.cellForRow(at: indexPath) as! APIResultTableViewCell).recipeImage.image
+                        self.navigationController?.pushViewController(detailVC, animated: true)
+                    }
                 } catch {
                     print(error)
                 }
             }
-        } else {
-            // Diplay detail screen using viewedRecipes[indexPath]
-            print("Already been selected")
         }
     }
     //MARK: - Search Functions
@@ -290,4 +306,13 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         return recipeDetails
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showRecipeDetails" {
+//            if let recipeDetailsVC = segue.destination as? RecipeDetailsViewController,
+//               let selectedRecipe = sender as? Recipe {
+//                recipeDetailsVC.recipe = selectedRecipe
+//            }
+//        }
+    
 }

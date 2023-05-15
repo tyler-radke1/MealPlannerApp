@@ -134,8 +134,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favoriteButton" destination="wws-rJ-wsG" id="7XE-af-iYK"/>
+                                            <outlet property="recipeImage" destination="bEb-sI-aiN" id="KSh-xW-usA"/>
                                             <outlet property="recipeTitleLabel" destination="7iP-OA-yar" id="pwh-ma-kuf"/>
-                                            <outlet property="recipeimage" destination="bEb-sI-aiN" id="KSh-xW-usA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -161,11 +161,20 @@
                     <connections>
                         <outlet property="recipieNameTextField" destination="5f9-GV-bVq" id="2q6-h7-ACz"/>
                         <outlet property="recipiesTableView" destination="SSh-gp-2Ee" id="ZRl-0i-NCd"/>
+                        <segue destination="sqi-Lx-2KN" kind="presentation" identifier="showRecipeDetails" id="TxL-eU-Y8k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAQ-x6-4g8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="-138"/>
+            <point key="canvasLocation" x="833" y="-138"/>
+        </scene>
+        <!--recipeDetailView-->
+        <scene sceneID="FcA-KN-eqZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Saved Recipes" referencedIdentifier="recipeDetailView" id="sqi-Lx-2KN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sJG-9o-TD2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1673" y="-138"/>
         </scene>
     </scenes>
     <resources>

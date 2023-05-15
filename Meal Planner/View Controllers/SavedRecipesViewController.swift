@@ -155,9 +155,9 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
             return
         }
         
-        if let myRecipe = recipe {
-    
-        }
+//        if let myRecipe = recipe {
+//    
+//        }
         
         let recipe = recipes[indexPath.row]
 
