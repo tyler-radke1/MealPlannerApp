@@ -96,7 +96,9 @@
                                                             <state key="selected">
                                                                 <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
                                                             </state>
-                                                            <state key="highlighted" image="heart.fill" catalog="system"/>
+                                                            <state key="highlighted" image="heart.fill" catalog="system">
+                                                                <color key="titleShadowColor" red="0.094117648900000003" green="0.1725490093" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="favoriteButtonTapped:" destination="fcI-BR-mL6" eventType="touchUpInside" id="s6y-st-Hrj"/>
                                                             </connections>

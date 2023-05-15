@@ -85,8 +85,9 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    func favoriteButtonTapped(cell: UITableViewCell) {
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool = false) {
         guard let cell = cell as? RecipeTableViewCell, let indexPath = recipiesTableView.indexPath(for: cell) else { return }
+        var recipeForCalendarView: Recipe? = nil
         Task {
             var selectedRecipe = viewedRecipes[indexPath]
             
@@ -119,6 +120,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 
                 favoritedRecipes.append(recipe)
+                recipeForCalendarView = recipe
                 
                 print("Successfully created recipe!")
             } else {
@@ -131,23 +133,35 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 } else {
                     print("Couldn't find matching id")
                 }
+                
+                recipeForCalendarView = favoritedRecipes.first(where: { $0.id == recipeId })
             }
             
             do {
                 try context.save()
                 print("Sucessfully saved context!")
+                
+//                if calendarView {
+//                    performSegue(withIdentifier: "segueToCalendar", sender: recipeForCalendarView)
+//                }
             } catch {
                 print("Failed to save recipe")
             }
         }
+        
     }
     
     func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
-        guard let recipeResult else { return }
-        
-        performSegue(withIdentifier: "segueToCalendar", sender: recipe)
+       favoriteButtonTapped(cell: cell, calendarView: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToCalendar" {
+            if let destination = segue.destination.children.last as? CalendarView {
+                destination.favoriteRecipeToDisplay = sender as? Recipe
+            }
+        }
+    }
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {

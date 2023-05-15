@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
-
     private let context = PersistenceController.shared.viewContext
     
     private var recipes: [Recipe] = []
@@ -101,8 +100,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    func favoriteButtonTapped(cell: UITableViewCell) {
-        
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool) {
         guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }

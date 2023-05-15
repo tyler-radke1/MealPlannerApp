@@ -9,10 +9,9 @@ import UIKit
 import CoreData
 
 protocol RecipeCellDelegate {
-    func favoriteButtonTapped(cell: UITableViewCell)
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool)
     func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?)
 }
-
 class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeNameLabel: UILabel!
@@ -52,7 +51,8 @@ class RecipeTableViewCell: UITableViewCell {
         recipeImage.image = UIImage(data: recipeImageData)
     }
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
-        delegate?.favoriteButtonTapped(cell: self)
+        delegate?.favoriteButtonTapped(cell: self, calendarView: false)
+        print(sender.state)
     }
     
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
