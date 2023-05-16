@@ -9,7 +9,38 @@ import Foundation
 import UIKit
 import CoreData
 
-class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class IngredientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HeaderTableViewCellDelegate {
+    func deleteSectionButtonTapped(forCell cell: HeaderTableViewCell) {
+        do {
+            guard let section = cell.section else { return }
+            
+            let header = headerViews.remove(at: headerViews.index(forKey: section)!)
+            
+            guard let headerTitle = header.value.sectionLabel.text else {return}
+            let ingredientsForHeader = ingredientsByCategories[headerTitle]
+            
+            for (_, ingredient) in ingredientsForHeader!.enumerated() {
+                ingredient.sectionIndex = 0
+                ingredientsByCategories["Uncategorized"]!.append(ingredient)
+                ingredient.rowIndex = Int64(ingredientsByCategories["Uncategorized"]!.count - 1)
+            }
+            
+            let fetchRequet = NSFetchRequest<Category>(entityName: "Category")
+
+            let results = try context.fetch(fetchRequet)
+            context.delete(results[section - 1])
+        
+            try context.save()
+            
+            ingredientsByCategories.remove(at: ingredientsByCategories.index(forKey: headerTitle)!)
+            categories.remove(at: section)
+            
+            tableView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+    
 //    func addButtonTapped(cell: IngredientTableViewCell) {
 //        <#code#>
 //    }
@@ -19,8 +50,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 
     var ingredients: [Ingredient] = []
     var ingredientsByCategories: [String : [Ingredient]] = [:]
+    var headerViews = [Int: HeaderTableViewCell]()
     var categories: [String] = []
-      var isEditingEnabled = false
+    var isEditingEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +65,8 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         
         
         self.tableView.register(
-            SectionHeaderView.nib,
-            forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseIdentifier
+            UINib(nibName: "IngredientHeader", bundle: nil),
+            forCellReuseIdentifier: "headerCell"
         )
 //        self.tableView.register(
 //            SectionHeaderView.self,
@@ -42,13 +74,13 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //        )
     }
     
-    func tableView(_ tableView: UITableView,
-            viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderView.reuseIdentifier) as! SectionHeaderView
-        view.textLabel?.text = categories[section]
-
-       return view
-    }
+//    func tableView(_ tableView: UITableView,
+//            viewForHeaderInSection section: Int) -> UIView? {
+//        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderView.reuseIdentifier) as! SectionHeaderView
+//        view.textLabel?.text = categories[section]
+//
+//       return view
+//    }
 
     @IBOutlet var editButton: UIButton!
     
@@ -197,7 +229,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         tableView.setEditing(isEditingEnabled, animated: true)
         
         headerViews.values.forEach { headerView in
-            headerView.subviews.last?.isHidden = !isEditingEnabled
+            if headerView.sectionLabel.text != "Uncategorized" {
+                headerView.deleteSectionButton.isHidden = !isEditingEnabled
+            }
         }
     }
     //    MARK: Managing navigation
@@ -262,15 +296,27 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //        if let noCategory = ingredientsByCategories["Uncategorized"] {
 //            return categories.count + 1
 //        }else{
+
             return categories.count
 //        }
     }
     
-    var headerViews = [Int: UIStackView]()
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard !categories.isEmpty else{ return nil }
-//
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard !categories.isEmpty else{
+            print("Guard hit")
+            return nil
+            
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! HeaderTableViewCell
+                
+        cell.delegate = self
+        
+        cell.section = section
+        
+        cell.sectionLabel.text = categories[section]
+        
+        cell.deleteSectionButton.isHidden = section == 0 ? true : !tableView.isEditing
 //        let label = UILabel()
 //        label.text = categories[section]
 //
@@ -282,13 +328,13 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //
 //        let hStack = UIStackView(arrangedSubviews: [label, button])
 //        hStack.axis = .horizontal
-////        hStack.insetsLayoutMarginsFromSafeArea = true
-//
-//        headerViews[section] = hStack
-//
-//        return hStack
-//
-//    }
+//        hStack.insetsLayoutMarginsFromSafeArea = true
+
+        headerViews[section] = cell
+
+        return cell
+
+    }
     
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        guard !categories.isEmpty else{ return nil }
@@ -348,6 +394,7 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //                cell.configure(with: ingredient)
 //            } else {
                 let ingredient = ingredientsByCategories[categories[indexPath.section]]![indexPath.row]
+
                 cell.configure(with: ingredient)
 //            }
 //        }
@@ -378,11 +425,12 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //                }
 //
 //            } else {
+            
                 self.ingredientsByCategories[categories[indexPath.section]]?.remove(at: indexPath.row)
 //            }
            
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-//            self.tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     

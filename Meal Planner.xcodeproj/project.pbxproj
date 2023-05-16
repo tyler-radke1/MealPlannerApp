@@ -31,6 +31,7 @@
 		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
 		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
+		FFA416092A1271F200D3935B /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */; };
 		FFCB6B892A0BEE710083CECB /* IngredientHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */; };
 		FFCB6B8B2A0D39F50083CECB /* IngredientViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		FF012C0F29F1846D00E7033D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
 		FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientHeader.xib; sourceTree = "<group>"; };
 		FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewHeader.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				9DF3D13D29FAC1D0006EA354 /* IngredientTableViewCell.swift */,
 				9DF3D13E29FAC1D0006EA354 /* IngredientViewController.swift */,
 				FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */,
+				FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */,
 			);
 			path = Ingredients;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				FFCB6B8B2A0D39F50083CECB /* IngredientViewHeader.swift in Sources */,
 				844F445729EEE69600464FEE /* SavedRecipesViewController.swift in Sources */,
+				FFA416092A1271F200D3935B /* HeaderTableViewCell.swift in Sources */,
 				9DF3D14029FAC1D0006EA354 /* IngredientViewController.swift in Sources */,
 				84D3172829F97CCA00EC1A48 /* Persistence.swift in Sources */,
 				9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */,
