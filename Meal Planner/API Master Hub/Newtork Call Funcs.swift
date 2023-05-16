@@ -246,8 +246,20 @@ struct AnalyzedInstructions: Codable {
         self.name = try container.decode(String.self, forKey: .name)
         self.steps = try container.decode([APIStep].self, forKey: .steps)
     }
+    
+    func getStepsString() -> String {
+        var instructionString = ""
+        
+        for step in steps {
+            instructionString += "\n \(step.number). \(step.step)"
+        }
+        return instructionString
+    }
 }
     
+extension [AnalyzedInstructions] {
+    //func getInstructions() -> instru
+}
 struct APIStep: Codable {
     var number: Int
     var step: String

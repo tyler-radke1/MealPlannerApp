@@ -10,12 +10,10 @@ import CoreData
 
 
 class RecipeDetailsViewController: UIViewController {
-    
     var recipe: Recipe?
     var viewedRecipe: ViewedRecipe?
     var viewedRecipeImage: UIImage?
     var ingredients: [Ingredient] = []
-    
     
     @IBOutlet weak var recipeNameLabel: UILabel!
     
@@ -53,7 +51,6 @@ class RecipeDetailsViewController: UIViewController {
                     
                     ingredientStrings.append(ingredientString)
                 }
-                
                 
                 let allIngredientsString = ingredientStrings.joined(separator: "\n")
                 

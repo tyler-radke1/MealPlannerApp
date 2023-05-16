@@ -13,12 +13,81 @@ protocol FavoritedRecipeDelegate {
     func saveRecipesToCoreData()
 }
 
-class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIResultTableViewCellDelegate {
+class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeCellDelegate {
+    private let context = PersistenceController.shared.viewContext
     
     var delegate: FavoritedRecipeDelegate? = SavedRecipesViewController.shared
     
-    func favoriteButtonTapped(on cell: APIResultTableViewCell) {
-        guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
+    var recipes: [RecipieResult] = []
+    
+    var favoritedRecipes: [Recipe] = []
+    
+    var ingredientsList = [Ingredient]()
+    
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    
+    var setButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
+    
+    var viewedRecipes = [IndexPath:ViewedRecipe]()
+    
+    @IBOutlet weak var recipieNameTextField: UITextField!
+    
+    @IBOutlet weak var recipiesTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        recipiesTableView.delegate = self
+        recipiesTableView.dataSource = self
+        
+        hideKeyboardWhenTapped()
+        setColor()
+        recipiesTableView.setTableViewColor()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        favoritedRecipes = []
+        ingredientsList = []
+        
+        recipiesTableView.reloadData()
+        
+        fetchCoreDataIngredients()
+        fetchCoreDataRecipes()
+    }
+    
+    func fetchCoreDataIngredients() {
+        let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+
+        do {
+            let results = try context.fetch(fetchRequest)
+
+            for ingredient in results {
+                if ingredient.recipe == nil {
+                    ingredientsList.append(ingredient)
+                }
+            }
+        } catch {
+            print("you oofed")
+        }
+    }
+    
+    func fetchCoreDataRecipes() {
+        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
+
+        do {
+            let results = try context.fetch(fetchRequest)
+
+            for result in results {
+                favoritedRecipes.append(result)
+            }
+        } catch {
+            print("you oofed")
+        }
+    }
+    
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool = false) {
+        guard let cell = cell as? RecipeTableViewCell, let indexPath = recipiesTableView.indexPath(for: cell) else { return }
+        var recipeForCalendarView: Recipe? = nil
         Task {
             var selectedRecipe = viewedRecipes[indexPath]
             
@@ -35,7 +104,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 return
             }
             
-            if cell.favoriteButton.isSelected {
+            if cell.favoriteButton.isSelected || calendarView {
                 let recipe = Recipe(context: self.context)
                 
                 recipe.id = Int64(recipeToSave.id!)
@@ -72,9 +141,9 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 
                 favoritedRecipes.append(recipe)
+                recipeForCalendarView = recipe
                 
                 print("Successfully created recipe!")
-                
                 
                 do {
                     try context.save()
@@ -86,6 +155,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 guard let recipeId = recipes[indexPath.row].id else { return }
                 
                 if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
+                    //recipeForCalendarView = favoritedRecipes.first(where: { $0.id == recipeId })
                     let recipeToDelete = favoritedRecipes.remove(at: indexOfRecipeToDelete)
                     self.context.delete(recipeToDelete)
                     print("Succesfully deleted")
@@ -93,78 +163,35 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                     print("Couldn't find matching id")
                 }
             }
-        }
-    }
-    func calendarButtonTapped(on cell: APIResultTableViewCell) {
-        
-    }
-    
-    
-    private let context = PersistenceController.shared.viewContext
-    
-    var recipes: [RecipieResult] = []
-    var favoritedRecipes: [Recipe] = []
-    var ingredientsList = [Ingredient]()
-    
-    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
-    var setButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
-    
-    var viewedRecipes = [IndexPath:ViewedRecipe]()
-    
-    @IBOutlet weak var recipieNameTextField: UITextField!
-    
-    @IBOutlet weak var recipiesTableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        recipiesTableView.delegate = self
-        recipiesTableView.dataSource = self
-        
-        hideKeyboardWhenTapped()
-        setColor()
-        recipiesTableView.setTableViewColor()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        favoritedRecipes = []
-        ingredientsList = []
-        
-        recipiesTableView.reloadData()
-        
-        fetchCoreDataIngredients()
-        fetchCoreDataRecipes()
-    }
-    func fetchCoreDataIngredients() {
-        let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
-        
-        do {
-            let results = try context.fetch(fetchRequest)
-            
-            for ingredient in results {
-                if ingredient.recipe == nil {
-                    ingredientsList.append(ingredient)
+            do {
+                try context.save()
+                print("Sucessfully saved context!")
+                
+                if calendarView {
+                    performSegue(withIdentifier: "segueToCalendar", sender: recipeForCalendarView)
                 }
+            } catch {
+                print("Failed to save recipe")
             }
-        } catch {
-            print("you oofed")
+
         }
-    }
-    
-    func fetchCoreDataRecipes() {
-        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
         
-        do {
-            let results = try context.fetch(fetchRequest)
-            
-            for result in results {
-                favoritedRecipes.append(result)
-            }
-        } catch {
-            print("you oofed")
-        }
+    }
+
+    func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
+        (cell as? RecipeTableViewCell)?.favoriteButton.isSelected = true
+       favoriteButtonTapped(cell: cell, calendarView: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let sender = sender as? Recipe else { return }
+        if segue.identifier == "segueToCalendar" {
+            if let destination = segue.destination.children.last as? CalendarView {
+                destination.favoriteRecipeToDisplay = sender
+            }
+        }
+    }
+
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -179,22 +206,20 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
-        
-        //        let recipe = recipes[indexPath.row]
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! RecipeTableViewCell
+    
         configureCell(for: cell, withIndexPath: indexPath)
-        
         return cell
     }
     
-    func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
+    func configureCell(for cell: RecipeTableViewCell, withIndexPath indexPath: IndexPath) {
         cell.setCellColor()
-        
-        
+
         let recipe = recipes[indexPath.row]
         
-        cell.recipeTitleLabel.text = recipe.title
+        cell.recipeResult = recipe
+        
+        cell.recipeNameLabel.text = recipe.title
         
         cell.delegate = self
         
@@ -241,7 +266,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                     DispatchQueue.main.async {
                         
                         detailVC.viewedRecipe = recipeDetails
-                        detailVC.viewedRecipeImage = (tableView.cellForRow(at: indexPath) as! APIResultTableViewCell).recipeImage.image
+                        detailVC.viewedRecipeImage = (tableView.cellForRow(at: indexPath) as! RecipeTableViewCell).recipeImage.image
                         
                         self.present(detailVC, animated: true, completion: nil)
 
@@ -306,8 +331,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
         viewedRecipes[indexPath] = recipeDetails
-        
-        print(viewedRecipes)
         
         return recipeDetails
     }

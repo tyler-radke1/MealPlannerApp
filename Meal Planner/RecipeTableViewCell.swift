@@ -8,21 +8,24 @@
 import UIKit
 import CoreData
 
-protocol RecipeTableViewCellDelegate {
-    func favoriteButtonTapped(cell: RecipeTableViewCell)
-    func calendarButtonTapped(cell: RecipeTableViewCell, passing recipe: Recipe?)
+protocol RecipeCellDelegate {
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool)
+    func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?)
 }
-
 class RecipeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recipeNameLabel: UILabel!
     
     @IBOutlet weak var recipeImage: UIImageView!
     
-    private var recipeToPass: Recipe? = nil
+    var recipeToPass: Recipe? = nil
     
-    var delegate: RecipeTableViewCellDelegate?
+    var recipeResult: RecipieResult? = nil
+    
+    var delegate: RecipeCellDelegate?
 
+    @IBOutlet weak var favoriteButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -48,12 +51,13 @@ class RecipeTableViewCell: UITableViewCell {
         recipeImage.image = UIImage(data: recipeImageData)
     }
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
-        delegate?.favoriteButtonTapped(cell: self)
+        sender.isSelected.toggle()
+        delegate?.favoriteButtonTapped(cell: self, calendarView: false)
+        print(sender.state)
     }
     
     @IBAction func calendarButtonTapped(_ sender: UIButton) {
-        print("calendar button tapped")
-        delegate?.calendarButtonTapped(cell: self, passing: recipeToPass ?? nil)
+        delegate?.calendarButtonTapped(cell: self, passing: recipeToPass ?? nil, or: recipeResult ?? nil)
     }
     
 }
