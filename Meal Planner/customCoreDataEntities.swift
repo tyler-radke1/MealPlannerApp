@@ -29,7 +29,9 @@ public class CoreDataIndexPath: NSObject, NSSecureCoding {
     }
     
     public required convenience init?(coder decoder: NSCoder) {
-        let decodedIndexPath = decoder.decodeObject(forKey: "indexPath") as! IndexPath
+        guard let decodedIndexPath = decoder.decodeObject(forKey: "index") as? IndexPath else {
+            return nil
+        }
         self.init(indexPath: decodedIndexPath)
     }
 }

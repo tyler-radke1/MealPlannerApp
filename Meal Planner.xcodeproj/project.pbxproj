@@ -31,7 +31,9 @@
 		9F9BEC0D29EED6D300C4AB9C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */; };
 		9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9BEC0F29EED71500C4AB9C /* Day.swift */; };
 		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
-		FFC242AE2A0A8D05000F7558 /* customCoreDataEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC242AD2A0A8D05000F7558 /* customCoreDataEntities.swift */; };
+		FFA416092A1271F200D3935B /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */; };
+		FFCB6B892A0BEE710083CECB /* IngredientHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */; };
+		FFCB6B8B2A0D39F50083CECB /* IngredientViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,8 +62,10 @@
 		9F9BEC0C29EED6D300C4AB9C /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9F9BEC0F29EED71500C4AB9C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		FF012C0F29F1846D00E7033D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		FFC242AD2A0A8D05000F7558 /* customCoreDataEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCoreDataEntities.swift; sourceTree = "<group>"; };
+		FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ingredients.storyboard; sourceTree = "<group>"; };
+		FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IngredientHeader.xib; sourceTree = "<group>"; };
+		FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				9F1CBD3D29ED98D0000259B7 /* Recipe Finder.storyboard */,
 				844F445429EED68600464FEE /* SavedRecipes.storyboard */,
 				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
+				FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */,
 				9DF3D13C29FAC1D0006EA354 /* Ingredients */,
 			);
 			path = "Storyboard Screens";
@@ -109,6 +114,8 @@
 			children = (
 				9DF3D13D29FAC1D0006EA354 /* IngredientTableViewCell.swift */,
 				9DF3D13E29FAC1D0006EA354 /* IngredientViewController.swift */,
+				FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */,
+				FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */,
 			);
 			path = Ingredients;
 			sourceTree = "<group>";
@@ -165,7 +172,6 @@
 				84D3172429F96C6F00EC1A48 /* RecipeCoreData.xcdatamodeld */,
 				84D3172729F97CCA00EC1A48 /* Persistence.swift */,
 				9F88E5DA29ED8A6A009F8B79 /* AppDelegate.swift */,
-				FFC242AD2A0A8D05000F7558 /* customCoreDataEntities.swift */,
 			);
 			path = "Meal Planner";
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				9F1CBD3E29ED98D0000259B7 /* Recipe Finder.storyboard in Resources */,
 				844F445529EED68600464FEE /* SavedRecipes.storyboard in Resources */,
 				9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
+				FFCB6B892A0BEE710083CECB /* IngredientHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +266,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFCB6B8B2A0D39F50083CECB /* IngredientViewHeader.swift in Sources */,
 				844F445729EEE69600464FEE /* SavedRecipesViewController.swift in Sources */,
+				FFA416092A1271F200D3935B /* HeaderTableViewCell.swift in Sources */,
 				9DF3D14029FAC1D0006EA354 /* IngredientViewController.swift in Sources */,
 				84D3172829F97CCA00EC1A48 /* Persistence.swift in Sources */,
 				9F9BEC1029EED71500C4AB9C /* Day.swift in Sources */,
@@ -267,7 +276,6 @@
 				9F88E5DD29ED8A6A009F8B79 /* SceneDelegate.swift in Sources */,
 				9F60640F29F2DDF60024584D /* MealCell.swift in Sources */,
 				9DF3D13F29FAC1D0006EA354 /* IngredientTableViewCell.swift in Sources */,
-				FFC242AE2A0A8D05000F7558 /* customCoreDataEntities.swift in Sources */,
 				9F9BEC0B29EED6C000C4AB9C /* Ingredient.swift in Sources */,
 				FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */,
 				8420E16029F19757001A7780 /* RecipeDetailsViewController.swift in Sources */,

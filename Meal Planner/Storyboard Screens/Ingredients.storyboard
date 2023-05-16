@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,14 +25,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbS-LL-654">
-                                <rect key="frame" x="137" y="39" width="135" height="26.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbL-YK-h1c">
-                                <rect key="frame" x="45" y="56" width="54" height="35"/>
+                                <rect key="frame" x="45" y="68" width="54" height="35"/>
+                                <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Edit"/>
                                 <connections>
@@ -58,16 +54,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBV-Y1-vUV">
-                                                    <rect key="frame" x="35" y="28.333333333333336" width="320" height="20.333333333333336"/>
+                                                    <rect key="frame" x="174.33333333333334" y="28.333333333333336" width="41.333333333333343" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="WBV-Y1-vUV" secondAttribute="trailing" constant="15" id="8NW-rJ-mRz"/>
-                                                <constraint firstItem="WBV-Y1-vUV" firstAttribute="leading" secondItem="ww7-UV-fwv" secondAttribute="leadingMargin" constant="15" id="J2M-fR-puZ"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="WBV-Y1-vUV" secondAttribute="trailing" constant="15" id="8NW-rJ-mRz"/>
+                                                <constraint firstItem="WBV-Y1-vUV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ww7-UV-fwv" secondAttribute="leadingMargin" constant="15" id="J2M-fR-puZ"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WBV-Y1-vUV" secondAttribute="bottom" constant="8" id="KDp-Ji-Vv3"/>
                                                 <constraint firstItem="WBV-Y1-vUV" firstAttribute="centerY" secondItem="ww7-UV-fwv" secondAttribute="centerY" id="KuC-JV-RFP"/>
+                                                <constraint firstItem="WBV-Y1-vUV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ww7-UV-fwv" secondAttribute="top" constant="8" id="bdt-1g-eDT"/>
                                                 <constraint firstItem="WBV-Y1-vUV" firstAttribute="centerX" secondItem="ww7-UV-fwv" secondAttribute="centerX" id="dYS-O0-SYB"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -85,28 +83,34 @@
                                     <action selector="addSectionButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r1o-wc-BGa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbS-LL-654">
+                                <rect key="frame" x="128" y="43" width="135" height="26.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cbL-YK-h1c" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="45" id="0QO-6G-2hY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QUv-Az-FMv" secondAttribute="trailing" constant="30" id="9kC-Bl-vb3"/>
-                            <constraint firstItem="gbS-LL-654" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="39" id="BQl-1u-LPG"/>
-                            <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="cbL-YK-h1c" secondAttribute="bottom" constant="20.329999999999998" id="QCQ-Tt-2DF"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gbS-LL-654" secondAttribute="trailing" constant="118" id="VMQ-JH-cf9"/>
+                            <constraint firstItem="gbS-LL-654" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="43" id="BQl-1u-LPG"/>
+                            <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="cbL-YK-h1c" secondAttribute="bottom" constant="8.3333333333333144" id="QCQ-Tt-2DF"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gbS-LL-654" secondAttribute="trailing" constant="127" id="VMQ-JH-cf9"/>
                             <constraint firstAttribute="trailing" secondItem="snH-vR-cHh" secondAttribute="trailing" id="Wfo-7a-L1W"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="aW1-RC-Rho"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="bml-BN-BDz"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="centerY" secondItem="6Lm-Xh-1VX" secondAttribute="centerY" id="dPr-2x-TPn"/>
-                            <constraint firstItem="cbL-YK-h1c" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="9" id="fwe-Qf-uJc"/>
+                            <constraint firstItem="cbL-YK-h1c" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="21" id="fwe-Qf-uJc"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="64" id="iIu-a5-zbY"/>
                             <constraint firstItem="6Lm-Xh-1VX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iS1-qH-oGj"/>
-                            <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="jZ4-zj-b0r"/>
+                            <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="29" id="jZ4-zj-b0r"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="leading" secondItem="6Lm-Xh-1VX" secondAttribute="trailing" constant="10" id="olF-8i-GUJ"/>
                             <constraint firstItem="EvI-zS-wL8" firstAttribute="top" secondItem="QUv-Az-FMv" secondAttribute="bottom" constant="8" id="rqd-3Q-bpq"/>
-                            <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="gbS-LL-654" secondAttribute="bottom" constant="46" id="uH8-e9-ZO9"/>
+                            <constraint firstItem="6Lm-Xh-1VX" firstAttribute="top" secondItem="gbS-LL-654" secondAttribute="bottom" constant="41.999999999999986" id="uH8-e9-ZO9"/>
                             <constraint firstItem="snH-vR-cHh" firstAttribute="top" secondItem="EvI-zS-wL8" secondAttribute="bottom" constant="26" id="xQM-ms-gRF"/>
-                            <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="38" id="zQT-PK-zfD"/>
+                            <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="29" id="zQT-PK-zfD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ingredient" image="tray" catalog="system" selectedImage="tray.fill" id="wz5-fs-069"/>
@@ -115,7 +119,7 @@
                     <connections>
                         <outlet property="addButton" destination="EvI-zS-wL8" id="4Xj-88-Gwo"/>
                         <outlet property="editButton" destination="cbL-YK-h1c" id="6o9-7M-yhV"/>
-                        <outlet property="tableview" destination="snH-vR-cHh" id="XaR-Lk-qxx"/>
+                        <outlet property="tableView" destination="snH-vR-cHh" id="PSK-R8-GmU"/>
                         <outlet property="textField" destination="6Lm-Xh-1VX" id="FHe-9W-tO8"/>
                     </connections>
                 </viewController>
@@ -127,6 +131,9 @@
     <resources>
         <image name="tray" catalog="system" width="128" height="88"/>
         <image name="tray.fill" catalog="system" width="128" height="88"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
