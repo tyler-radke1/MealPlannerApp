@@ -30,6 +30,8 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     
     var viewedRecipes = [IndexPath:ViewedRecipe]()
     
+    var lastSearch: String = ""
+    
     @IBOutlet weak var recipieNameTextField: UITextField!
     
     @IBOutlet weak var recipiesTableView: UITableView!
@@ -261,8 +263,19 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     //MARK: - Search Functions
     
+    @IBAction func searchTextField(_ sender: UITextField) {
+        searchByName()
+        sender.endEditing(true)
+    }
+    
     @IBAction func searchByNameButtonTapped() {
-        guard let text = recipieNameTextField.text else { return }
+        searchByName()
+    }
+    
+    func searchByName() {
+        guard let text = recipieNameTextField.text, text != lastSearch else { return }
+        
+        lastSearch = text
         
         if text.isEmpty {
             return // Replace later with random recipe search?
