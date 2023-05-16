@@ -216,6 +216,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    
     func loadRecipeIfNeeded(using indexPath: IndexPath) async throws ->
     ViewedRecipe {
         if let viewedRecipe = viewedRecipes[indexPath] {
@@ -241,7 +242,11 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                         
                         detailVC.viewedRecipe = recipeDetails
                         detailVC.viewedRecipeImage = (tableView.cellForRow(at: indexPath) as! APIResultTableViewCell).recipeImage.image
-                        self.navigationController?.pushViewController(detailVC, animated: true)
+                        
+                        self.present(detailVC, animated: true, completion: nil)
+
+                        tableView.deselectRow(at: indexPath, animated: true)
+                        
                     }
                 } catch {
                     print(error)
