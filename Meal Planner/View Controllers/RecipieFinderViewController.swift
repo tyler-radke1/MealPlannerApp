@@ -109,7 +109,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 
                 recipe.id = Int64(recipeToSave.id!)
                 recipe.name = recipeDetailsToSave.name
-                recipe.instructions = recipeDetailsToSave.instructions as? NSSet
                 recipe.photo = cell.recipeImage.image?.pngData()
 
                 
