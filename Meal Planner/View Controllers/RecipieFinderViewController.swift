@@ -104,7 +104,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 return
             }
             
-            if cell.favoriteButton.isSelected {
+            if cell.favoriteButton.isSelected || calendarView {
                 let recipe = Recipe(context: self.context)
                 
                 recipe.id = Int64(recipeToSave.id!)
@@ -127,23 +127,22 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
                 guard let recipeId = recipes[indexPath.row].id else { return }
                 
                 if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
+                    //recipeForCalendarView = favoritedRecipes.first(where: { $0.id == recipeId })
                     let recipeToDelete = favoritedRecipes.remove(at: indexOfRecipeToDelete)
                     self.context.delete(recipeToDelete)
                     print("Succesfully deleted")
                 } else {
                     print("Couldn't find matching id")
                 }
-                
-                recipeForCalendarView = favoritedRecipes.first(where: { $0.id == recipeId })
             }
             
             do {
                 try context.save()
                 print("Sucessfully saved context!")
                 
-//                if calendarView {
-//                    performSegue(withIdentifier: "segueToCalendar", sender: recipeForCalendarView)
-//                }
+                if calendarView {
+                    performSegue(withIdentifier: "segueToCalendar", sender: recipeForCalendarView)
+                }
             } catch {
                 print("Failed to save recipe")
             }
@@ -152,13 +151,15 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
+        (cell as? RecipeTableViewCell)?.favoriteButton.isSelected = true
        favoriteButtonTapped(cell: cell, calendarView: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let sender = sender as? Recipe else { return }
         if segue.identifier == "segueToCalendar" {
             if let destination = segue.destination.children.last as? CalendarView {
-                destination.favoriteRecipeToDisplay = sender as? Recipe
+                destination.favoriteRecipeToDisplay = sender
             }
         }
     }

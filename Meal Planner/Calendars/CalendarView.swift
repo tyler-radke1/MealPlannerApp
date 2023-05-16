@@ -32,7 +32,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
     
     @IBOutlet weak var calendarTableView: UITableView!
     
-    var favoriteRecipeToDisplay: Recipe? 
+    var favoriteRecipeToDisplay: Recipe?
+    
+    private var favoriteUsed = false
     
     override func viewDidLoad() {
         let width = view.frame.width
@@ -72,6 +74,17 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
             }
         } catch {
             print("error")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        guard !favoriteUsed, let favoriteRecipeToDisplay else { return }
+        context.delete(favoriteRecipeToDisplay)
+        
+        do {
+            try context.save()
+        } catch {
+            print("your mother is dissapointed in you")
         }
     }
     
@@ -133,6 +146,8 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         if let day = days[loadedDate] {
             saveCoreData(date: loadedDate, day: day)
         }
+        
+        favoriteUsed = recipe?.id == favoriteRecipeToDisplay?.id
         calendarTableView.reloadData()
     }
     
@@ -153,6 +168,7 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         if let dinner = day?.dinner {
             loadedDinner = dinner
         }
+        
         calendarTableView.reloadData()
     }
     

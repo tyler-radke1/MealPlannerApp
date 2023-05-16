@@ -51,6 +51,7 @@ class RecipeTableViewCell: UITableViewCell {
         recipeImage.image = UIImage(data: recipeImageData)
     }
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
+        sender.isSelected.toggle()
         delegate?.favoriteButtonTapped(cell: self, calendarView: false)
         print(sender.state)
     }
