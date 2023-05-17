@@ -160,13 +160,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle" catalog="system" id="rKG-d8-Mre">
-                        <color key="badgeColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="badgeColor" systemColor="linkColor"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="recipieNameTextField" destination="5f9-GV-bVq" id="2q6-h7-ACz"/>
                         <outlet property="recipiesTableView" destination="SSh-gp-2Ee" id="ZRl-0i-NCd"/>
-
                         <segue destination="OQa-jb-5D2" kind="presentation" identifier="segueToCalendar" id="DNi-nb-8Fo"/>
                     </connections>
                 </viewController>
@@ -197,6 +196,9 @@
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

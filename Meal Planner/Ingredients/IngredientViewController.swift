@@ -59,10 +59,10 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
-        createFetchRequest()
         hideKeyboardWhenTapped()
         setColor()
         fetchCategory()
+        createFetchRequest()
         
         self.tableView.register(
             UINib(nibName: "IngredientHeader", bundle: nil),
@@ -85,6 +85,10 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet var textField: UITextField!
     
+    @IBAction func textFieldReturnButtonTapped(_ sender: UITextField) {
+        addIngredient()
+        sender.endEditing(true)
+    }
     
     @IBOutlet var tableView: UITableView!
     
@@ -184,7 +188,10 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
              
     }
     @IBAction func addButtonTapped(_ sender: Any) {
-//        textField
+        addIngredient()
+    }
+    
+    func addIngredient() {
         guard let ingredientName = textField.text, !ingredientName.isEmpty else {
             return
         }
@@ -201,7 +208,11 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
 //        }
         
         
-        addIngredientCd(ingredient: ingredient)
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save ingredient")
+        }
         if ingredient.category == nil {
             ingredientsByCategories["Uncategorized"]?.append(ingredient)
 //            tableView.insertRows(at: [0], with: .automatic)
@@ -213,19 +224,9 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         
         textField.text = ""
     }
-    
     //Tyler's Code
     
-    func addIngredientCd(ingredient: Ingredient) {
-       // context.insert(ingredient)
         
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save ingredient")
-        }
-    }
-    
     @IBAction func editButtonTapped(_ sender: Any) {
 //        editmode
         isEditingEnabled.toggle()
