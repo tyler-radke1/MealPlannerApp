@@ -13,82 +13,24 @@ protocol FavoritedRecipeDelegate {
     func saveRecipesToCoreData()
 }
 
-class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIResultTableViewCellDelegate {
+class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeCellDelegate {
+    private let context = PersistenceController.shared.viewContext
     
     var delegate: FavoritedRecipeDelegate? = SavedRecipesViewController.shared
     
-    func favoriteButtonTapped(on cell: APIResultTableViewCell) {
-        guard let indexPath = recipiesTableView.indexPath(for: cell) else { return }
-        Task {
-            var selectedRecipe = viewedRecipes[indexPath]
-            
-            if viewedRecipes[indexPath] == nil {
-                do {
-                    selectedRecipe = try await recipieDetailsSearch(using: indexPath)
-                } catch {
-                    print(error)
-                }
-            }
-            
-            let recipeToSave = recipes[indexPath.row]
-            guard let recipeDetailsToSave = selectedRecipe else {
-                return
-            }
-            
-            if cell.favoriteButton.isSelected {
-                let recipe = Recipe(context: self.context)
-                
-                recipe.id = Int64(recipeToSave.id!)
-                recipe.name = recipeDetailsToSave.name
-                recipe.instructions = recipeDetailsToSave.instructions
-                recipe.photo = cell.recipeimage.image?.pngData()
-                
-                for ingredient in recipeDetailsToSave.ingredients {
-                    let savedIngreient = Ingredient(context: context)
-                    savedIngreient.name = ingredient.name
-                    savedIngreient.quantity = ingredient.quantity
-                    savedIngreient.recipe = recipe
-                }
-                
-                favoritedRecipes.append(recipe)
-                
-                print("Successfully created recipe!")
-            } else {
-                guard let recipeId = recipes[indexPath.row].id else { return }
-                
-                if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
-                    let recipeToDelete = favoritedRecipes.remove(at: indexOfRecipeToDelete)
-                    self.context.delete(recipeToDelete)
-                    print("Succesfully deleted")
-                } else {
-                    print("Couldn't find matching id")
-                }
-            }
-            
-            do {
-                try context.save()
-                print("Sucessfully saved context!")
-            } catch {
-                print("Failed to save recipe")
-            }
-        }
-    }
-    
-    func calendarButtonTapped(on cell: APIResultTableViewCell) {
-        
-    }
-    
-    
-    private let context = PersistenceController.shared.viewContext
-
     var recipes: [RecipieResult] = []
+    
     var favoritedRecipes: [Recipe] = []
+    
     var ingredientsList = [Ingredient]()
     
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    
     var setButtonStateTasks: [IndexPath: Task<Void, Never>] = [:]
     
     var viewedRecipes = [IndexPath:ViewedRecipe]()
+    
+    var lastSearch: String = ""
     
     @IBOutlet weak var recipieNameTextField: UITextField!
     
@@ -114,6 +56,7 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         fetchCoreDataIngredients()
         fetchCoreDataRecipes()
     }
+    
     func fetchCoreDataIngredients() {
         let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
 
@@ -143,36 +86,143 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             print("you oofed")
         }
     }
+    
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool = false) {
+        guard let cell = cell as? RecipeTableViewCell, let indexPath = recipiesTableView.indexPath(for: cell) else { return }
+        var recipeForCalendarView: Recipe? = nil
+        Task {
+            var selectedRecipe = viewedRecipes[indexPath]
+            
+            if viewedRecipes[indexPath] == nil {
+                do {
+                    selectedRecipe = try await recipieDetailsSearch(using: indexPath)
+                } catch {
+                    print(error)
+                }
+            }
+            
+            let recipeToSave = recipes[indexPath.row]
+            guard let recipeDetailsToSave = selectedRecipe else {
+                return
+            }
+            
+            if cell.favoriteButton.isSelected || calendarView {
+                let recipe = Recipe(context: self.context)
+                
+                recipe.id = Int64(recipeToSave.id!)
+                recipe.name = recipeDetailsToSave.name
+                recipe.photo = cell.recipeImage.image?.pngData()
+
+                
+                if let ingredients = recipeDetailsToSave.ingredients {
+                    for (index, ingredient) in ingredients.enumerated() {
+                        let savedIngredient = Ingredient(context: context)
+                        savedIngredient.name = ingredient.name
+                        savedIngredient.quantity = ingredient.quantity
+                        savedIngredient.recipe = recipe
+                        savedIngredient.sortID = Int64(index)
+                    }
+                }
+                
+                if let instructions = recipeDetailsToSave.instructions, instructions.count != 0 {
+                    
+                    for step in instructions.first!.steps {
+                        let savedStep = Step(context: context)
+                        savedStep.number = Int16(step.number)
+                        savedStep.step = step.step
+                        savedStep.recipe = recipe
+                    }
+                }
+                
+                if let nutrients = recipeDetailsToSave.nutrition?.nutrients {
+                    for nutrient in nutrients {
+                        let savedNutrient = Nutrient(context: context)
+                        savedNutrient.name = nutrient.name
+                        savedNutrient.amount = nutrient.amount
+                        savedNutrient.recipe = recipe
+                    }
+                }
+                
+                favoritedRecipes.append(recipe)
+                recipeForCalendarView = recipe
+                
+                print("Successfully created recipe!")
+                
+                do {
+                    try context.save()
+                    print("Sucessfully saved context!")
+                } catch {
+                    print("Failed to save recipe")
+                }
+            }  else {
+                guard let recipeId = recipes[indexPath.row].id else { return }
+                
+                if let indexOfRecipeToDelete = favoritedRecipes.firstIndex(where: { $0.id == recipeId}) {
+                    //recipeForCalendarView = favoritedRecipes.first(where: { $0.id == recipeId })
+                    let recipeToDelete = favoritedRecipes.remove(at: indexOfRecipeToDelete)
+                    self.context.delete(recipeToDelete)
+                    print("Succesfully deleted")
+                } else {
+                    print("Couldn't find matching id")
+                }
+            }
+            do {
+                try context.save()
+                print("Sucessfully saved context!")
+                
+                if calendarView {
+                    performSegue(withIdentifier: "segueToCalendar", sender: recipeForCalendarView)
+                }
+            } catch {
+                print("Failed to save recipe")
+            }
+
+        }
+        
+    }
+
+    func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
+        (cell as? RecipeTableViewCell)?.favoriteButton.isSelected = true
+       favoriteButtonTapped(cell: cell, calendarView: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let sender = sender as? Recipe else { return }
+        if segue.identifier == "segueToCalendar" {
+            if let destination = segue.destination.children.last as? CalendarView {
+                destination.favoriteRecipeToDisplay = sender
+            }
+        }
+    }
 
     // MARK: - Table view data source
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return recipes.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! APIResultTableViewCell
-        
-//        let recipe = recipes[indexPath.row]
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "apiTableViewCell", for: indexPath) as! RecipeTableViewCell
+    
         configureCell(for: cell, withIndexPath: indexPath)
-        
         return cell
     }
     
-    func configureCell(for cell: APIResultTableViewCell, withIndexPath indexPath: IndexPath) {
+    func configureCell(for cell: RecipeTableViewCell, withIndexPath indexPath: IndexPath) {
         cell.setCellColor()
-        
+
         let recipe = recipes[indexPath.row]
         
-        cell.recipeTitleLabel.text = recipe.title
+        cell.recipeResult = recipe
+        
+        cell.recipeNameLabel.text = recipe.title
         
         cell.delegate = self
         
@@ -187,21 +237,21 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
             do {
                 guard let urlString = recipe.image, let imageURL = URL(string: urlString) else { return }
                 let image = try await retrieveRecipeImage(using: imageURL)
-                cell.recipeimage.image = image
+                cell.recipeImage.image = image
             } catch {
                 print(error)
             }
         }
         
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewedRecipes[indexPath] == nil {
             Task {
                 do {
-                   let recipeDetails = try await recipieDetailsSearch(using: indexPath)
                     
-                    // Diplay detail screen using viewedRecipes[indexPath]
+                   let recipeDetails = try await recipieDetailsSearch(using: indexPath)
+
                 } catch {
                     print(error)
                 }
@@ -213,8 +263,19 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
     }
     //MARK: - Search Functions
     
+    @IBAction func searchTextField(_ sender: UITextField) {
+        searchByName()
+        sender.endEditing(true)
+    }
+    
     @IBAction func searchByNameButtonTapped() {
-        guard let text = recipieNameTextField.text else { return }
+        searchByName()
+    }
+    
+    func searchByName() {
+        guard let text = recipieNameTextField.text, text != lastSearch else { return }
+        
+        lastSearch = text
         
         if text.isEmpty {
             return // Replace later with random recipe search?
@@ -263,8 +324,6 @@ class RecipeFinderViewController: UIViewController, UITableViewDelegate, UITable
         
         let recipeDetails = try await retrieveRecipieInfo(usingRecipieID: id)
         viewedRecipes[indexPath] = recipeDetails
-        
-        print(viewedRecipes)
         
         return recipeDetails
     }

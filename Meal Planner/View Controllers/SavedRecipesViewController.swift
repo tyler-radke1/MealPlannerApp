@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeTableViewCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
+class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RecipeCellDelegate, UICalendarSelectionSingleDateDelegate, FavoritedRecipeDelegate, UICalendarViewDelegate {
 
 
     private let context = PersistenceController.shared.viewContext
@@ -33,19 +33,18 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
             print("ERROR")
         }
         
-        
-        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
-
-        do {
-            let results = try context.fetch(fetchRequest)
-
-            for result in results {
-                print(result)
-                recipes.append(result)
-            }
-        } catch {
-            print("you oofed")
-        }
+//        let fetchRequest = NSFetchRequest<Recipe>(entityName: "Recipe")
+//
+//        do {
+//            let results = try context.fetch(fetchRequest)
+//
+//            for result in results {
+//                print(result)
+//                recipes.append(result)
+//            }
+//        } catch {
+//            print("you oofed")
+//        }
         
         print("Recipes - \(recipes)")
         
@@ -83,6 +82,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
                // print(result)
                 recipes.append(result)
             }
+            print(results.count)
         } catch {
             print("you oofed")
         }
@@ -103,8 +103,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    func favoriteButtonTapped(cell: RecipeTableViewCell) {
-        
+    func favoriteButtonTapped(cell: UITableViewCell, calendarView: Bool) {
         guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
@@ -121,6 +120,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func calendarButtonTapped(cell: RecipeTableViewCell) {
+        
     }
     
     // MARK: - Navigation
@@ -147,15 +150,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
     }
     
-    func calendarButtonTapped(cell: RecipeTableViewCell, passing recipe: Recipe?) {
-        guard let indexPath = savedRecipesTableView.indexPath(for: cell) else {
+    func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
+        guard let cell = cell as? RecipeTableViewCell, let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
-        
-        if let myRecipe = recipe {
-    
-        }
-        
         let recipe = recipes[indexPath.row]
 
         performSegue(withIdentifier: "segueToCalendar", sender: recipe)
