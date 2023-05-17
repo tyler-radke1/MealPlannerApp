@@ -14,7 +14,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dj8-0d-N0h">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.2941176593" green="0.44313728810000003" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Fl6-us-SJT" kind="relationship" relationship="rootViewController" id="7Kt-Wo-IhN"/>
@@ -98,6 +103,9 @@
         <image name="books.vertical.circle" catalog="system" width="128" height="123"/>
         <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

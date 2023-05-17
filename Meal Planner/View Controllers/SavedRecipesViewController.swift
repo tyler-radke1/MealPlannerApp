@@ -121,10 +121,10 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
     }
-    
-    func calendarButtonTapped(cell: RecipeTableViewCell) {
-        
-    }
+//    
+//    func calendarButtonTapped(cell: RecipeTableViewCell) {
+//        
+//    }
     
     // MARK: - Navigation
     

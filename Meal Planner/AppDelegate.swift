@@ -22,10 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationBarAppearance.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor : UIColor.white
             ]
-            navigationBarAppearance.backgroundColor = UIColor.customBlue
-            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-            UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
             
             let tabBarApperance = UITabBarAppearance()
             tabBarApperance.configureWithOpaqueBackground()

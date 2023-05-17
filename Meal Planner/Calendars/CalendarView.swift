@@ -40,15 +40,18 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         let width = view.frame.width
         let height = view.frame.height
         let myCalendarView = UICalendarView(frame: CGRect(x: 0, y: 0, width: width * 0.9, height: height / 2))
+        myCalendarView.anchorPoint = CGPoint(x: 0.5, y: 0.3)
         configure(calendar: myCalendarView)
 
         calendarTableView.dataSource = self
         calendarTableView.delegate = self
         
         setColor()
-//        navigationController?.navigationBar.tintColor = .systemPink
-//        navigationController?.navigationBar.barTintColor = .systemPink
-//        navigationController?.navigationBar.backgroundColor = .systemPink
+        
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = UIColor.customBlue
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
     }
     
     override func viewWillAppear(_ animated: Bool) {
