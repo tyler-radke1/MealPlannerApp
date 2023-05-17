@@ -91,7 +91,7 @@
         <scene sceneID="JDV-Ay-z1p">
             <objects>
                 <navigationController storyboardIdentifier="calendarNavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rZA-Rm-6ag" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Schedule" image="calendar.circle" catalog="system" id="nfA-j3-fZp"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="calander On" id="nfA-j3-fZp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="swB-aM-On1">
@@ -116,7 +116,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar.circle" catalog="system" width="128" height="123"/>
+        <image name="calander On" width="30" height="30"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -92,7 +92,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.2941176593" green="0.44313728810000003" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-
                         <constraints>
                             <constraint firstItem="cbL-YK-h1c" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="45" id="0QO-6G-2hY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QUv-Az-FMv" secondAttribute="trailing" constant="30" id="9kC-Bl-vb3"/>
@@ -114,7 +113,7 @@
                             <constraint firstItem="gbS-LL-654" firstAttribute="leading" secondItem="cbL-YK-h1c" secondAttribute="trailing" constant="29" id="zQT-PK-zfD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ingredient" image="tray" catalog="system" selectedImage="tray.fill" id="wz5-fs-069"/>
+                    <tabBarItem key="tabBarItem" title="Ingredient" image="Ingrediant" selectedImage="Ingrediant" id="wz5-fs-069"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -130,8 +129,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tray" catalog="system" width="128" height="88"/>
-        <image name="tray.fill" catalog="system" width="128" height="88"/>
+        <image name="Ingrediant" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

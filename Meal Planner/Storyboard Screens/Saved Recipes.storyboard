@@ -24,7 +24,6 @@
                                     <navigationItem title="My Recipes" id="XoS-8g-Xst"/>
                                 </items>
                             </navigationBar>
-
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ccy-EM-58N">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -112,7 +111,7 @@
                             <constraint firstItem="ccy-EM-58N" firstAttribute="top" secondItem="BYa-WC-O9y" secondAttribute="top" id="xOb-qj-6WY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Recipes" image="books.vertical.circle" catalog="system" id="S7M-tL-L8f"/>
+                    <tabBarItem key="tabBarItem" title="My Recipes" image="favorite On" id="S7M-tL-L8f"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="savedRecipesTableView" destination="ccy-EM-58N" id="CPc-gX-kpp"/>
@@ -238,8 +237,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="books.vertical.circle" catalog="system" width="128" height="123"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
+        <image name="favorite On" width="30" height="30"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="opaqueSeparatorColor">
