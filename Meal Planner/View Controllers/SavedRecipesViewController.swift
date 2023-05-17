@@ -148,12 +148,15 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedRecipe = recipes[indexPath.row]
         performSegue(withIdentifier: "showRecipeDetails", sender: selectedRecipe)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func calendarButtonTapped(cell: UITableViewCell, passing recipe: Recipe?, or recipeResult: RecipieResult?) {
         guard let cell = cell as? RecipeTableViewCell, let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
+
         let recipe = recipes[indexPath.row]
 
         performSegue(withIdentifier: "segueToCalendar", sender: recipe)

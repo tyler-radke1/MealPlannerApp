@@ -161,6 +161,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="search On" id="rKG-d8-Mre">
                         <color key="badgeColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -171,7 +172,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAQ-x6-4g8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="-138"/>
+            <point key="canvasLocation" x="833" y="-138"/>
+        </scene>
+        <!--recipeDetailView-->
+        <scene sceneID="FcA-KN-eqZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Saved Recipes" referencedIdentifier="recipeDetailView" id="sqi-Lx-2KN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sJG-9o-TD2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1673" y="-138"/>
         </scene>
         <!--Calendar View-->
         <scene sceneID="afN-f7-2qk">
@@ -188,6 +197,7 @@
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="search On" width="30" height="30"/>
+
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

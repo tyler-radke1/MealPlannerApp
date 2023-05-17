@@ -135,10 +135,10 @@
                                 <rect key="frame" x="0.0" y="62" width="393" height="780"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-aR-1WU">
-                                        <rect key="frame" x="0.0" y="-19" width="393" height="367.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="-19" width="393" height="386.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kiI-gL-sgM">
-                                                <rect key="frame" x="7" y="15" width="379" height="285.66666666666669"/>
+                                                <rect key="frame" x="7" y="15" width="379" height="305"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwb-Fr-kR4">
                                                         <rect key="frame" x="14.666666666666657" y="0.0" width="350" height="34.666666666666664"/>
@@ -159,19 +159,25 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGO-0u-Cjq">
-                                                        <rect key="frame" x="0.0" y="204.66666666666669" width="379" height="20.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="204.66666666666669" width="379" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="NVF-J5-44s"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Instructions" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyv-Ix-E60">
-                                                        <rect key="frame" x="0.0" y="235" width="379" height="20.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="244.66666666666669" width="379" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="kVJ-eR-zUJ"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nutrition Information" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yp8-Nw-HWZ">
-                                                        <rect key="frame" x="0.0" y="265.33333333333331" width="379" height="20.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="284.66666666666669" width="379" height="20.333333333333314"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -182,6 +188,7 @@
                                                     <constraint firstItem="Yp8-Nw-HWZ" firstAttribute="leading" secondItem="kiI-gL-sgM" secondAttribute="leading" id="4oA-1h-B1o"/>
                                                     <constraint firstItem="Tyv-Ix-E60" firstAttribute="width" secondItem="kiI-gL-sgM" secondAttribute="width" id="7jy-CU-pb0"/>
                                                     <constraint firstItem="pwb-Fr-kR4" firstAttribute="centerX" secondItem="kiI-gL-sgM" secondAttribute="centerX" id="OWv-qr-ztO"/>
+                                                    <constraint firstItem="Yp8-Nw-HWZ" firstAttribute="top" secondItem="Tyv-Ix-E60" secondAttribute="bottom" constant="10" id="UkN-iP-Lyl"/>
                                                     <constraint firstItem="cGO-0u-Cjq" firstAttribute="width" secondItem="kiI-gL-sgM" secondAttribute="width" id="jNk-5o-BKQ"/>
                                                 </constraints>
                                             </stackView>

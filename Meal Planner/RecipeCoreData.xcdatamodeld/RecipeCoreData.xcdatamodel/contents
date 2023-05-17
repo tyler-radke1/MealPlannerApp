@@ -9,9 +9,9 @@
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="category" inverseEntity="Ingredient"/>
     </entity>
     <entity name="Day" representedClassName="Day" syncable="YES" codeGenerationType="class">
-        <relationship name="breakfast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="breakfast" inverseEntity="Recipe"/>
-        <relationship name="dinner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="dinner" inverseEntity="Recipe"/>
-        <relationship name="lunch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="lunch" inverseEntity="Recipe"/>
+        <relationship name="breakfast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe"/>
+        <relationship name="dinner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe"/>
+        <relationship name="lunch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -31,11 +31,11 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="Binary"/>
-        <relationship name="breakfast" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Day" inverseName="breakfast" inverseEntity="Day"/>
-        <relationship name="dinner" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Day" inverseName="dinner" inverseEntity="Day"/>
+        <relationship name="breakfast" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Day"/>
+        <relationship name="dinner" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Day"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient"/>
         <relationship name="instructions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Step" inverseName="recipe" inverseEntity="Step"/>
-        <relationship name="lunch" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Day" inverseName="lunch" inverseEntity="Day"/>
+        <relationship name="lunch" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Day"/>
         <relationship name="nutrients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Nutrient" inverseName="recipe" inverseEntity="Nutrient"/>
     </entity>
     <entity name="Step" representedClassName="Step" syncable="YES" codeGenerationType="class">

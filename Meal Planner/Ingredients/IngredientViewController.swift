@@ -24,25 +24,13 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet var addButton: UIButton!
     
     @IBOutlet var textField: UITextField!
+    
+    @IBAction func textFieldReturnButtonTapped(_ sender: UITextField) {
+        addIngredient()
+        sender.endEditing(true)
+    }
 
     @IBOutlet var tableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        tableView.dataSource = self
-        tableView.delegate = self
-        createFetchRequest()
-        hideKeyboardWhenTapped()
-        setColor()
-        fetchCategory()
-        
-        self.tableView.register(
-            UINib(nibName: "IngredientHeader", bundle: nil),
-            forCellReuseIdentifier: "headerCell"
-        )
-
-    }
     
     func deleteSectionButtonTapped(forCell cell: HeaderTableViewCell) {
         do {
@@ -75,86 +63,20 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    func fetchCategory() {
-        let fetchRequet = NSFetchRequest<Category>(entityName: "Category")
-        do {
-            let results = try context.fetch(fetchRequet)
-            
-            ingredientsByCategories["Uncategorized"] = []
-            categories.append("Uncategorized")
-            
-            for category in results {
-                guard let categoryName = category.categoryName else { continue }
-                categories.append(categoryName)
-                ingredientsByCategories[categoryName] = category.ingredients?.allObjects as? Array<Ingredient>
-            }
-        }catch {
-            print(error)
-        }
-    }
-    
-    func createFetchRequest() {
-        let request = NSFetchRequest<Ingredient>(entityName: "Ingredient")
-        let sectionSortDescriptor = NSSortDescriptor(key: "sectionIndex", ascending: true)
-        let rowSortDescriptor = NSSortDescriptor(key: "rowIndex", ascending: true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
+        hideKeyboardWhenTapped()
+        setColor()
+        fetchCategory()
+        createFetchRequest()
         
-        
-        request.sortDescriptors = [sectionSortDescriptor, rowSortDescriptor]
-             do {
-                 let results = try context.fetch(request)
- 
-                 for result in results {
-                     switch result.category {
-                     case nil:
-                         if let noCategoryArray = ingredientsByCategories["Uncategorized"]{
-                             ingredientsByCategories["Uncategorized"]!.append(result)
-                         }
-               
-                     default:
-                         guard  let categoryName = result.category?.categoryName else {
-                             print("noCategoryName")
-                             continue
-                         }
-                         if let categoryArray = ingredientsByCategories[categoryName]{
-                             ingredientsByCategories[categoryName]!.append(result)
-                         }
-                     }
-
-                 }
-                 ingredients = results
-             } catch {
-                 print("Failed to access ingredients")
-             }
-             
-    }
-    
-    func addIngredientCd(ingredient: Ingredient) {
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save ingredient")
-        }
-    }
-    
-    @IBAction func addButtonTapped(_ sender: Any) {
-
-        guard let ingredientName = textField.text, !ingredientName.isEmpty else {
-            return
-        }
-
-            let ingredient = Ingredient(context: /* AppDelegate().managedObjectContext */  context)
-            ingredient.quantity = "23"
-            ingredient.name = ingredientName
-        
-        addIngredientCd(ingredient: ingredient)
-        if ingredient.category == nil {
-            ingredientsByCategories["Uncategorized"]?.append(ingredient)
-        } else {
-            ingredientsByCategories[ingredient.category!.categoryName!]?.append(ingredient)
-        }
-        tableView.reloadData()
-        
-        textField.text = ""
+        self.tableView.register(
+            UINib(nibName: "IngredientHeader", bundle: nil),
+            forCellReuseIdentifier: "headerCell"
+        )
     }
     
     @IBAction func editButtonTapped(_ sender: Any) {
@@ -199,7 +121,84 @@ class IngredientViewController: UIViewController, UITableViewDataSource, UITable
             present(alertController, animated: true, completion: nil)
         }
     
-    //    MARK: Managing navigation
+    func fetchCategory() {
+        let fetchRequet = NSFetchRequest<Category>(entityName: "Category")
+        do {
+            let results = try context.fetch(fetchRequet)
+            
+            ingredientsByCategories["Uncategorized"] = []
+            categories.append("Uncategorized")
+            
+            for category in results {
+                ingredientsByCategories[category.categoryName!] = []
+                categories.append(category.categoryName!)
+            }
+        }catch {
+            print(error)
+        }
+    }
+    
+    func createFetchRequest() {
+        let request = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+        let sectionSortDescriptor = NSSortDescriptor(key: "sectionIndex", ascending: true)
+        let rowSortDescriptor = NSSortDescriptor(key: "rowIndex", ascending: true)
+        
+        
+        request.sortDescriptors = [sectionSortDescriptor, rowSortDescriptor]
+             do {
+                 let results = try context.fetch(request)
+ 
+                 for result in results {
+                     switch result.category {
+                     case nil:
+                         if let noCategoryArray = ingredientsByCategories["Uncategorized"]{
+                             ingredientsByCategories["Uncategorized"]!.append(result)
+                         }
+                     default:
+                         guard  let categoryName = result.category?.categoryName else {
+                             print("noCategoryName")
+                             continue
+                         }
+                         if let categoryArray = ingredientsByCategories[categoryName]{
+                             ingredientsByCategories[categoryName]!.append(result)
+                         }
+                     }
+                 }
+                 ingredients = results
+             } catch {
+                 print("Failed to access ingredients")
+             }
+             
+    }
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        addIngredient()
+    }
+    
+    func addIngredient() {
+        guard let ingredientName = textField.text, !ingredientName.isEmpty else {
+            return
+        }
+            let ingredient = Ingredient(context: context)
+            ingredient.quantity = "23"
+            ingredient.name = ingredientName
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save ingredient")
+        }
+        if ingredient.category == nil {
+            ingredientsByCategories["Uncategorized"]?.append(ingredient)
+        } else {
+            ingredientsByCategories[ingredient.category!.categoryName!]?.append(ingredient)
+        }
+        tableView.reloadData()
+        
+        textField.text = ""
+    }
+    
+//    MARK: Managing navigation
     func numberOfSections(in tableView: UITableView) -> Int {
             return categories.count
     }
