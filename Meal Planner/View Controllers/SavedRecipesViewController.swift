@@ -154,6 +154,7 @@ class SavedRecipesViewController: UIViewController, UITableViewDelegate, UITable
         guard let cell = cell as? RecipeTableViewCell, let indexPath = savedRecipesTableView.indexPath(for: cell) else {
             return
         }
+
         let recipe = recipes[indexPath.row]
 
         performSegue(withIdentifier: "segueToCalendar", sender: recipe)

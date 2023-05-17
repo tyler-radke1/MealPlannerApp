@@ -174,46 +174,6 @@ struct RecipieResult: CustomStringConvertible, Codable {
     }
 }
 
-extension String {
-    private func doubleToFraction(double: Double) -> String {
-        let tolerance = 0.0001
-        let whole = Int(double)
-        let frac = double - Double(whole)
-        var num = 1
-        var den = 1
-        var fracValue: Double = Double(num) / Double(den)
-        
-        while abs(fracValue - frac) > tolerance {
-            if fracValue < frac {
-                num += 1
-            } else {
-                den += 1
-                num = Int(frac * Double(den))
-            }
-            fracValue = Double(num) / Double(den)
-        }
-        
-        if frac == 0 {
-            return "\(whole)"
-        } else if whole == 0 {
-            return "\(num)/\(den)"
-        } else {
-            return "\(whole) \(num)/\(den)"
-        }
-    }
-
-
-    var formattedIngredientQuantity: String {
-        let strings = components(separatedBy: " ")
-        guard let doubleValue = Double(strings.first ?? "") else {
-            return self
-        }
-        let fractionString = doubleToFraction(double: doubleValue)
-        let unit = strings.dropFirst().joined(separator: " ")
-        return "\(fractionString) \(unit)"
-    }
-}
-
 struct ViewedRecipe: Codable {
     var name: String?
     var readyInMinutes: Int?
@@ -377,5 +337,43 @@ struct ViewedIngredient: Codable {
 }
 
 
+extension String {
+    private func doubleToFraction(double: Double) -> String {
+        let tolerance = 0.0001
+        let whole = Int(double)
+        let frac = double - Double(whole)
+        var num = 1
+        var den = 1
+        var fracValue: Double = Double(num) / Double(den)
+        
+        while abs(fracValue - frac) > tolerance {
+            if fracValue < frac {
+                num += 1
+            } else {
+                den += 1
+                num = Int(frac * Double(den))
+            }
+            fracValue = Double(num) / Double(den)
+        }
+        
+        if frac == 0 {
+            return "\(whole)"
+        } else if whole == 0 {
+            return "\(num)/\(den)"
+        } else {
+            return "\(whole) \(num)/\(den)"
+        }
+    }
 
+
+    var formattedIngredientQuantity: String {
+        let strings = components(separatedBy: " ")
+        guard let doubleValue = Double(strings.first ?? "") else {
+            return self
+        }
+        let fractionString = doubleToFraction(double: doubleValue)
+        let unit = strings.dropFirst().joined(separator: " ")
+        return "\(fractionString) \(unit)"
+    }
+}
 
