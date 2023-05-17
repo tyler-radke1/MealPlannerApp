@@ -47,11 +47,6 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.delegate = self
         
         setColor()
-        
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = UIColor.customBlue
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
     }
     
     override func viewWillAppear(_ animated: Bool) {
