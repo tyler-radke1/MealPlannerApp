@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ktf-Jm-EfX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ktf-Jm-EfX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -159,9 +158,8 @@
                             <constraint firstItem="BWi-ap-CIE" firstAttribute="trailing" secondItem="SSh-gp-2Ee" secondAttribute="trailing" id="zXA-sV-zpe"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="search On" id="rKG-d8-Mre">
+                    <tabBarItem key="tabBarItem" title="Search" image="search" selectedImage="search On" id="rKG-d8-Mre">
                         <color key="badgeColor" red="0.97647058959999999" green="0.96862745289999996" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -182,10 +180,10 @@
             </objects>
             <point key="canvasLocation" x="1673" y="-138"/>
         </scene>
-        <!--Calendar View-->
+        <!--calendarNavController-->
         <scene sceneID="afN-f7-2qk">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="calendarNavController" storyboardName="Calendar View" id="OQa-jb-5D2" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="calendarNavController" storyboardName="Calendar View" referencedIdentifier="calendarNavController" id="OQa-jb-5D2" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hQ-Jr-eTZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1550" y="-194"/>
@@ -196,8 +194,8 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="search" width="30" height="30"/>
         <image name="search On" width="30" height="30"/>
-
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

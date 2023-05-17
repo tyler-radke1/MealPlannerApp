@@ -18,6 +18,7 @@
 		9D39F38A29F18EB6000955C1 /* Newtork Call Funcs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D39F38929F18EB6000955C1 /* Newtork Call Funcs.swift */; };
 		9D3DBFBA29FABED9008625EC /* Ingredients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */; };
 		9D9CB0702A02D05A0026541F /* Recipe Finder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D2CAE442A02CBC800F83182 /* Recipe Finder.storyboard */; };
+		9DA3B10C2A1522F600C5141D /* IngredientHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */; };
 		9DF3D13F29FAC1D0006EA354 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3D13D29FAC1D0006EA354 /* IngredientTableViewCell.swift */; };
 		9DF3D14029FAC1D0006EA354 /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF3D13E29FAC1D0006EA354 /* IngredientViewController.swift */; };
 		9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CBD3F29ED991E000259B7 /* Calendar View.storyboard */; };
@@ -31,7 +32,6 @@
 		9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F88E5E529ED8A6B009F8B79 /* LaunchScreen.storyboard */; };
 		FF012C1029F1846D00E7033D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF012C0F29F1846D00E7033D /* CalendarView.swift */; };
 		FFA416092A1271F200D3935B /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA416082A1271F200D3935B /* HeaderTableViewCell.swift */; };
-		FFCB6B892A0BEE710083CECB /* IngredientHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */; };
 		FFCB6B8B2A0D39F50083CECB /* IngredientViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCB6B8A2A0D39F50083CECB /* IngredientViewHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +93,6 @@
 				844F445429EED68600464FEE /* Saved Recipes.storyboard */,
 				FFC9E9BC29ED996800FB6B2A /* Ingredients.storyboard */,
 				FFCB6B882A0BEE710083CECB /* IngredientHeader.xib */,
-				9DF3D13C29FAC1D0006EA354 /* Ingredients */,
 			);
 			path = "Storyboard Screens";
 			sourceTree = "<group>";
@@ -238,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DA3B10C2A1522F600C5141D /* IngredientHeader.xib in Resources */,
 				9D9CB0702A02D05A0026541F /* Recipe Finder.storyboard in Resources */,
 				9D3DBFBA29FABED9008625EC /* Ingredients.storyboard in Resources */,
 				9F88E5E729ED8A6B009F8B79 /* LaunchScreen.storyboard in Resources */,
@@ -245,7 +245,6 @@
 				9F88E5E229ED8A6A009F8B79 /* Main.storyboard in Resources */,
 				844F445529EED68600464FEE /* Saved Recipes.storyboard in Resources */,
 				9F1CBD4029ED991E000259B7 /* Calendar View.storyboard in Resources */,
-				FFCB6B892A0BEE710083CECB /* IngredientHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +420,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9QUPJTJNU5;
+				DEVELOPMENT_TEAM = U994ZW592L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -452,7 +451,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9QUPJTJNU5;
+				DEVELOPMENT_TEAM = U994ZW592L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Meal Planner/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

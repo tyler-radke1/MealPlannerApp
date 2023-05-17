@@ -46,6 +46,9 @@ class CalendarView: UIViewController, UICalendarSelectionSingleDateDelegate, UIT
         calendarTableView.delegate = self
         
         setColor()
+//        navigationController?.navigationBar.tintColor = .systemPink
+//        navigationController?.navigationBar.barTintColor = .systemPink
+//        navigationController?.navigationBar.backgroundColor = .systemPink
     }
     
     override func viewWillAppear(_ animated: Bool) {
