@@ -60,11 +60,5 @@ extension UITableViewCell {
     func setCellColor() {
         self.backgroundColor = .customLightBlue
         self.tintColor = .customLight
-        
-        if let recipeSelf = self as? RecipeTableViewCell {
-//            recipeSelf.favoriteButton.setTitleShadowColor(.customLight, for: .selected)
-//            recipeSelf.favoriteButton.setTitleShadowColor(.customBlue, for: .normal)
-//            recipeSelf.favoriteButton.setTitleShadowColor(.customBlue, for: .highlighted)
-        }
     }
 }

@@ -44,7 +44,7 @@ class RecipeDetailsViewController: UIViewController {
                 ingredientsArray.sort { ingredient1, ingredient2 in
                     return ingredient1.sortID < ingredient2.sortID
                 }
-                //                ingredientsArray.sort { $0.sortID < $1.sortID }
+                              ingredientsArray.sort { $0.sortID < $1.sortID }
                 
                 for ingredient in ingredientsArray {
                     let ingredientString = "\(ingredient.quantity?.formattedIngredientQuantity ?? "") \(ingredient.name ?? "")"

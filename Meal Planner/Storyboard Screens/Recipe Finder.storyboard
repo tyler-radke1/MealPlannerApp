@@ -28,6 +28,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="283.66666666666669" height="34.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="searchTextField:" destination="Ktf-Jm-EfX" eventType="primaryActionTriggered" id="Yde-1J-5Rp"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKC-hR-Rlk">
                                                 <rect key="frame" x="283.66666666666669" y="0.0" width="77.333333333333314" height="34.333333333333336"/>
