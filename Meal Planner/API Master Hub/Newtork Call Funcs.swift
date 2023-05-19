@@ -25,7 +25,7 @@ func recipieSearchByName(using text: String) async throws -> Results {
     urlComponents?.queryItems = queryItems
     
     let headers = [
-        "X-RapidAPI-Key": "b318be8b14msh37ff82490483e11p168179jsn43a8428e48e3",
+        "X-RapidAPI-Key": "" /* Insert key here */,
         "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
     ]
 
