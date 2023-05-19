@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderTableViewCell" customModule="Meal_Planner" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="headerCell" id="fyN-i5-lIP" customClass="HeaderTableViewCell" customModule="Meal_Planner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fyN-i5-lIP" id="Evo-1s-M6L">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aF-J3-LXL">
+                        <rect key="frame" x="6" y="10" width="46" height="23"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="destructive" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-IW-yKt">
+                        <rect key="frame" x="316" y="5" width="73.333333333333314" height="35"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.094117648900000003" green="0.1725490093" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Delete">
+                            <color key="baseForegroundColor" red="0.094117648900000003" green="0.1725490093" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="deleteSectionButtonTapped:" destination="fyN-i5-lIP" eventType="touchUpInside" id="zty-q2-Ql8"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EbN-IW-yKt" firstAttribute="top" secondItem="Evo-1s-M6L" secondAttribute="top" constant="5" id="0XB-7R-lEz"/>
+                    <constraint firstAttribute="bottom" secondItem="4aF-J3-LXL" secondAttribute="bottom" constant="11" id="6SY-TF-gbw"/>
+                    <constraint firstItem="4aF-J3-LXL" firstAttribute="top" secondItem="Evo-1s-M6L" secondAttribute="top" constant="10" id="HYD-Z6-nep"/>
+                    <constraint firstAttribute="bottom" secondItem="EbN-IW-yKt" secondAttribute="bottom" constant="4" id="Zbf-Zv-lad"/>
+                    <constraint firstItem="4aF-J3-LXL" firstAttribute="leading" secondItem="Evo-1s-M6L" secondAttribute="leading" constant="6" id="cOG-5B-Zre"/>
+                    <constraint firstAttribute="trailing" secondItem="EbN-IW-yKt" secondAttribute="trailing" constant="0.67000000000000004" id="wBD-aM-PWg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="deleteSectionButton" destination="EbN-IW-yKt" id="DPY-pG-nKo"/>
+                <outlet property="sectionLabel" destination="4aF-J3-LXL" id="jxV-za-eey"/>
+            </connections>
+            <point key="canvasLocation" x="-24314" y="691"/>
+        </tableViewCell>
+    </objects>
+</document>
